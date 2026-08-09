@@ -149,5 +149,36 @@ const timer = setInterval(tick, 1000);
 <script>
 var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
 </script>
+
+<script>
+/* GA4: record a successful Tally submission as a lead */
+window.addEventListener('message', function (event) {
+  if (typeof event.data !== 'string' || !event.data.includes('Tally.FormSubmitted')) {
+    return;
+  }
+
+  try {
+    const message = JSON.parse(event.data);
+    const payload = message && message.payload ? message.payload : {};
+
+    /* Only count submissions from the Tally form embedded on this page. */
+    if (payload.formId && payload.formId !== '7RYyOL') {
+      return;
+    }
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', {
+        send_to: 'G-WWB8LXBHV5',
+        form_id: payload.formId || '7RYyOL',
+        form_name: payload.formName || 'Want a nudge when it is live?',
+        lead_source: 'tally_launch_form'
+      });
+    }
+  } catch (error) {
+    /* Ignore unrelated cross-window messages. */
+  }
+});
+</script>
+
 </body>
 </html>

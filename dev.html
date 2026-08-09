@@ -181,5 +181,49 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   windows.forEach((item) => observer.observe(item));
 }
 </script>
+
+<script>
+/* GA4 lead-action tracking */
+(function () {
+  function sendGA4Event(name, params) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', name, Object.assign({
+      send_to: 'G-WWB8LXBHV5'
+    }, params || {}));
+  }
+
+  document.addEventListener('click', function (event) {
+    const link = event.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href') || '';
+    const linkText = (link.textContent || '').replace(/\s+/g, ' ').trim();
+
+    if (href.includes('buy.stripe.com/aFadRa0iSb2E8HIaoc73G02')) {
+      sendGA4Event('book_clarity_session', {
+        link_text: linkText,
+        link_url: href
+      });
+      return;
+    }
+
+    if (href.includes('calendar.notion.so/meet/jayden-cooke/clarity20')) {
+      sendGA4Event('book_free_call', {
+        link_text: linkText,
+        link_url: href
+      });
+      return;
+    }
+
+    if (href.toLowerCase().startsWith('mailto:')) {
+      sendGA4Event('email_click', {
+        link_text: linkText,
+        link_url: href
+      });
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
