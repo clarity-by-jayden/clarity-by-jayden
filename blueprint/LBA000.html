@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Leicester Barbering Academy — Clarity Blueprint implementation blocks." name="description"/>
+<title>Leicester Barbering Academy — Clarity Blueprint</title>
+<style>
+    :root{
+      --ink:#2d1945;
+      --purple:#8255bd;
+      --lilac:#eee5fa;
+      --lime:#b9ff25;
+      --cream:#faf7f2;
+      --pink:#f2c8eb;
+      --muted:#665576;
+      --line:#2d1945;
+      --shadow:5px 5px 0 var(--ink);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--lilac);
+      color:var(--ink);
+      font-family:Arial,sans-serif;
+      background-image:radial-gradient(#8255bd22 1px,transparent 1px);
+      background-size:18px 18px;
+    }
+    button,input{font:inherit}
+    h1,h2,h3,p{margin-top:0}
+    .shell{max-width:1260px;margin:auto;padding:54px 5vw 110px}
+    .window{border:3px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:var(--cream)}
+    .window-bar{
+      min-height:40px;padding:8px 10px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+      background:var(--purple);border-bottom:3px solid var(--ink);font:900 10px/1 Arial;
+      letter-spacing:.09em;color:white;text-transform:uppercase;
+    }
+    .window-bar.light{background:var(--lilac);color:var(--ink)}
+    .window-bar>b{text-align:right;font-size:19px}
+    .dots{display:flex;gap:5px}
+    .dots i{width:11px;height:11px;border:2px solid var(--ink);border-radius:50%;background:var(--lime)}
+    .dots i:nth-child(2){background:var(--pink)}
+    .dots i:nth-child(3){background:var(--cream)}
+    .kicker{font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--purple)}
+    .hero{padding:52px clamp(26px,5vw,66px);background:var(--cream)}
+    .hero h1{font-size:clamp(46px,6vw,78px);line-height:.96;letter-spacing:-.055em;margin:18px 0 20px}
+    .hero h1 em{font-family:Georgia,serif;font-weight:400;color:var(--purple)}
+    .hero p{max-width:850px;color:var(--muted);font-size:17px;line-height:1.62;margin-bottom:0}
+    .recommend{
+      margin:28px 0 34px;padding:24px;display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;
+      background:var(--lime);border:3px solid var(--ink);border-radius:10px;box-shadow:var(--shadow)
+    }
+    .recommend small{display:block;margin-bottom:6px;font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+    .recommend strong{display:block;font:700 25px/1.2 Georgia,serif}
+    .recommend p{margin:6px 0 0;color:#4d3a5e;font-size:14px;line-height:1.5}
+    .recommend .price{font:700 34px Georgia,serif;white-space:nowrap}
+    .btn{
+      border:3px solid var(--ink);border-radius:7px;padding:12px 15px;background:var(--cream);color:var(--ink);
+      box-shadow:3px 3px 0 var(--ink);cursor:pointer;font-weight:900;font-size:11px;text-transform:uppercase
+    }
+    .btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+    .btn:active{transform:translate(3px,3px);box-shadow:none}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:start}
+    .block{position:relative;transition:.16s ease;background:var(--cream)}
+    .block:nth-child(even){background:var(--lilac)}
+    .block.recommended:not(.selected){outline:4px solid var(--lime);outline-offset:-7px}
+    .block.selected{background:var(--lime);transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+    .block.selected .window-bar{background:var(--pink);color:var(--ink)}
+    .body{padding:26px}
+    .topline{display:flex;gap:15px;align-items:flex-start;margin-bottom:18px}
+    .letter{
+      display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border:2px solid var(--ink);
+      border-radius:50%;background:var(--lime);font:700 17px Georgia,serif
+    }
+    .selected .letter{background:var(--cream)}
+    .titlewrap h3{margin:2px 0 6px;font-size:25px;line-height:1.08;letter-spacing:-.025em}
+    .focus{margin:0;color:var(--muted);font-size:13px;line-height:1.4}
+    .selected .focus,.selected .summary,.selected .lead{color:#4d3a5e}
+    .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .pill{display:inline-flex;align-items:center;min-height:30px;padding:6px 9px;background:white;border:2px solid var(--ink);
+      border-radius:5px;font-size:10px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+    .pill.essential{background:var(--pink)}
+    .pill.rec{background:var(--lime)}
+    .summary{min-height:155px;margin-bottom:20px;color:var(--muted);font-size:14px;line-height:1.58}
+    .selectrow{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding-top:18px;border-top:2px solid #2d194533}
+    .price{font:700 30px Georgia,serif}
+    .lead{display:block;margin-top:4px;color:var(--muted);font-size:11px;font-weight:700}
+    .checklabel{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12px;font-weight:900;text-transform:uppercase}
+    .checkbox{width:25px;height:25px;margin:0;cursor:pointer;accent-color:var(--purple)}
+    .sticky{
+      position:sticky;bottom:16px;z-index:20;margin-top:30px;padding:20px 22px;display:grid;
+      grid-template-columns:1fr auto auto auto;gap:18px;align-items:center;background:var(--ink);color:white;
+      border:3px solid var(--ink);border-radius:10px;box-shadow:7px 7px 0 var(--lime)
+    }
+    .sticky .eyebrow{display:block;margin-bottom:5px;color:var(--lime);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    .selection{margin:0;color:#e8def2;font-size:13px;line-height:1.45}
+    .total{min-width:120px;color:var(--lime);text-align:right;font:700 38px Georgia,serif}
+    .sticky .btn{background:var(--pink)}
+    .note{margin:24px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+    .footer-note{
+      margin-top:34px;padding:22px 24px;background:var(--cream);border:3px solid var(--ink);border-radius:10px;
+      box-shadow:var(--shadow);font-size:13px;line-height:1.55;color:var(--muted)
+    }
+    .footer-note strong{color:var(--ink)}
+    .copied{background:var(--lime)!important}
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .summary{min-height:0}
+      .recommend{grid-template-columns:1fr auto}
+      .recommend .btn{grid-column:1/-1}
+      .sticky{grid-template-columns:1fr auto}
+      .sticky .btn{grid-column:auto}
+    }
+    @media(max-width:620px){
+      .shell{padding:28px 18px 90px}
+      .hero{padding:36px 24px}
+      .hero h1{font-size:44px}
+      .recommend{grid-template-columns:1fr}
+      .recommend .price{text-align:left}
+      .topline{flex-direction:column}
+      .selectrow{align-items:flex-end}
+      .sticky{position:static;grid-template-columns:1fr}
+      .total{text-align:left}
+    }
+  
+    .summary-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin:0 0 18px;
+      padding:9px 11px;
+      border:2px solid var(--ink);
+      border-radius:6px;
+      background:white;
+      color:var(--ink);
+      box-shadow:2px 2px 0 var(--ink);
+      cursor:pointer;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+    }
+    .summary-toggle:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+    .summary-toggle:active{transform:translate(2px,2px);box-shadow:none}
+    .summary-toggle .arrow{display:inline-block;transition:transform .18s ease}
+    .summary-toggle[aria-expanded="true"] .arrow{transform:rotate(180deg)}
+    .summary-wrap{
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .24s ease;
+    }
+    .summary-wrap.open{grid-template-rows:1fr}
+    .summary-inner{overflow:hidden}
+    .summary-wrap .summary{min-height:0;margin-bottom:20px}
+    @media(prefers-reduced-motion:reduce){
+      .summary-toggle .arrow,.summary-wrap{transition:none}
+    }
+
+    .block-column{
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+      min-width:0;
+    }
+    .block-column .block{
+      width:100%;
+    }
+    @media(max-width:900px){
+      .block-column{gap:22px}
+    }
+
+    .jotform-btn{
+      background:var(--lime)!important;
+      color:var(--ink)!important;
+      white-space:nowrap;
+    }
+    .jotform-btn:disabled{
+      opacity:.45;
+      cursor:not-allowed;
+      transform:none!important;
+      box-shadow:3px 3px 0 var(--lime)!important;
+    }
+    .jotform-help{
+      grid-column:1/-1;
+      margin:0;
+      color:#cfc1dd;
+      font-size:11px;
+      line-height:1.45;
+    }
+</style>
+</head>
+<body>
+<main class="shell">
+<section class="window">
+<div class="window-bar light">
+<div class="dots"><i></i><i></i><i></i></div>
+<span>leicester_barbering_academy_blueprint</span>
+<b>×</b>
+</div>
+<div class="hero">
+<p class="kicker">Clarity by Jayden · Implementation Blueprint</p>
+<h1>Choose the blocks that<br/><em>make sense for you.</em></h1>
+<p>Your Blueprint is deliberately modular. You do not need to implement everything at once. Select the areas you want to move forward with now, and leave the others until the timing, need or budget is right.</p><div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="toggleAllSummaries" type="button">Show all recommendations</button></div>
+</div>
+</section>
+<section class="recommend">
+<div>
+<small>My recommended starting combination</small>
+<strong>Blocks A + B + D</strong>
+<p>Strengthen the website, tighten the full enquiry-to-enrolment journey, and create the reusable 12-week campaign that directly supports future cohort revenue.</p>
+</div>
+<div class="price">£2,600</div>
+<button class="btn" id="selectRecommended" type="button">Select recommended start</button>
+</section>
+<section class="grid"><div class="block-column" data-column="left"><article class="window block recommended" data-block="A" data-price="1200">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_a</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">A</span><div class="titlewrap"><h3>Website &amp; Messaging</h3><p class="focus">Structure, positioning, course journeys and conversion</p></div></div>
+<div class="meta"><span class="pill essential">Essential</span><span class="pill rec">Recommended start</span></div><button aria-controls="summary-a" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-a"><div class="summary-inner"><p class="summary">I recommend restructuring the website so it is much clearer for each type of visitor and easier for people to take the right next step. I’d also advise moving away from Wix. The 10-week course needs its own dedicated landing page, while one-day and one-to-one training for experienced barbers should sit in a clearly separate area. I’d also replace the catch-all contact form with purpose-specific pages and forms — for example, a dedicated models page and model form — so each enquiry route can ask the right questions and feed into the right list.</p></div></div>
+<div class="selectrow"><div><span class="price">£1,200</span><span class="lead">Lead time: 3–5 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="A"/></label></div>
+</div>
+</article><article class="window block" data-block="C" data-price="500">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_c</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">C</span><div class="titlewrap"><h3>Email Campaign Strategy</h3><p class="focus">Audience capture, nurture, testing and conversion</p></div></div>
+<div class="meta"><span class="pill essential">Essential</span></div><button aria-controls="summary-c" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-c"><div class="summary-inner"><p class="summary">Email is currently massively underutilised. We don’t yet know how strongly your audience will engage with it, but there is also no data suggesting they won’t. I recommend building a proper email campaign strategy so you can capture people who are interested but not ready to enrol immediately, keep the academy front of mind, and test which messages generate the strongest response. I’d separate prospective learners from existing barbers so each audience receives relevant messaging and offers.</p></div></div>
+<div class="selectrow"><div><span class="price">£500</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="C"/></label></div>
+</div>
+</article><article class="window block" data-block="E" data-price="500">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_e</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">E</span><div class="titlewrap"><h3>Content Strategy</h3><p class="focus">Year-round awareness, nurture, trust and conversion</p></div></div>
+<div class="meta"><span class="pill">Recommended</span></div><button aria-controls="summary-e" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-e"><div class="summary-inner"><p class="summary">You’re already producing promising video content, particularly on Instagram. I recommend putting a clearer strategy around it so each piece of content has a job. I’d structure the system around Reach, Confidence, Decision and Relationship, giving you a year-round content approach that nurtures people before they enter a cohort launch window and supports the wider recruitment system rather than sitting separately from it.</p></div></div>
+<div class="selectrow"><div><span class="price">£500</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="E"/></label></div>
+</div>
+</article><article class="window block" data-block="G" data-price="300">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_g</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">G</span><div class="titlewrap"><h3>Learner Onboarding</h3><p class="focus">Pre-course learner experience and confidence</p></div></div>
+<div class="meta"><span class="pill">Recommended</span></div><button aria-controls="summary-g" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-g"><div class="summary-inner"><p class="summary">The WhatsApp groups already give learners a personal point of contact before they start, and I’d keep that. I recommend strengthening the experience around it with a simple digital onboarding area where learners can access everything they need before day one — including parking, timings, what to bring, kit information, FAQs, expectations, tutor introductions and useful academy information.</p></div></div>
+<div class="selectrow"><div><span class="price">£300</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="G"/></label></div>
+</div>
+</article><article class="window block" data-block="I" data-price="500">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_i</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">I</span><div class="titlewrap"><h3>Existing Barber / One-Day Training Growth</h3><p class="focus">Secondary revenue stream and professional barber development</p></div></div>
+<div class="meta"><span class="pill">Growth opportunity</span></div><button aria-controls="summary-i" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-i"><div class="summary-inner"><p class="summary">I recommend giving your one-day and one-to-one training for experienced barbers a much clearer identity. I’d position it as a separate part of the academy, with its own website area, forms, mailing list and messaging. That gives you a stronger way to market specialist training, build a separate audience of working barbers and generate additional revenue between main cohort launches without confusing people who are completely new to barbering.</p></div></div>
+<div class="selectrow"><div><span class="price">£500</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="I"/></label></div>
+</div>
+</article></div><div class="block-column" data-column="right"><article class="window block recommended" data-block="B" data-price="500">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_b</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">B</span><div class="titlewrap"><h3>Lead Capture &amp; Enquiry-to-Enrolment</h3><p class="focus">Attribution, follow-up, conversion and webinar lead generation</p></div></div>
+<div class="meta"><span class="pill essential">Essential</span><span class="pill rec">Recommended start</span></div><button aria-controls="summary-b" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-b"><div class="summary-inner"><p class="summary">I recommend creating one joined-up process from the moment somebody makes contact through to enrolment. That means clearer source tracking, tailored forms, a consistent “How did you hear about us?” question, simple funnel stages, and a defined follow-up journey through phone call, academy tour, application and enrolment. Your personal phone call should stay central. I’d also introduce a monthly open webinar as a low-pressure lead magnet: outside launch periods it can build the mailing list or waitlist, and during launch periods it can direct people straight into the course journey.</p></div></div>
+<div class="selectrow"><div><span class="price">£500</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="B"/></label></div>
+</div>
+</article><article class="window block recommended" data-block="D" data-price="900">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_d</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">D</span><div class="titlewrap"><h3>Reusable 12-Week Cohort Launch Campaign</h3><p class="focus">Revenue, cohort recruitment and repeatable campaign structure</p></div></div>
+<div class="meta"><span class="pill essential">Essential</span><span class="pill rec">Recommended start</span></div><button aria-controls="summary-d" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-d"><div class="summary-inner"><p class="summary">I recommend creating a reusable 12-week launch campaign that becomes the standard recruitment process for every future cohort. The academy should nurture potential learners all year through content, email, webinars and learner stories. Then, 12 weeks before each cohort, that audience moves into a structured campaign covering awareness, course education, testimonials, webinars, academy tours, email, social content, direct follow-up, urgency and final enrolment activity. I’d also make the £2,000 rate a genuine early-bird offer within this campaign before returning to the standard £2,300 price.</p></div></div>
+<div class="selectrow"><div><span class="price">£900</span><span class="lead">Lead time: 3–4 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="D"/></label></div>
+</div>
+</article><article class="window block" data-block="F" data-price="350">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_f</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">F</span><div class="titlewrap"><h3>Learner Case Studies &amp; Social Proof</h3><p class="focus">Testimonials, proof and real learner outcomes</p></div></div>
+<div class="meta"><span class="pill">Recommended</span></div><button aria-controls="summary-f" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-f"><div class="summary-inner"><p class="summary">I recommend making learner stories a much more deliberate part of your marketing. Rather than relying on occasional testimonials, I’d create a repeatable process that follows learners from the start of their journey through graduation and into employment, self-employment or business ownership. That gives prospective learners stronger evidence of the full transformation and creates proof that can be reused across the website, email, social media and future cohort launches.</p></div></div>
+<div class="selectrow"><div><span class="price">£350</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="F"/></label></div>
+</div>
+</article><article class="window block" data-block="H" data-price="300">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_h</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">H</span><div class="titlewrap"><h3>Alumni &amp; Graduate Community</h3><p class="focus">Referrals, proof and long-term relationships</p></div></div>
+<div class="meta"><span class="pill">Growth opportunity</span></div><button aria-controls="summary-h" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-h"><div class="summary-inner"><p class="summary">I think there is a missed opportunity once learners graduate. I recommend creating a simple alumni system so you can stay in touch, follow their progress, capture future case studies, ask for referrals and bring graduates back into the academy ecosystem where relevant. Over time, each cohort should help support the credibility and recruitment of the next one.</p></div></div>
+<div class="selectrow"><div><span class="price">£300</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="H"/></label></div>
+</div>
+</article></div></section>
+<section aria-live="polite" class="sticky">
+<div>
+<span class="eyebrow">Your selected Blueprint</span>
+<p class="selection" id="selectionText">No blocks selected yet.</p>
+</div>
+<div class="total" id="totalCost">£0</div>
+<button class="btn jotform-btn" disabled="disabled" id="sendToJotform" type="button">Confirm selected blocks →</button><button class="btn" id="clearSelection" type="button">Clear</button>
+<p class="jotform-help">Your selected blocks will be carried into the Blueprint Block Selection form automatically.</p></section>
+<p class="note"><strong>Lead time note:</strong> Indicative lead times begin once the required access, information and content have been supplied. Where multiple blocks are commissioned together, delivery will be sequenced and an overall implementation timeline agreed before work begins.</p>
+<div class="footer-note">
+<strong>Implementation remains your choice.</strong> The Blueprint gives you the recommended direction first. You can implement individual blocks yourself, commission selected blocks with Jayden, combine several blocks into a phased programme, or leave any area until the timing is right.
+    </div>
+</main>
+<script>
+    (function(){
+      const root = document;
+      const blocks = Array.from(root.querySelectorAll('.block'));
+      const checks = Array.from(root.querySelectorAll('.checkbox'));
+      const selectionText = root.getElementById('selectionText');
+      const totalCost = root.getElementById('totalCost');
+      const clearBtn = root.getElementById('clearSelection');
+      const recommendedBtn = root.getElementById('selectRecommended');
+      const jotformBtn = root.getElementById('sendToJotform');
+      const jotformBaseUrl = 'https://form.jotform.com/262215516397056';
+      const blockNames = {
+        A: 'Block A — Website & Messaging',
+        B: 'Block B — Lead Capture & Enquiry-to-Enrolment',
+        C: 'Block C — Email Campaign Strategy',
+        D: 'Block D — Reusable 12-Week Cohort Launch Campaign',
+        E: 'Block E — Content Strategy',
+        F: 'Block F — Learner Case Studies & Social Proof',
+        G: 'Block G — Learner Onboarding',
+        H: 'Block H — Alumni & Graduate Community',
+        I: 'Block I — Existing Barber / One-Day Training Growth'
+      };
+      const toggleAllBtn = root.getElementById('toggleAllSummaries');
+      const summaryButtons = Array.from(root.querySelectorAll('.summary-toggle'));
+      const recommended = ['A','B','D'];
+
+      const grid = root.querySelector('.grid');
+      const leftCol = root.querySelector('[data-column="left"]');
+      const rightCol = root.querySelector('[data-column="right"]');
+      const allBlocks = Array.from(root.querySelectorAll('.block')).sort(
+        (a,b) => a.dataset.block.localeCompare(b.dataset.block)
+      );
+
+      function arrangeColumns(){
+        if(window.matchMedia('(max-width: 900px)').matches){
+          allBlocks.forEach(block => leftCol.appendChild(block));
+          rightCol.style.display = 'none';
+        } else {
+          rightCol.style.display = 'flex';
+          allBlocks.forEach((block,index) => {
+            (index % 2 === 0 ? leftCol : rightCol).appendChild(block);
+          });
+        }
+      }
+
+      arrangeColumns();
+      window.addEventListener('resize', arrangeColumns);
+
+      function formatGBP(n){
+        return new Intl.NumberFormat('en-GB',{
+          style:'currency',currency:'GBP',minimumFractionDigits:0,maximumFractionDigits:0
+        }).format(n);
+      }
+
+      function state(){
+        let total = 0;
+        const selected = [];
+        blocks.forEach(block=>{
+          const checkbox = block.querySelector('.checkbox');
+          const on = checkbox.checked;
+          block.classList.toggle('selected', on);
+          if(on){
+            selected.push(block.dataset.block);
+            total += Number(block.dataset.price || 0);
+          }
+        });
+        totalCost.textContent = formatGBP(total);
+        selectionText.textContent = selected.length
+          ? `${selected.length} block${selected.length===1?'':'s'} selected: ${selected.join(' + ')}`
+          : 'No blocks selected yet.';
+        if(jotformBtn){
+          jotformBtn.disabled = selected.length === 0;
+        }
+        return {selected,total};
+      }
+
+      function setSummary(button, open){
+        const id = button.getAttribute('aria-controls');
+        const wrap = document.getElementById(id);
+        if(!wrap) return;
+        button.setAttribute('aria-expanded', String(open));
+        wrap.classList.toggle('open', open);
+        button.firstChild.nodeValue = open ? 'Hide recommendation ' : 'View recommendation ';
+      }
+
+      function refreshToggleAll(){
+        if(!toggleAllBtn) return;
+        const allOpen = summaryButtons.length && summaryButtons.every(
+          b => b.getAttribute('aria-expanded') === 'true'
+        );
+        toggleAllBtn.textContent = allOpen ? 'Hide all recommendations' : 'Show all recommendations';
+      }
+
+      summaryButtons.forEach(button=>{
+        button.addEventListener('click', ()=>{
+          const open = button.getAttribute('aria-expanded') !== 'true';
+          setSummary(button, open);
+          refreshToggleAll();
+        });
+      });
+
+      if(toggleAllBtn){
+        toggleAllBtn.addEventListener('click', ()=>{
+          const shouldOpen = !summaryButtons.every(
+            b => b.getAttribute('aria-expanded') === 'true'
+          );
+          summaryButtons.forEach(b => setSummary(b, shouldOpen));
+          refreshToggleAll();
+        });
+      }
+
+      checks.forEach(c=>c.addEventListener('change', state));
+
+      clearBtn.addEventListener('click',()=>{
+        checks.forEach(c=>c.checked=false);
+        state();
+      });
+
+      recommendedBtn.addEventListener('click',()=>{
+        checks.forEach(c=>c.checked=recommended.includes(c.value));
+        state();
+        document.querySelector('.sticky').scrollIntoView({behavior:'smooth',block:'center'});
+      });
+
+
+      if(jotformBtn){
+        jotformBtn.addEventListener('click', ()=>{
+          const s = state();
+          if(!s.selected.length) return;
+
+          const blockText = s.selected
+            .map(code => blockNames[code] || `Block ${code}`)
+            .join('\n');
+
+          const url = new URL(jotformBaseUrl);
+          url.searchParams.set('blocks', blockText);
+          window.open(url.toString(), '_blank', 'noopener,noreferrer');
+        });
+      }
+
+      state();
+      refreshToggleAll();
+    })();
+</script>
+</body>
+</html>
