@@ -359,7 +359,7 @@
 <p class="selection" id="selectionText">No blocks selected yet.</p>
 </div>
 <div class="total" id="totalCost">£0</div>
-<button class="btn jotform-btn" disabled="disabled" id="sendToJotform" type="button">Confirm selected blocks →</button><button class="btn" id="clearSelection" type="button">Clear</button>
+<button class="btn jotform-btn" disabled="disabled" id="sendToJotform" type="button">Confirm selection →</button><button class="btn" id="clearSelection" type="button">Clear</button>
 <p class="jotform-help">Choose one or more implementation blocks, or explicitly select the independent route.</p></section>
 <p class="note"><strong>Lead time note:</strong> Indicative lead times begin once the required access, information and content have been supplied. Where multiple blocks are commissioned together, delivery will be sequenced and an overall implementation timeline agreed before work begins.</p>
 <div class="footer-note">
@@ -524,7 +524,7 @@
       if(jotformBtn){
         jotformBtn.addEventListener('click', ()=>{
           const s = state();
-          if(!s.selected.length) return;
+          if(!s.selected.length && !s.independent) return;
 
           const blockText = s.independent
             ? 'No implementation blocks — I’ll take the Blueprint forward independently.'
