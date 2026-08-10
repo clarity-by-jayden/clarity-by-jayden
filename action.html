@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eee5fa">
+  <title>Clarity Action Check</title>
+  <style>
+    :root {
+      --ink: #2d1945;
+      --purple: #8255bd;
+      --lilac: #eee5fa;
+      --lime: #b9ff25;
+      --cream: #faf7f2;
+      --pink: #f2c8eb;
+      --blue: #9bdcf0;
+      --shadow: 12px 12px 0 var(--ink);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: clamp(22px, 5vw, 72px);
+      color: var(--ink);
+      background-color: var(--lilac);
+      background-image: radial-gradient(#8255bd35 2px, transparent 2px);
+      background-size: 30px 30px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .frame {
+      width: min(920px, 100%);
+      border: 5px solid var(--ink);
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--cream);
+      box-shadow: var(--shadow);
+      animation: arrive .65s cubic-bezier(.2,.9,.2,1) both;
+    }
+
+    .window-bar {
+      min-height: 78px;
+      padding: 14px 20px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      color: white;
+      background: var(--purple);
+      border-bottom: 5px solid var(--ink);
+      font-size: clamp(12px, 1.9vw, 18px);
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    .window-bar > b { justify-self: end; font-size: 32px; line-height: 1; }
+
+    .dots { display: flex; gap: 9px; }
+    .dots i {
+      width: 20px;
+      height: 20px;
+      border: 3px solid var(--ink);
+      border-radius: 50%;
+      background: var(--lime);
+    }
+    .dots i:nth-child(2) { background: var(--pink); }
+    .dots i:nth-child(3) { background: var(--cream); }
+
+    .content { padding: clamp(48px, 8vw, 94px); }
+
+    .eyebrow {
+      margin: 0 0 26px;
+      color: var(--purple);
+      font-size: clamp(13px, 2vw, 20px);
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 clamp(42px, 7vw, 72px);
+      max-width: 770px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    h1 em {
+      color: var(--purple);
+      font-family: Georgia, serif;
+      font-weight: 400;
+    }
+
+    .action-button {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: clamp(22px, 4vw, 38px);
+      padding: clamp(28px, 5vw, 48px);
+      border: 4px solid var(--ink);
+      border-radius: 14px;
+      color: var(--ink);
+      background: var(--blue);
+      box-shadow: 8px 8px 0 var(--ink);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease, background .3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .action-button:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0 var(--ink); }
+    .action-button:active { transform: translate(8px, 8px); box-shadow: 0 0 0 var(--ink); }
+    .action-button:focus-visible { outline: 6px solid var(--lime); outline-offset: 7px; }
+
+    .box {
+      width: clamp(66px, 10vw, 96px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 5px solid var(--ink);
+      border-radius: 12px;
+      background: var(--cream);
+      font-size: clamp(46px, 8vw, 76px);
+      font-weight: 900;
+      line-height: 1;
+      transition: background .25s ease, transform .3s cubic-bezier(.2,1.5,.4,1);
+    }
+
+    .label {
+      font-size: clamp(24px, 4.3vw, 43px);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -.025em;
+    }
+
+    .action-button.is-complete { background: var(--pink); }
+    .action-button.is-complete .box { background: var(--lime); transform: rotate(-5deg) scale(1.08); }
+    .action-button.is-complete .label { text-decoration: line-through; text-decoration-thickness: 3px; text-decoration-color: var(--purple); }
+
+    .done-message {
+      min-height: 1.35em;
+      margin: 34px 0 0;
+      color: var(--purple);
+      font: 700 clamp(22px, 3.6vw, 34px)/1.2 Georgia, serif;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .done-message.show { opacity: 1; transform: translateY(0); }
+
+    .brand {
+      margin: clamp(42px, 7vw, 70px) 0 0;
+      font: 700 clamp(28px, 4vw, 42px)/1 Georgia, serif;
+      letter-spacing: -2px;
+    }
+
+    .brand span { color: var(--purple); }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(36px) scale(.92); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 560px) {
+      body { padding: 24px 18px 36px; }
+      .frame { border-width: 4px; border-radius: 16px; box-shadow: 8px 8px 0 var(--ink); }
+      .window-bar { min-height: 56px; border-bottom-width: 4px; }
+      .dots i { width: 15px; height: 15px; }
+      .content { padding: 42px 27px 48px; }
+      .action-button { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .frame { animation: none; }
+      .action-button, .box, .done-message { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <header class="window-bar" aria-hidden="true">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <span>quick_clarity_check</span>
+      <b>×</b>
+    </header>
+
+    <section class="content">
+      <p class="eyebrow">Your action</p>
+      <h1>Give every activity a <em>clear purpose.</em></h1>
+
+      <button class="action-button" type="button" aria-pressed="false">
+        <span class="box" aria-hidden="true"></span>
+        <span class="label">Choose one activity and identify the result it’s meant to produce.</span>
+      </button>
+
+      <p class="done-message" aria-live="polite">That’s one less decision left to guesswork.</p>
+      <p class="brand">Clarity<span>.</span></p>
+    </section>
+  </main>
+
+  <script>
+    const action = document.querySelector('.action-button');
+    const box = action.querySelector('.box');
+    const message = document.querySelector('.done-message');
+
+    action.addEventListener('click', () => {
+      const complete = action.classList.toggle('is-complete');
+      action.setAttribute('aria-pressed', String(complete));
+      box.textContent = complete ? '✓' : '';
+      message.classList.toggle('show', complete);
+    });
+  </script>
+</body>
+</html>
