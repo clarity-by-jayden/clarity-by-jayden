@@ -206,10 +206,56 @@
 .independent-details-content li{margin:7px 0}
 .independent-details-content p:last-child{margin-bottom:0}
 @media(max-width:620px){.independent-head{flex-direction:column}}
+
+.proposal-validity{
+  margin:18px 0 0;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border:2px solid var(--ink);
+  border-radius:6px;
+  background:var(--pink);
+  color:var(--ink);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.expired-screen{
+  display:none;
+  max-width:900px;
+  margin:60px auto;
+  padding:46px clamp(24px,5vw,60px);
+  background:var(--cream);
+  border:3px solid var(--ink);
+  border-radius:12px;
+  box-shadow:8px 8px 0 var(--purple);
+}
+.expired-screen.active{display:block}
+.expired-screen h1{
+  margin:0 0 18px;
+  font-size:clamp(42px,6vw,72px);
+  line-height:.98;
+  letter-spacing:-.05em;
+}
+.expired-screen h1 em{
+  font-family:Georgia,serif;
+  font-weight:400;
+  color:var(--purple);
+}
+.expired-screen p{
+  max-width:720px;
+  margin:0;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.6;
+}
+.blueprint-content.expired{display:none!important}
 </style>
 </head>
 <body>
-<main class="shell">
+<section aria-live="polite" class="expired-screen" id="expiredScreen"><p class="kicker">Clarity by Jayden · Leicester Barbering Academy</p><h1>This Blueprint has <em>expired.</em></h1><p>This proposal was valid for 30 days and can no longer be selected or submitted. Please contact Jayden if you’d like to revisit the recommendations or request an updated implementation proposal.</p></section><main class="shell blueprint-content">
 <section class="window">
 <div class="window-bar light">
 <div class="dots"><i></i><i></i><i></i></div>
@@ -220,7 +266,7 @@
 <p class="kicker">Leicester Barbering Academy · Clarity Blueprint</p>
 <h1>Choose the blocks that<br/><em>make sense for you.</em></h1>
 <p>Hi Vin — below are the recommended implementation blocks from your Clarity Blueprint.</p><p>Your Blueprint is deliberately modular. You do not need to implement everything at once. Select the areas you want to move forward with now, and leave the others until the timing, need or budget is right.</p>
-</div>
+<div class="proposal-validity">Proposal valid until 9 September 2026</div></div>
 </section>
 <section class="recommend">
 <div>
@@ -310,6 +356,16 @@
 </main>
 <script>
     (function(){
+      const proposalExpiry = new Date('2026-09-10T00:00:00+01:00');
+      const now = new Date();
+      const blueprintContent = document.querySelector('.blueprint-content');
+      const expiredScreen = document.getElementById('expiredScreen');
+
+      if(now >= proposalExpiry){
+        if(blueprintContent) blueprintContent.classList.add('expired');
+        if(expiredScreen) expiredScreen.classList.add('active');
+        return;
+      }
       const root = document;
       const blocks = Array.from(root.querySelectorAll('.block'));
       const checks = Array.from(root.querySelectorAll('.checkbox'));
