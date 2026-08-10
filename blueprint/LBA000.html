@@ -200,9 +200,9 @@
 <b>×</b>
 </div>
 <div class="hero">
-<p class="kicker">Clarity by Jayden · Implementation Blueprint</p>
+<p class="kicker">Leicester Barbering Academy · Clarity Blueprint</p>
 <h1>Choose the blocks that<br/><em>make sense for you.</em></h1>
-<p>Your Blueprint is deliberately modular. You do not need to implement everything at once. Select the areas you want to move forward with now, and leave the others until the timing, need or budget is right.</p><div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="toggleAllSummaries" type="button">Show all recommendations</button></div>
+<p>Hi Vin — below are the recommended implementation blocks from your Clarity Blueprint.</p><p>Your Blueprint is deliberately modular. You do not need to implement everything at once. Select the areas you want to move forward with now, and leave the others until the timing, need or budget is right.</p>
 </div>
 </section>
 <section class="recommend">
@@ -313,7 +313,6 @@
         H: 'Block H — Alumni & Graduate Community',
         I: 'Block I — Existing Barber / One-Day Training Growth'
       };
-      const toggleAllBtn = root.getElementById('toggleAllSummaries');
       const summaryButtons = Array.from(root.querySelectorAll('.summary-toggle'));
       const recommended = ['A','B','D'];
 
@@ -376,31 +375,12 @@
         button.firstChild.nodeValue = open ? 'Hide recommendation ' : 'View recommendation ';
       }
 
-      function refreshToggleAll(){
-        if(!toggleAllBtn) return;
-        const allOpen = summaryButtons.length && summaryButtons.every(
-          b => b.getAttribute('aria-expanded') === 'true'
-        );
-        toggleAllBtn.textContent = allOpen ? 'Hide all recommendations' : 'Show all recommendations';
-      }
-
       summaryButtons.forEach(button=>{
         button.addEventListener('click', ()=>{
           const open = button.getAttribute('aria-expanded') !== 'true';
           setSummary(button, open);
-          refreshToggleAll();
         });
       });
-
-      if(toggleAllBtn){
-        toggleAllBtn.addEventListener('click', ()=>{
-          const shouldOpen = !summaryButtons.every(
-            b => b.getAttribute('aria-expanded') === 'true'
-          );
-          summaryButtons.forEach(b => setSummary(b, shouldOpen));
-          refreshToggleAll();
-        });
-      }
 
       checks.forEach(c=>c.addEventListener('change', state));
 
@@ -432,7 +412,6 @@
       }
 
       state();
-      refreshToggleAll();
     })();
 </script>
 </body>
