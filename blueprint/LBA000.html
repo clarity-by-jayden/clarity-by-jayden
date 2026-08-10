@@ -252,6 +252,10 @@
   line-height:1.6;
 }
 .blueprint-content.expired{display:none!important}
+
+.sticky.independent-open{
+  position:static;
+}
 </style>
 </head>
 <body>
@@ -378,6 +382,7 @@
       const noBlocksChoice = root.getElementById('noBlocksChoice');
       const independentChoice = root.getElementById('independentChoice');
       const independentDetails = root.getElementById('independentDetails');
+      const stickyPanel = root.querySelector('.sticky');
       const blockNames = {
         A: 'Block A — Website & Messaging',
         B: 'Block B — Lead Capture & Enquiry-to-Enrolment',
@@ -453,6 +458,9 @@
         }
         if(independentDetails){
           independentDetails.classList.toggle('open', independent);
+        }
+        if(stickyPanel){
+          stickyPanel.classList.toggle('independent-open', independent);
         }
 
         return {selected,total,independent};
