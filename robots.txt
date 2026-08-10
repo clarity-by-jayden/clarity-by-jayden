@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /dev.html
-
+ 
 Sitemap: https://claritybyjayden.online/sitemap.xml
