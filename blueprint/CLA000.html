@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Leicester Barbering Academy — Clarity Blueprint implementation blocks." name="description"/>
+<title>Example Clarity Blueprint — Clarity by Jayden</title>
+<style>
+    :root{
+      --ink:#2d1945;
+      --purple:#8255bd;
+      --lilac:#eee5fa;
+      --lime:#b9ff25;
+      --cream:#faf7f2;
+      --pink:#f2c8eb;
+      --muted:#665576;
+      --line:#2d1945;
+      --shadow:5px 5px 0 var(--ink);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--lilac);
+      color:var(--ink);
+      font-family:Arial,sans-serif;
+      background-image:radial-gradient(#8255bd22 1px,transparent 1px);
+      background-size:18px 18px;
+    }
+    button,input{font:inherit}
+    h1,h2,h3,p{margin-top:0}
+    .shell{max-width:1260px;margin:auto;padding:54px 5vw 110px}
+    .window{border:3px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:var(--cream)}
+    .window-bar{
+      min-height:40px;padding:8px 10px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+      background:var(--purple);border-bottom:3px solid var(--ink);font:900 10px/1 Arial;
+      letter-spacing:.09em;color:white;text-transform:uppercase;
+    }
+    .window-bar.light{background:var(--lilac);color:var(--ink)}
+    .window-bar>b{text-align:right;font-size:19px}
+    .dots{display:flex;gap:5px}
+    .dots i{width:11px;height:11px;border:2px solid var(--ink);border-radius:50%;background:var(--lime)}
+    .dots i:nth-child(2){background:var(--pink)}
+    .dots i:nth-child(3){background:var(--cream)}
+    .kicker{font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--purple)}
+    .hero{padding:52px clamp(26px,5vw,66px);background:var(--cream)}
+    .hero h1{font-size:clamp(46px,6vw,78px);line-height:.96;letter-spacing:-.055em;margin:18px 0 20px}
+    .hero h1 em{font-family:Georgia,serif;font-weight:400;color:var(--purple)}
+    .hero p{max-width:850px;color:var(--muted);font-size:17px;line-height:1.62;margin-bottom:0}
+    .recommend{
+      margin:28px 0 34px;padding:24px;display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;
+      background:var(--lime);border:3px solid var(--ink);border-radius:10px;box-shadow:var(--shadow)
+    }
+    .recommend small{display:block;margin-bottom:6px;font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+    .recommend strong{display:block;font:700 25px/1.2 Georgia,serif}
+    .recommend p{margin:6px 0 0;color:#4d3a5e;font-size:14px;line-height:1.5}
+    .recommend .price{font:700 34px Georgia,serif;white-space:nowrap}
+    .btn{
+      border:3px solid var(--ink);border-radius:7px;padding:12px 15px;background:var(--cream);color:var(--ink);
+      box-shadow:3px 3px 0 var(--ink);cursor:pointer;font-weight:900;font-size:11px;text-transform:uppercase
+    }
+    .btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+    .btn:active{transform:translate(3px,3px);box-shadow:none}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:start}
+    .block{position:relative;transition:.16s ease;background:var(--cream)}
+    .block:nth-child(even){background:var(--lilac)}
+    .block.recommended:not(.selected){outline:4px solid var(--lime);outline-offset:-7px}
+    .block.selected{background:var(--lime);transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+    .block.selected .window-bar{background:var(--pink);color:var(--ink)}
+    .body{padding:26px}
+    .topline{display:flex;gap:15px;align-items:flex-start;margin-bottom:18px}
+    .letter{
+      display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border:2px solid var(--ink);
+      border-radius:50%;background:var(--lime);font:700 17px Georgia,serif
+    }
+    .selected .letter{background:var(--cream)}
+    .titlewrap h3{margin:2px 0 6px;font-size:25px;line-height:1.08;letter-spacing:-.025em}
+    .focus{margin:0;color:var(--muted);font-size:13px;line-height:1.4}
+    .selected .focus,.selected .summary,.selected .lead{color:#4d3a5e}
+    .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .pill{display:inline-flex;align-items:center;min-height:30px;padding:6px 9px;background:white;border:2px solid var(--ink);
+      border-radius:5px;font-size:10px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+    .pill.essential{background:var(--pink)}
+    .pill.rec{background:var(--lime)}
+    .summary{min-height:155px;margin-bottom:20px;color:var(--muted);font-size:14px;line-height:1.58}
+    .selectrow{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding-top:18px;border-top:2px solid #2d194533}
+    .price{font:700 30px Georgia,serif}
+    .lead{display:block;margin-top:4px;color:var(--muted);font-size:11px;font-weight:700}
+    .checklabel{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12px;font-weight:900;text-transform:uppercase}
+    .checkbox{width:25px;height:25px;margin:0;cursor:pointer;accent-color:var(--purple)}
+    .sticky{
+      position:sticky;bottom:16px;z-index:20;margin-top:30px;padding:20px 22px;display:grid;
+      grid-template-columns:1fr auto auto auto;gap:18px;align-items:center;background:var(--ink);color:white;
+      border:3px solid var(--ink);border-radius:10px;box-shadow:7px 7px 0 var(--lime)
+    }
+    .sticky .eyebrow{display:block;margin-bottom:5px;color:var(--lime);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    .selection{margin:0;color:#e8def2;font-size:13px;line-height:1.45}
+    .total{min-width:120px;color:var(--lime);text-align:right;font:700 38px Georgia,serif}
+    .sticky .btn{background:var(--pink)}
+    .note{margin:24px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+    .footer-note{
+      margin-top:34px;padding:22px 24px;background:var(--cream);border:3px solid var(--ink);border-radius:10px;
+      box-shadow:var(--shadow);font-size:13px;line-height:1.55;color:var(--muted)
+    }
+    .footer-note strong{color:var(--ink)}
+    .copied{background:var(--lime)!important}
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .summary{min-height:0}
+      .recommend{grid-template-columns:1fr auto}
+      .recommend .btn{grid-column:1/-1}
+      .sticky{grid-template-columns:1fr auto}
+      .sticky .btn{grid-column:auto}
+    }
+    @media(max-width:620px){
+      .shell{padding:28px 18px 90px}
+      .hero{padding:36px 24px}
+      .hero h1{font-size:44px}
+      .recommend{grid-template-columns:1fr}
+      .recommend .price{text-align:left}
+      .topline{flex-direction:column}
+      .selectrow{align-items:flex-end}
+      .sticky{position:static;grid-template-columns:1fr}
+      .total{text-align:left}
+    }
+  
+    .summary-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin:0 0 18px;
+      padding:9px 11px;
+      border:2px solid var(--ink);
+      border-radius:6px;
+      background:white;
+      color:var(--ink);
+      box-shadow:2px 2px 0 var(--ink);
+      cursor:pointer;
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+    }
+    .summary-toggle:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+    .summary-toggle:active{transform:translate(2px,2px);box-shadow:none}
+    .summary-toggle .arrow{display:inline-block;transition:transform .18s ease}
+    .summary-toggle[aria-expanded="true"] .arrow{transform:rotate(180deg)}
+    .summary-wrap{
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .24s ease;
+    }
+    .summary-wrap.open{grid-template-rows:1fr}
+    .summary-inner{overflow:hidden}
+    .summary-wrap .summary{min-height:0;margin-bottom:20px}
+    @media(prefers-reduced-motion:reduce){
+      .summary-toggle .arrow,.summary-wrap{transition:none}
+    }
+
+    .block-column{
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+      min-width:0;
+    }
+    .block-column .block{
+      width:100%;
+    }
+    @media(max-width:900px){
+      .block-column{gap:22px}
+    }
+
+    .jotform-btn{
+      background:var(--lime)!important;
+      color:var(--ink)!important;
+      white-space:nowrap;
+    }
+    .jotform-btn:disabled{
+      opacity:.45;
+      cursor:not-allowed;
+      transform:none!important;
+      box-shadow:3px 3px 0 var(--lime)!important;
+    }
+    .jotform-help{
+      grid-column:1/-1;
+      margin:0;
+      color:#cfc1dd;
+      font-size:11px;
+      line-height:1.45;
+    }
+
+.independent-choice{margin-top:28px;border:3px solid var(--ink);border-radius:10px;background:var(--cream);box-shadow:var(--shadow);overflow:hidden}
+.independent-choice.selected{background:var(--pink);box-shadow:7px 7px 0 var(--lime)}
+.independent-inner{padding:24px}
+.independent-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.independent-copy h3{margin:0 0 8px;font-size:24px;line-height:1.1}
+.independent-copy p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+.independent-select{display:flex;align-items:center;gap:9px;flex:0 0 auto;cursor:pointer;font-size:12px;font-weight:900;text-transform:uppercase}
+.independent-select input{width:25px;height:25px;margin:0;accent-color:var(--purple);cursor:pointer}
+.independent-details{display:grid;grid-template-rows:0fr;transition:grid-template-rows .24s ease}
+.independent-details.open{grid-template-rows:1fr}
+.independent-details-inner{overflow:hidden}
+.independent-details-content{margin-top:20px;padding-top:20px;border-top:2px solid #2d194533;color:var(--muted);font-size:14px;line-height:1.58}
+.independent-details-content ul{margin:12px 0 18px;padding-left:20px}
+.independent-details-content li{margin:7px 0}
+.independent-details-content p:last-child{margin-bottom:0}
+@media(max-width:620px){.independent-head{flex-direction:column}}
+
+.proposal-validity{
+  margin:18px 0 0;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border:2px solid var(--ink);
+  border-radius:6px;
+  background:var(--pink);
+  color:var(--ink);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.expired-screen{
+  display:none;
+  max-width:900px;
+  margin:60px auto;
+  padding:46px clamp(24px,5vw,60px);
+  background:var(--cream);
+  border:3px solid var(--ink);
+  border-radius:12px;
+  box-shadow:8px 8px 0 var(--purple);
+}
+.expired-screen.active{display:block}
+.expired-screen h1{
+  margin:0 0 18px;
+  font-size:clamp(42px,6vw,72px);
+  line-height:.98;
+  letter-spacing:-.05em;
+}
+.expired-screen h1 em{
+  font-family:Georgia,serif;
+  font-weight:400;
+  color:var(--purple);
+}
+.expired-screen p{
+  max-width:720px;
+  margin:0;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.6;
+}
+.blueprint-content.expired{display:none!important}
+
+.sticky.independent-open{
+  position:static;
+}
+
+.summary-teaser{
+  margin:-4px 0 12px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+}
+.summary-teaser.hidden{display:none}
+
+.demo-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 18px;
+  padding:8px 10px;
+  background:var(--lime);
+  border:2px solid var(--ink);
+  border-radius:6px;
+  color:var(--ink);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.demo-note{
+  margin-top:28px;
+  padding:18px 20px;
+  background:var(--cream);
+  border:2px dashed var(--ink);
+  border-radius:8px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+.demo-confirmation{
+  display:none;
+  margin-top:22px;
+  padding:22px;
+  background:var(--lime);
+  border:3px solid var(--ink);
+  border-radius:10px;
+  box-shadow:var(--shadow);
+}
+.demo-confirmation.active{display:block}
+.demo-confirmation strong{
+  display:block;
+  margin-bottom:6px;
+  font:700 22px Georgia,serif;
+}
+</style>
+</head>
+<body>
+<main class="shell">
+<section class="window">
+<div class="window-bar light">
+<div class="dots"><i></i><i></i><i></i></div>
+<span>leicester_barbering_academy_blueprint</span>
+<b>×</b>
+</div>
+<div class="hero">
+<div class="demo-badge">Demo · Fictional example</div><p class="kicker">Clarity by Jayden · Example Blueprint</p>
+<h1>Choose the blocks that<br/><em>make sense for you.</em></h1>
+<p>Hi Alex — below are the recommended implementation blocks from your Clarity Blueprint.</p><p>Your Blueprint is deliberately modular. You do not need to implement everything at once. Select the areas you want to move forward with now, and leave the others until the timing, need or budget is right.</p>
+</div>
+</section>
+<section class="recommend">
+<div>
+<small>My recommended starting combination</small>
+<strong>Blocks A + B + D</strong>
+<p>Clarify the website journey, tighten the enquiry-to-sale process, and create a repeatable campaign that gives the business a more dependable route to revenue.</p>
+</div>
+<div class="price">£2,450</div>
+<button class="btn" id="selectRecommended" type="button">Select recommended start</button>
+</section>
+<section class="grid"><div class="block-column" data-column="left"><article class="window block recommended" data-block="A" data-price="1100">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_a</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">A</span><div class="titlewrap"><h3>Website &amp; Messaging</h3><p class="focus">Structure, positioning, customer journeys and conversion</p></div></div>
+<div class="meta"><span class="pill essential">Essential</span><span class="pill rec">Recommended start</span></div><p class="summary-teaser">I recommend restructuring the website around the questions, motivations and next steps of your…</p><button aria-controls="summary-a" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-a"><div class="summary-inner"><p class="summary">I recommend restructuring the website around the questions, motivations and next steps of your ideal customer. The current site contains the right ingredients, but the journey is fragmented. I’d simplify the navigation, sharpen the core proposition, give your main service its own dedicated landing page and create clearer routes for the different types of enquiry you receive.</p></div></div>
+<div class="selectrow"><div><span class="price">£1,100</span><span class="lead">Lead time: 3–5 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="A"/></label></div>
+</div>
+</article><article class="window block" data-block="C" data-price="450">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_c</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">C</span><div class="titlewrap"><h3>Email Campaign Strategy</h3><p class="focus">Audience capture, nurture, testing and conversion</p></div></div>
+<div class="meta"><span class="pill essential">Essential</span></div><p class="summary-teaser">Email is currently underused. I recommend building a simple campaign strategy so interested people…</p><button aria-controls="summary-c" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-c"><div class="summary-inner"><p class="summary">Email is currently underused. I recommend building a simple campaign strategy so interested people are not lost simply because they are not ready to buy today. This gives you an owned audience, a place to test messaging and a way to stay useful and visible between launches, promotions or buying moments.</p></div></div>
+<div class="selectrow"><div><span class="price">£450</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="C"/></label></div>
+</div>
+</article><article class="window block" data-block="E" data-price="500">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_e</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">E</span><div class="titlewrap"><h3>Content Strategy</h3><p class="focus">Year-round awareness, trust, decision support and retention</p></div></div>
+<div class="meta"><span class="pill">Recommended</span></div><p class="summary-teaser">I recommend giving your content a clearer job within the wider customer journey. Rather…</p><button aria-controls="summary-e" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-e"><div class="summary-inner"><p class="summary">I recommend giving your content a clearer job within the wider customer journey. Rather than treating every post as a standalone piece, I’d organise content around Reach, Confidence, Decision and Relationship so the business is consistently attracting, reassuring and nurturing the right people.</p></div></div>
+<div class="selectrow"><div><span class="price">£500</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="E"/></label></div>
+</div>
+</article><article class="window block" data-block="G" data-price="300">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_g</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">G</span><div class="titlewrap"><h3>Customer Onboarding</h3><p class="focus">Post-sale experience, confidence and consistency</p></div></div>
+<div class="meta"><span class="pill">Recommended</span></div><p class="summary-teaser">I recommend strengthening the experience immediately after somebody buys. A clearer onboarding journey can…</p><button aria-controls="summary-g" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-g"><div class="summary-inner"><p class="summary">I recommend strengthening the experience immediately after somebody buys. A clearer onboarding journey can reduce uncertainty, set expectations and make the business feel more organised without making the experience impersonal. The goal is a smoother handover from purchase into delivery.</p></div></div>
+<div class="selectrow"><div><span class="price">£300</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="G"/></label></div>
+</div>
+</article><article class="window block" data-block="I" data-price="500">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_i</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">I</span><div class="titlewrap"><h3>Secondary Offer Growth</h3><p class="focus">Additional revenue stream and clearer offer architecture</p></div></div>
+<div class="meta"><span class="pill">Growth opportunity</span></div><p class="summary-teaser">I recommend giving the secondary offer a clearer identity rather than letting it sit…</p><button aria-controls="summary-i" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-i"><div class="summary-inner"><p class="summary">I recommend giving the secondary offer a clearer identity rather than letting it sit underneath the flagship service. It should have its own positioning, route into the business and audience so it can grow without confusing the primary customer journey.</p></div></div>
+<div class="selectrow"><div><span class="price">£500</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="I"/></label></div>
+</div>
+</article></div><div class="block-column" data-column="right"><article class="window block recommended" data-block="B" data-price="450">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_b</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">B</span><div class="titlewrap"><h3>Lead Capture &amp; Sales Journey</h3><p class="focus">Attribution, follow-up, conversion and enquiry visibility</p></div></div>
+<div class="meta"><span class="pill essential">Essential</span><span class="pill rec">Recommended start</span></div><p class="summary-teaser">I recommend creating one joined-up process from first enquiry through to sale. That means…</p><button aria-controls="summary-b" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-b"><div class="summary-inner"><p class="summary">I recommend creating one joined-up process from first enquiry through to sale. That means clearer source tracking, more purposeful enquiry forms, defined follow-up stages and a simple way to see where each opportunity sits. The aim is not to automate the human parts that already work well, but to make sure fewer good enquiries disappear between first contact and decision.</p></div></div>
+<div class="selectrow"><div><span class="price">£450</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="B"/></label></div>
+</div>
+</article><article class="window block recommended" data-block="D" data-price="900">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_d</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">D</span><div class="titlewrap"><h3>Reusable 8-Week Launch Campaign</h3><p class="focus">Revenue, promotion and repeatable campaign structure</p></div></div>
+<div class="meta"><span class="pill essential">Essential</span><span class="pill rec">Recommended start</span></div><p class="summary-teaser">I recommend creating a reusable 8-week campaign that becomes the standard way you promote…</p><button aria-controls="summary-d" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-d"><div class="summary-inner"><p class="summary">I recommend creating a reusable 8-week campaign that becomes the standard way you promote your flagship offer. The business should nurture potential customers all year, then move into a structured campaign with clear phases for awareness, proof, education, decision support, follow-up and urgency. The value is in building the campaign once, then improving and reusing it rather than starting from scratch every time.</p></div></div>
+<div class="selectrow"><div><span class="price">£900</span><span class="lead">Lead time: 3–4 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="D"/></label></div>
+</div>
+</article><article class="window block" data-block="F" data-price="350">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_f</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">F</span><div class="titlewrap"><h3>Customer Stories &amp; Social Proof</h3><p class="focus">Testimonials, proof and real customer outcomes</p></div></div>
+<div class="meta"><span class="pill">Recommended</span></div><p class="summary-teaser">I recommend making customer stories a more deliberate part of your marketing. Instead of…</p><button aria-controls="summary-f" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-f"><div class="summary-inner"><p class="summary">I recommend making customer stories a more deliberate part of your marketing. Instead of relying on occasional testimonials, build a repeatable process for capturing starting points, experiences and outcomes. This gives future customers more useful proof and creates material that can support the website, email, social content and launch campaigns.</p></div></div>
+<div class="selectrow"><div><span class="price">£350</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="F"/></label></div>
+</div>
+</article><article class="window block" data-block="H" data-price="300">
+<div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>block_h</span><b>×</b></div>
+<div class="body">
+<div class="topline"><span class="letter">H</span><div class="titlewrap"><h3>Retention &amp; Referral</h3><p class="focus">Repeat business, advocacy and long-term relationships</p></div></div>
+<div class="meta"><span class="pill">Growth opportunity</span></div><p class="summary-teaser">I recommend creating a more deliberate route for staying connected after the initial purchase.…</p><button aria-controls="summary-h" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-h"><div class="summary-inner"><p class="summary">I recommend creating a more deliberate route for staying connected after the initial purchase. This could support repeat business, referrals, future offers and stronger customer stories. The aim is to make the relationship continue beyond the point where the original service has been delivered.</p></div></div>
+<div class="selectrow"><div><span class="price">£300</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="H"/></label></div>
+</div>
+</article></div></section><section class="independent-choice" id="independentChoice"><div class="window-bar light"><div class="dots"><i></i><i></i><i></i></div><span>no_blocks_selected</span><b>×</b></div><div class="independent-inner"><div class="independent-head"><div class="independent-copy"><h3>I’m choosing not to move forward with any blocks</h3><p>Select this if you’d prefer to take the Blueprint forward independently for now.</p></div><label class="independent-select">Select <input aria-label="Choose no implementation blocks" id="noBlocksChoice" type="checkbox"/></label></div><div class="independent-details" id="independentDetails"><div class="independent-details-inner"><div class="independent-details-content"><p>You do not need to implement any of these recommendations with me. If you decide to take the Blueprint forward independently, these are the areas I’d keep highest on your list:</p><ul><li>Improve visibility of where enquiries are coming from</li><li>Make the core offer easier to understand and act on</li><li>Create a clearer journey from enquiry through to sale</li><li>Retain and nurture interest between buying moments</li><li>Capture more customer outcomes and success stories</li><li>Plan campaigns earlier and more deliberately</li><li>Pay closer attention to where potential customers drop out</li></ul><p>You can absolutely work through these areas yourself. The value of the Blueprint Blocks is that you are not having to work out the structure, sequencing and implementation alone — that is where working with me can save time, reduce guesswork and help turn the recommendations into a joined-up system rather than a series of separate tasks.</p></div></div></div></div></section>
+<section aria-live="polite" class="sticky">
+<div>
+<span class="eyebrow">Your selected Blueprint</span>
+<p class="selection" id="selectionText">No blocks selected yet.</p>
+</div>
+<div class="total" id="totalCost">£0</div>
+<button class="btn jotform-btn" disabled="disabled" id="previewDemoSelection" type="button">Preview selection →</button><button class="btn" id="clearSelection" type="button">Clear</button>
+<p class="jotform-help">This is a fictional demonstration. Nothing will be submitted.</p></section><div class="demo-note">This example is entirely fictional and is designed to show how a Clarity Blueprint can turn recommendations into clear, modular implementation choices.</div><div aria-live="polite" class="demo-confirmation" id="demoConfirmation"><strong>Demo selection</strong><p id="demoConfirmationText"></p></div>
+<p class="note"><strong>Lead time note:</strong> Indicative lead times begin once the required access, information and content have been supplied. Where multiple blocks are commissioned together, delivery will be sequenced and an overall implementation timeline agreed before work begins.</p>
+<div class="footer-note">
+<strong>Implementation remains your choice.</strong> The Blueprint gives you the recommended direction first. You can implement individual blocks yourself, commission selected blocks with Jayden, combine several blocks into a phased programme, or leave any area until the timing is right.
+    </div>
+</main>
+<script>
+    (function(){
+      const root = document;
+      const blocks = Array.from(root.querySelectorAll('.block'));
+      const checks = Array.from(root.querySelectorAll('.checkbox'));
+      const selectionText = root.getElementById('selectionText');
+      const totalCost = root.getElementById('totalCost');
+      const clearBtn = root.getElementById('clearSelection');
+      const recommendedBtn = root.getElementById('selectRecommended');
+      const previewBtn = root.getElementById('previewDemoSelection');
+            const noBlocksChoice = root.getElementById('noBlocksChoice');
+      const independentChoice = root.getElementById('independentChoice');
+      const independentDetails = root.getElementById('independentDetails');
+      const stickyPanel = root.querySelector('.sticky');
+      const blockNames = {
+        A: 'Block A — Website & Messaging',
+        B: 'Block B — Lead Capture & Sales Journey',
+        C: 'Block C — Email Campaign Strategy',
+        D: 'Block D — Reusable 8-Week Launch Campaign',
+        E: 'Block E — Content Strategy',
+        F: 'Block F — Customer Stories & Social Proof',
+        G: 'Block G — Customer Onboarding',
+        H: 'Block H — Retention & Referral',
+        I: 'Block I — Secondary Offer Growth'
+      };
+      const summaryButtons = Array.from(root.querySelectorAll('.summary-toggle'));
+      const recommended = ['A','B','D'];
+
+      const grid = root.querySelector('.grid');
+      const leftCol = root.querySelector('[data-column="left"]');
+      const rightCol = root.querySelector('[data-column="right"]');
+      const allBlocks = Array.from(root.querySelectorAll('.block')).sort(
+        (a,b) => a.dataset.block.localeCompare(b.dataset.block)
+      );
+
+      function arrangeColumns(){
+        if(window.matchMedia('(max-width: 900px)').matches){
+          allBlocks.forEach(block => leftCol.appendChild(block));
+          rightCol.style.display = 'none';
+        } else {
+          rightCol.style.display = 'flex';
+          allBlocks.forEach((block,index) => {
+            (index % 2 === 0 ? leftCol : rightCol).appendChild(block);
+          });
+        }
+      }
+
+      arrangeColumns();
+      window.addEventListener('resize', arrangeColumns);
+
+      function formatGBP(n){
+        return new Intl.NumberFormat('en-GB',{
+          style:'currency',currency:'GBP',minimumFractionDigits:0,maximumFractionDigits:0
+        }).format(n);
+      }
+
+      function state(){
+        let total = 0;
+        const selected = [];
+        blocks.forEach(block=>{
+          const checkbox = block.querySelector('.checkbox');
+          const on = checkbox.checked;
+          block.classList.toggle('selected', on);
+          if(on){
+            selected.push(block.dataset.block);
+            total += Number(block.dataset.price || 0);
+          }
+        });
+
+        const independent = !!(noBlocksChoice && noBlocksChoice.checked);
+        totalCost.textContent = formatGBP(total);
+
+        if(independent){
+          selectionText.textContent = 'No implementation blocks selected — taking the Blueprint forward independently.';
+        } else if(selected.length){
+          selectionText.textContent = `${selected.length} block${selected.length===1?'':'s'} selected: ${selected.join(' + ')}`;
+        } else {
+          selectionText.textContent = 'Please choose one or more blocks, or select the independent route.';
+        }
+
+        if(previewBtn){
+        previewBtn.addEventListener('click', ()=>{
+          const s = state();
+          if(!s.selected.length && !s.independent) return;
+
+          const confirmation = document.getElementById('demoConfirmation');
+          const confirmationText = document.getElementById('demoConfirmationText');
+
+          if(confirmation && confirmationText){
+            confirmation.classList.add('active');
+            confirmationText.textContent = s.independent
+              ? 'Independent route selected — no implementation blocks.'
+              : `${s.selected.map(code => blockNames[code] || `Block ${code}`).join(' + ')} · Indicative investment ${formatGBP(s.total)}.`;
+            confirmation.scrollIntoView({behavior:'smooth',block:'center'});
+          }
+        });
+      }
+
+      state();
+      }));
+
+      if(noBlocksChoice){
+        noBlocksChoice.addEventListener('change', ()=>{
+          if(noBlocksChoice.checked){
+            checks.forEach(c=>c.checked=false);
+          }
+          state();
+        });
+      }
+
+      clearBtn.addEventListener('click',()=>{
+        checks.forEach(c=>c.checked=false);
+        if(noBlocksChoice) noBlocksChoice.checked=false;
+        state();
+      });
+
+      recommendedBtn.addEventListener('click',()=>{
+        checks.forEach(c=>c.checked=recommended.includes(c.value));
+        if(noBlocksChoice) noBlocksChoice.checked=false;
+        state();
+        document.querySelector('.sticky').scrollIntoView({behavior:'smooth',block:'center'});
+      });
+
+
+      if(previewBtn){
+        previewBtn.addEventListener('click', ()=>{
+          const s = state();
+          if(!s.selected.length && !s.independent) return;
+
+          const blockText = s.independent
+            ? 'No implementation blocks — I’ll take the Blueprint forward independently.'
+            : s.selected
+                .map(code => blockNames[code] || `Block ${code}`)
+                .join('\n');
+
+          const url = new URL(jotformBaseUrl);
+          url.searchParams.set('blocks', blockText);
+          window.open(url.toString(), '_blank', 'noopener,noreferrer');
+        });
+      }
+
+      state();
+    })();
+</script>
+</body>
+</html>
