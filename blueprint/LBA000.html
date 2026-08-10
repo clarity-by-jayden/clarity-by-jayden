@@ -189,6 +189,23 @@
       font-size:11px;
       line-height:1.45;
     }
+
+.independent-choice{margin-top:28px;border:3px solid var(--ink);border-radius:10px;background:var(--cream);box-shadow:var(--shadow);overflow:hidden}
+.independent-choice.selected{background:var(--pink);box-shadow:7px 7px 0 var(--lime)}
+.independent-inner{padding:24px}
+.independent-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.independent-copy h3{margin:0 0 8px;font-size:24px;line-height:1.1}
+.independent-copy p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+.independent-select{display:flex;align-items:center;gap:9px;flex:0 0 auto;cursor:pointer;font-size:12px;font-weight:900;text-transform:uppercase}
+.independent-select input{width:25px;height:25px;margin:0;accent-color:var(--purple);cursor:pointer}
+.independent-details{display:grid;grid-template-rows:0fr;transition:grid-template-rows .24s ease}
+.independent-details.open{grid-template-rows:1fr}
+.independent-details-inner{overflow:hidden}
+.independent-details-content{margin-top:20px;padding-top:20px;border-top:2px solid #2d194533;color:var(--muted);font-size:14px;line-height:1.58}
+.independent-details-content ul{margin:12px 0 18px;padding-left:20px}
+.independent-details-content li{margin:7px 0}
+.independent-details-content p:last-child{margin-bottom:0}
+@media(max-width:620px){.independent-head{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -277,7 +294,7 @@
 <div class="meta"><span class="pill">Growth opportunity</span></div><button aria-controls="summary-h" aria-expanded="false" class="summary-toggle" type="button">View recommendation <span aria-hidden="true" class="arrow">⌄</span></button><div class="summary-wrap" id="summary-h"><div class="summary-inner"><p class="summary">I think there is a missed opportunity once learners graduate. I recommend creating a simple alumni system so you can stay in touch, follow their progress, capture future case studies, ask for referrals and bring graduates back into the academy ecosystem where relevant. Over time, each cohort should help support the credibility and recruitment of the next one.</p></div></div>
 <div class="selectrow"><div><span class="price">£300</span><span class="lead">Lead time: 2–3 weeks</span></div><label class="checklabel">Select <input class="checkbox" type="checkbox" value="H"/></label></div>
 </div>
-</article></div></section>
+</article></div></section><section class="independent-choice" id="independentChoice"><div class="window-bar light"><div class="dots"><i></i><i></i><i></i></div><span>no_blocks_selected</span><b>×</b></div><div class="independent-inner"><div class="independent-head"><div class="independent-copy"><h3>I’m choosing not to move forward with any blocks</h3><p>Select this if you’d prefer to take the Blueprint forward independently for now.</p></div><label class="independent-select">Select <input aria-label="Choose no implementation blocks" id="noBlocksChoice" type="checkbox"/></label></div><div class="independent-details" id="independentDetails"><div class="independent-details-inner"><div class="independent-details-content"><p>You do not need to implement any of these recommendations with me. If you decide to take the Blueprint forward independently, these are the areas I’d keep highest on your list:</p><ul><li>Improve visibility of where enquiries are coming from</li><li>Make the 10-week course easier to understand and act on</li><li>Separate the journeys for new learners and experienced barbers</li><li>Retain and nurture interest between cohort launches</li><li>Capture more learner outcomes and success stories</li><li>Start cohort recruitment earlier and more deliberately</li><li>Pay closer attention to where prospects drop out before enrolment</li></ul><p>You can absolutely work through these areas yourself. The value of the Blueprint Blocks is that you are not having to work out the structure, sequencing and implementation alone — that is where working with me can save time, reduce guesswork and help turn the recommendations into a joined-up system rather than a series of separate tasks.</p></div></div></div></div></section>
 <section aria-live="polite" class="sticky">
 <div>
 <span class="eyebrow">Your selected Blueprint</span>
@@ -285,7 +302,7 @@
 </div>
 <div class="total" id="totalCost">£0</div>
 <button class="btn jotform-btn" disabled="disabled" id="sendToJotform" type="button">Confirm selected blocks →</button><button class="btn" id="clearSelection" type="button">Clear</button>
-<p class="jotform-help">Your selected blocks will be carried into the Blueprint Block Selection form automatically.</p></section>
+<p class="jotform-help">Choose one or more implementation blocks, or explicitly select the independent route.</p></section>
 <p class="note"><strong>Lead time note:</strong> Indicative lead times begin once the required access, information and content have been supplied. Where multiple blocks are commissioned together, delivery will be sequenced and an overall implementation timeline agreed before work begins.</p>
 <div class="footer-note">
 <strong>Implementation remains your choice.</strong> The Blueprint gives you the recommended direction first. You can implement individual blocks yourself, commission selected blocks with Jayden, combine several blocks into a phased programme, or leave any area until the timing is right.
@@ -302,6 +319,9 @@
       const recommendedBtn = root.getElementById('selectRecommended');
       const jotformBtn = root.getElementById('sendToJotform');
       const jotformBaseUrl = 'https://form.jotform.com/262215516397056';
+      const noBlocksChoice = root.getElementById('noBlocksChoice');
+      const independentChoice = root.getElementById('independentChoice');
+      const independentDetails = root.getElementById('independentDetails');
       const blockNames = {
         A: 'Block A — Website & Messaging',
         B: 'Block B — Lead Capture & Enquiry-to-Enrolment',
@@ -356,14 +376,30 @@
             total += Number(block.dataset.price || 0);
           }
         });
+
+        const independent = !!(noBlocksChoice && noBlocksChoice.checked);
         totalCost.textContent = formatGBP(total);
-        selectionText.textContent = selected.length
-          ? `${selected.length} block${selected.length===1?'':'s'} selected: ${selected.join(' + ')}`
-          : 'No blocks selected yet.';
-        if(jotformBtn){
-          jotformBtn.disabled = selected.length === 0;
+
+        if(independent){
+          selectionText.textContent = 'No implementation blocks selected — taking the Blueprint forward independently.';
+        } else if(selected.length){
+          selectionText.textContent = `${selected.length} block${selected.length===1?'':'s'} selected: ${selected.join(' + ')}`;
+        } else {
+          selectionText.textContent = 'Please choose one or more blocks, or select the independent route.';
         }
-        return {selected,total};
+
+        if(jotformBtn){
+          jotformBtn.disabled = !independent && selected.length === 0;
+        }
+
+        if(independentChoice){
+          independentChoice.classList.toggle('selected', independent);
+        }
+        if(independentDetails){
+          independentDetails.classList.toggle('open', independent);
+        }
+
+        return {selected,total,independent};
       }
 
       function setSummary(button, open){
@@ -382,15 +418,29 @@
         });
       });
 
-      checks.forEach(c=>c.addEventListener('change', state));
+      checks.forEach(c=>c.addEventListener('change', ()=>{
+        if(c.checked && noBlocksChoice) noBlocksChoice.checked = false;
+        state();
+      }));
+
+      if(noBlocksChoice){
+        noBlocksChoice.addEventListener('change', ()=>{
+          if(noBlocksChoice.checked){
+            checks.forEach(c=>c.checked=false);
+          }
+          state();
+        });
+      }
 
       clearBtn.addEventListener('click',()=>{
         checks.forEach(c=>c.checked=false);
+        if(noBlocksChoice) noBlocksChoice.checked=false;
         state();
       });
 
       recommendedBtn.addEventListener('click',()=>{
         checks.forEach(c=>c.checked=recommended.includes(c.value));
+        if(noBlocksChoice) noBlocksChoice.checked=false;
         state();
         document.querySelector('.sticky').scrollIntoView({behavior:'smooth',block:'center'});
       });
@@ -401,9 +451,11 @@
           const s = state();
           if(!s.selected.length) return;
 
-          const blockText = s.selected
-            .map(code => blockNames[code] || `Block ${code}`)
-            .join('\n');
+          const blockText = s.independent
+            ? 'No implementation blocks — I’ll take the Blueprint forward independently.'
+            : s.selected
+                .map(code => blockNames[code] || `Block ${code}`)
+                .join('\n');
 
           const url = new URL(jotformBaseUrl);
           url.searchParams.set('blocks', blockText);
