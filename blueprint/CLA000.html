@@ -408,148 +408,213 @@
     </div>
 </main>
 <script>
-    (function(){
-      const root = document;
-      const blocks = Array.from(root.querySelectorAll('.block'));
-      const checks = Array.from(root.querySelectorAll('.checkbox'));
-      const selectionText = root.getElementById('selectionText');
-      const totalCost = root.getElementById('totalCost');
-      const clearBtn = root.getElementById('clearSelection');
-      const recommendedBtn = root.getElementById('selectRecommended');
-      const previewBtn = root.getElementById('previewDemoSelection');
-            const noBlocksChoice = root.getElementById('noBlocksChoice');
-      const independentChoice = root.getElementById('independentChoice');
-      const independentDetails = root.getElementById('independentDetails');
-      const stickyPanel = root.querySelector('.sticky');
-      const blockNames = {
-        A: 'Block A — Website & Messaging',
-        B: 'Block B — Lead Capture & Sales Journey',
-        C: 'Block C — Email Campaign Strategy',
-        D: 'Block D — Reusable 8-Week Launch Campaign',
-        E: 'Block E — Content Strategy',
-        F: 'Block F — Customer Stories & Social Proof',
-        G: 'Block G — Customer Onboarding',
-        H: 'Block H — Retention & Referral',
-        I: 'Block I — Secondary Offer Growth'
-      };
-      const summaryButtons = Array.from(root.querySelectorAll('.summary-toggle'));
-      const recommended = ['A','B','D'];
+(function(){
+  const root = document;
+  const blocks = Array.from(root.querySelectorAll('.block'));
+  const checks = Array.from(root.querySelectorAll('.checkbox'));
+  const selectionText = root.getElementById('selectionText');
+  const totalCost = root.getElementById('totalCost');
+  const clearBtn = root.getElementById('clearSelection');
+  const recommendedBtn = root.getElementById('selectRecommended');
+  const previewBtn = root.getElementById('previewDemoSelection');
 
-      const grid = root.querySelector('.grid');
-      const leftCol = root.querySelector('[data-column="left"]');
-      const rightCol = root.querySelector('[data-column="right"]');
-      const allBlocks = Array.from(root.querySelectorAll('.block')).sort(
-        (a,b) => a.dataset.block.localeCompare(b.dataset.block)
-      );
+  const noBlocksChoice = root.getElementById('noBlocksChoice');
+  const independentChoice = root.getElementById('independentChoice');
+  const independentDetails = root.getElementById('independentDetails');
+  const stickyPanel = root.querySelector('.sticky');
 
-      function arrangeColumns(){
-        if(window.matchMedia('(max-width: 900px)').matches){
-          allBlocks.forEach(block => leftCol.appendChild(block));
-          rightCol.style.display = 'none';
-        } else {
-          rightCol.style.display = 'flex';
-          allBlocks.forEach((block,index) => {
-            (index % 2 === 0 ? leftCol : rightCol).appendChild(block);
-          });
-        }
+  const summaryButtons = Array.from(root.querySelectorAll('.summary-toggle'));
+  const recommended = ['A','B','D'];
+
+  const blockNames = {
+    A: 'Block A — Website & Messaging',
+    B: 'Block B — Lead Capture & Sales Journey',
+    C: 'Block C — Email Campaign Strategy',
+    D: 'Block D — Reusable 8-Week Launch Campaign',
+    E: 'Block E — Content Strategy',
+    F: 'Block F — Customer Stories & Social Proof',
+    G: 'Block G — Customer Onboarding',
+    H: 'Block H — Retention & Referral',
+    I: 'Block I — Secondary Offer Growth'
+  };
+
+  const leftCol = root.querySelector('[data-column="left"]');
+  const rightCol = root.querySelector('[data-column="right"]');
+  const allBlocks = Array.from(root.querySelectorAll('.block')).sort(
+    (a,b) => a.dataset.block.localeCompare(b.dataset.block)
+  );
+
+  function arrangeColumns(){
+    if(!leftCol || !rightCol) return;
+
+    if(window.matchMedia('(max-width: 900px)').matches){
+      allBlocks.forEach(block => leftCol.appendChild(block));
+      rightCol.style.display = 'none';
+    } else {
+      rightCol.style.display = 'flex';
+      allBlocks.forEach((block,index) => {
+        (index % 2 === 0 ? leftCol : rightCol).appendChild(block);
+      });
+    }
+  }
+
+  function formatGBP(n){
+    return new Intl.NumberFormat('en-GB',{
+      style:'currency',
+      currency:'GBP',
+      minimumFractionDigits:0,
+      maximumFractionDigits:0
+    }).format(n);
+  }
+
+  function state(){
+    let total = 0;
+    const selected = [];
+
+    blocks.forEach(block=>{
+      const checkbox = block.querySelector('.checkbox');
+      if(!checkbox) return;
+
+      const on = checkbox.checked;
+      block.classList.toggle('selected', on);
+
+      if(on){
+        selected.push(block.dataset.block);
+        total += Number(block.dataset.price || 0);
       }
+    });
 
-      arrangeColumns();
-      window.addEventListener('resize', arrangeColumns);
+    const independent = !!(noBlocksChoice && noBlocksChoice.checked);
 
-      function formatGBP(n){
-        return new Intl.NumberFormat('en-GB',{
-          style:'currency',currency:'GBP',minimumFractionDigits:0,maximumFractionDigits:0
-        }).format(n);
+    if(totalCost) totalCost.textContent = formatGBP(total);
+
+    if(selectionText){
+      if(independent){
+        selectionText.textContent =
+          'No implementation blocks selected — taking the Blueprint forward independently.';
+      } else if(selected.length){
+        selectionText.textContent =
+          `${selected.length} block${selected.length===1?'':'s'} selected: ${selected.join(' + ')}`;
+      } else {
+        selectionText.textContent =
+          'Please choose one or more blocks, or select the independent route.';
       }
+    }
 
-      function state(){
-        let total = 0;
-        const selected = [];
-        blocks.forEach(block=>{
-          const checkbox = block.querySelector('.checkbox');
-          const on = checkbox.checked;
-          block.classList.toggle('selected', on);
-          if(on){
-            selected.push(block.dataset.block);
-            total += Number(block.dataset.price || 0);
-          }
-        });
+    if(previewBtn){
+      previewBtn.disabled = selected.length === 0 && !independent;
+    }
 
-        const independent = !!(noBlocksChoice && noBlocksChoice.checked);
-        totalCost.textContent = formatGBP(total);
+    if(independentChoice){
+      independentChoice.classList.toggle('selected', independent);
+    }
 
-        if(independent){
-          selectionText.textContent = 'No implementation blocks selected — taking the Blueprint forward independently.';
-        } else if(selected.length){
-          selectionText.textContent = `${selected.length} block${selected.length===1?'':'s'} selected: ${selected.join(' + ')}`;
-        } else {
-          selectionText.textContent = 'Please choose one or more blocks, or select the independent route.';
-        }
+    if(independentDetails){
+      independentDetails.classList.toggle('open', independent);
+    }
 
-        if(previewBtn){
-        previewBtn.addEventListener('click', ()=>{
-          const s = state();
-          if(!s.selected.length && !s.independent) return;
+    if(stickyPanel){
+      stickyPanel.classList.toggle('independent-open', independent);
+    }
 
-          const confirmation = document.getElementById('demoConfirmation');
-          const confirmationText = document.getElementById('demoConfirmationText');
+    return {selected,total,independent};
+  }
 
-          if(confirmation && confirmationText){
-            confirmation.classList.add('active');
-            confirmationText.textContent = s.independent
-              ? 'Independent route selected — no implementation blocks.'
-              : `${s.selected.map(code => blockNames[code] || `Block ${code}`).join(' + ')} · Indicative investment ${formatGBP(s.total)}.`;
-            confirmation.scrollIntoView({behavior:'smooth',block:'center'});
-          }
-        });
+  function setSummary(button, open){
+    const id = button.getAttribute('aria-controls');
+    const wrap = id ? document.getElementById(id) : null;
+    if(!wrap) return;
+
+    const block = button.closest('.block');
+    const teaser = block ? block.querySelector('.summary-teaser') : null;
+
+    button.setAttribute('aria-expanded', String(open));
+    wrap.classList.toggle('open', open);
+
+    if(teaser){
+      teaser.classList.toggle('hidden', open);
+    }
+
+    const firstText = button.firstChild;
+    if(firstText && firstText.nodeType === Node.TEXT_NODE){
+      firstText.nodeValue = open ? 'Hide recommendation ' : 'View recommendation ';
+    }
+  }
+
+  arrangeColumns();
+  window.addEventListener('resize', arrangeColumns);
+
+  summaryButtons.forEach(button=>{
+    button.addEventListener('click', ()=>{
+      const open = button.getAttribute('aria-expanded') !== 'true';
+      setSummary(button, open);
+    });
+  });
+
+  checks.forEach(checkbox=>{
+    checkbox.checked = false;
+
+    checkbox.addEventListener('change', ()=>{
+      if(checkbox.checked && noBlocksChoice){
+        noBlocksChoice.checked = false;
       }
-
       state();
-      }));
+    });
+  });
 
-      if(noBlocksChoice){
-        noBlocksChoice.addEventListener('change', ()=>{
-          if(noBlocksChoice.checked){
-            checks.forEach(c=>c.checked=false);
-          }
-          state();
-        });
-      }
+  if(noBlocksChoice){
+    noBlocksChoice.checked = false;
 
-      clearBtn.addEventListener('click',()=>{
+    noBlocksChoice.addEventListener('change', ()=>{
+      if(noBlocksChoice.checked){
         checks.forEach(c=>c.checked=false);
-        if(noBlocksChoice) noBlocksChoice.checked=false;
-        state();
-      });
-
-      recommendedBtn.addEventListener('click',()=>{
-        checks.forEach(c=>c.checked=recommended.includes(c.value));
-        if(noBlocksChoice) noBlocksChoice.checked=false;
-        state();
-        document.querySelector('.sticky').scrollIntoView({behavior:'smooth',block:'center'});
-      });
-
-
-      if(previewBtn){
-        previewBtn.addEventListener('click', ()=>{
-          const s = state();
-          if(!s.selected.length && !s.independent) return;
-
-          const blockText = s.independent
-            ? 'No implementation blocks — I’ll take the Blueprint forward independently.'
-            : s.selected
-                .map(code => blockNames[code] || `Block ${code}`)
-                .join('\n');
-
-          const url = new URL(jotformBaseUrl);
-          url.searchParams.set('blocks', blockText);
-          window.open(url.toString(), '_blank', 'noopener,noreferrer');
-        });
       }
-
       state();
-    })();
+    });
+  }
+
+  if(clearBtn){
+    clearBtn.addEventListener('click', ()=>{
+      checks.forEach(c=>c.checked=false);
+      if(noBlocksChoice) noBlocksChoice.checked=false;
+      state();
+    });
+  }
+
+  if(recommendedBtn){
+    recommendedBtn.addEventListener('click', ()=>{
+      checks.forEach(c=>c.checked=recommended.includes(c.value));
+      if(noBlocksChoice) noBlocksChoice.checked=false;
+      state();
+
+      const panel = document.querySelector('.sticky');
+      if(panel){
+        panel.scrollIntoView({behavior:'smooth',block:'center'});
+      }
+    });
+  }
+
+  if(previewBtn){
+    previewBtn.addEventListener('click', ()=>{
+      const s = state();
+      if(!s.selected.length && !s.independent) return;
+
+      const confirmation = document.getElementById('demoConfirmation');
+      const confirmationText = document.getElementById('demoConfirmationText');
+
+      if(confirmation && confirmationText){
+        confirmation.classList.add('active');
+        confirmationText.textContent = s.independent
+          ? 'Independent route selected — no implementation blocks.'
+          : `${s.selected.map(code => blockNames[code] || `Block ${code}`).join(' + ')} · Indicative investment ${formatGBP(s.total)}.`;
+
+        confirmation.scrollIntoView({behavior:'smooth',block:'center'});
+      }
+    });
+  }
+
+  state();
+})();
 </script>
 </body>
 </html>
