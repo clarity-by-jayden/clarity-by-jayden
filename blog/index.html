@@ -1,258 +1,1701 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWB8LXBHV5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WWB8LXBHV5');
+  <meta charset="utf-8">
+
+
+  <!-- GOOGLE ANALYTICS -->
+
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WWB8LXBHV5">
   </script>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Clarity Notes | Clarity by Jayden</title>
-  <meta name="description" content="Practical thinking for less guesswork, better systems and stronger customer experiences from Clarity by Jayden.">
-  <link rel="canonical" href="https://claritybyjayden.online/blog/">
-  <style>
-    :root{--ink:#2d1945;--purple:#8255bd;--lilac:#eee5fa;--lime:#b9ff25;--cream:#faf7f2;--pink:#f2c8eb;--shadow:5px 5px 0 var(--ink)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--lilac);color:var(--ink);font-family:Arial,sans-serif;background-image:radial-gradient(#8255bd22 1px,transparent 1px);background-size:18px 18px}a{color:inherit;text-decoration:none}h1,h2,h3,p{margin-top:0}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:var(--cream);border-bottom:3px solid var(--ink);position:sticky;top:0;z-index:20}.logo{font:700 34px Georgia,serif;letter-spacing:-2px}.logo span{color:var(--lime)}.nav nav{display:flex;align-items:center;gap:28px;font-size:13px;font-weight:800}.nav-button{border:2px solid var(--ink);border-radius:7px;padding:12px 16px;background:var(--lime);box-shadow:3px 3px 0 var(--ink)}.page{max-width:1180px;margin:auto;padding:44px 5vw 80px}.window{border:3px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:var(--cream)}.window-bar{min-height:38px;padding:7px 10px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:var(--purple);border-bottom:3px solid var(--ink);font:800 11px/1 Arial;letter-spacing:.08em;color:white;text-transform:uppercase}.window-bar.light{background:var(--lilac);color:var(--ink)}.window-bar>b{text-align:right;font-size:20px}.dots{display:flex;gap:5px}.dots i{width:11px;height:11px;border:2px solid var(--ink);border-radius:50%;background:var(--lime)}.dots i:nth-child(2){background:var(--pink)}.dots i:nth-child(3){background:var(--cream)}
-    .hero{background:var(--purple);color:white;box-shadow:7px 7px 0 var(--lime);margin-bottom:28px}.hero-inner{padding:44px clamp(26px,4.5vw,58px)}.eyebrow{font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.hero h1{font-size:clamp(44px,5.5vw,72px);line-height:.95;letter-spacing:-.05em;margin:16px 0 20px}.hero h1 em{font-family:Georgia,serif;font-weight:400;color:var(--lime)}.hero p{max-width:680px;font-size:16px;line-height:1.55;color:#f3ebfb;margin-bottom:0}
-    .feature{display:grid;grid-template-columns:1.32fr .68fr;gap:0;margin:32px 0}.feature-copy{padding:30px}.feature .tag,.card .tag{font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.feature h2{font-size:clamp(32px,4vw,50px);line-height:1;letter-spacing:-.035em;margin:14px 0}.feature h2 em{font-family:Georgia,serif;font-weight:400;color:var(--purple)}.feature p{font-size:15px;line-height:1.6;color:#665576;max-width:700px}.meta{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;font-weight:800;margin:18px 0}.read{display:inline-flex;justify-content:space-between;gap:26px;border-top:2px solid var(--ink);padding-top:14px;font-weight:900;font-size:14px}.feature-side{background:var(--lime);min-height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:28px}.feature-side strong{font:700 50px Georgia,serif;line-height:1}.feature-side p{color:var(--ink);font-weight:800;font-size:14px;line-height:1.45}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 22px}.filters button{border:2px solid var(--ink);background:var(--cream);padding:8px 12px;border-radius:999px;font-weight:800;font-size:12px;cursor:pointer}.filters button.active{background:var(--lime)}.section-title{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-top:38px}.section-title h2{font-size:clamp(30px,3.4vw,44px);margin-bottom:0;letter-spacing:-.035em}.section-title h2 em{font-family:Georgia,serif;font-weight:400;color:var(--purple)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}.card{min-height:250px;display:flex;flex-direction:column}.card-body{padding:22px;display:flex;flex-direction:column;flex:1}.card:nth-child(2n) .card-body{background:var(--pink)}.card h3{font-size:23px;line-height:1.08;margin:14px 0 10px}.card p{font-size:14px;line-height:1.5;color:#665576}.card .read{margin-top:auto}.empty{opacity:.7}.footer{margin-top:52px;background:var(--cream);border:3px solid var(--ink);border-radius:12px;padding:24px;display:flex;justify-content:space-between;gap:30px;align-items:center}.footer strong{font-size:22px}.footer a{font-weight:900;border-bottom:2px solid}
-    @media(max-width:900px){.nav nav>a:not(.nav-button){display:none}.feature{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.feature-side{min-height:240px}.footer{align-items:flex-start;flex-direction:column}}
-    @media(max-width:620px){.nav{height:70px}.page{padding:30px 18px 62px}.hero-inner{padding:34px 22px}.hero h1{font-size:40px}.grid{grid-template-columns:1fr}.feature-copy{padding:24px}.section-title{align-items:flex-start;flex-direction:column}.footer{padding:22px}}
-  </style>
+  <script>
 
+    window.dataLayer =
+      window.dataLayer || [];
+
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+
+    gtag(
+      'js',
+      new Date()
+    );
+
+    gtag(
+      'config',
+      'G-WWB8LXBHV5'
+    );
+
+  </script>
+
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+
+  <title>
+    Articles | Clarity by Jayden
+  </title>
+
+
+  <meta
+    name="description"
+    content="Practical ideas about marketing, customer journeys, systems, automation and making better business decisions."
+  >
+
+
+  <link
+    rel="canonical"
+    href="https://claritybyjayden.online/blog/"
+  >
+
+
+  <meta
+    property="og:title"
+    content="Clarity Notes | Clarity by Jayden"
+  >
+
+
+  <meta
+    property="og:description"
+    content="Practical ideas about marketing, customer journeys, systems, automation and making better business decisions."
+  >
+
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+
+  <meta
+    property="og:url"
+    content="https://claritybyjayden.online/blog/"
+  >
+
+
+  
 <style>
-/* Compact featured article */
-.featured-note,
-.featured-card,
-.featured {
-  max-width: 980px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+
+:root{
+
+  --ink:#2d1945;
+
+  --purple:#8255bd;
+
+  --lilac:#eee5fa;
+
+  --lime:#b9ff25;
+
+  --cream:#faf7f2;
+
+  --pink:#f2c8eb;
+
+  --shadow:
+    4px 4px 0 var(--ink);
 }
-.featured-note,
-.featured-card {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 220px !important;
-  min-height: 0 !important;
-}
-.featured-note > div,
-.featured-card > div {
-  min-height: 0 !important;
-}
-.featured-note .featured-copy,
-.featured-card .featured-copy,
-.featured-note > div:first-of-type,
-.featured-card > div:first-of-type {
-  padding: 20px 24px !important;
-}
-.featured-note h2,
-.featured-card h2 {
-  font-size: clamp(26px, 2.6vw, 36px) !important;
-  line-height: 1.03 !important;
-  margin: 8px 0 10px !important;
-}
-.featured-note p,
-.featured-card p {
-  font-size: 13px !important;
-  line-height: 1.45 !important;
-  margin-bottom: 10px !important;
-}
-.featured-note .meta,
-.featured-card .meta {
-  margin-top: 10px !important;
-  font-size: 10px !important;
-}
-.featured-note .read-link,
-.featured-card .read-link {
-  margin-top: 10px !important;
-  padding-top: 8px !important;
-}
-.featured-note .featured-action,
-.featured-card .featured-action,
-.featured-note > aside,
-.featured-card > aside,
-.featured-note > div:last-child,
-.featured-card > div:last-child {
-  padding: 20px !important;
-  min-height: 0 !important;
-}
-.featured-note .featured-number,
-.featured-card .featured-number,
-.featured-note .big-number,
-.featured-card .big-number {
-  font-size: 36px !important;
-  line-height: 1 !important;
-  margin: 0 0 18px !important;
-}
-.featured-note .featured-action h3,
-.featured-card .featured-action h3,
-.featured-note aside h3,
-.featured-card aside h3 {
-  font-size: 11px !important;
-  margin: 0 0 6px !important;
-}
-.featured-note .featured-action p,
-.featured-card .featured-action p,
-.featured-note aside p,
-.featured-card aside p {
-  font-size: 12px !important;
-  line-height: 1.35 !important;
-  margin: 0 !important;
-  font-weight: 700 !important;
-}
-@media (max-width: 720px) {
-  .featured-note,
-  .featured-card {
-    grid-template-columns: 1fr !important;
-  }
-  .featured-note .featured-action,
-  .featured-card .featured-action,
-  .featured-note > aside,
-  .featured-card > aside,
-  .featured-note > div:last-child,
-  .featured-card > div:last-child {
-    padding: 16px 20px !important;
-  }
-  .featured-note .featured-number,
-  .featured-card .featured-number,
-  .featured-note .big-number,
-  .featured-card .big-number {
-    font-size: 30px !important;
-    margin-bottom: 10px !important;
-  }
-}
-</style>
 
 
-<style>
-/* Featured article: single compact content window */
+*{
+  box-sizing:border-box;
+}
+
+
+html{
+  scroll-behavior:smooth;
+}
+
+
+body{
+
+  margin:0;
+
+  color:var(--ink);
+
+  background:var(--lilac);
+
+  background-image:
+
+    radial-gradient(
+      #8255bd22 1px,
+      transparent 1px
+    );
+
+  background-size:
+    18px 18px;
+
+  font-family:
+    Arial,sans-serif;
+}
+
+
+a{
+
+  color:inherit;
+
+  text-decoration:none;
+}
+
+
+h1,
+h2,
+h3,
+p{
+
+  margin-top:0;
+}
+
+
+/***************************************************************
+ * NAV
+ ***************************************************************/
+
+.nav{
+
+  height:68px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:
+    0 max(30px,5vw);
+
+  background:
+    var(--cream);
+
+  border-bottom:
+    3px solid var(--ink);
+
+  position:sticky;
+
+  top:0;
+
+  z-index:20;
+}
+
+
+.logo{
+
+  font:
+    700 29px Georgia,serif;
+
+  letter-spacing:
+    -2px;
+}
+
+
+.logo span{
+
+  color:
+    var(--lime);
+}
+
+
+.nav nav{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:25px;
+
+  font-size:12px;
+
+  font-weight:800;
+}
+
+
+.nav nav .active{
+
+  border-bottom:
+    2px solid var(--ink);
+}
+
+
+.nav-button{
+
+  border:
+    2px solid var(--ink);
+
+  border-radius:
+    6px;
+
+  padding:
+    10px 15px;
+
+  background:
+    var(--lime);
+
+  box-shadow:
+    3px 3px 0 var(--ink);
+}
+
+
+/***************************************************************
+ * PAGE
+ ***************************************************************/
+
+.blog-shell{
+
+  width:
+    min(
+      1100px,
+      calc(100% - 40px)
+    );
+
+  margin:
+    46px auto 80px;
+}
+
+
+/***************************************************************
+ * WINDOWS
+ ***************************************************************/
+
+.window{
+
+  border:
+    3px solid var(--ink);
+
+  border-radius:
+    10px;
+
+  overflow:hidden;
+
+  background:
+    var(--cream);
+
+  box-shadow:
+    var(--shadow);
+}
+
+
+.window-bar{
+
+  min-height:
+    31px;
+
+  padding:
+    6px 9px;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr auto 1fr;
+
+  align-items:center;
+
+  background:
+    var(--purple);
+
+  color:white;
+
+  border-bottom:
+    3px solid var(--ink);
+
+  font-size:
+    9px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.window-bar.light{
+
+  background:
+    var(--lilac);
+
+  color:
+    var(--ink);
+}
+
+
+.window-bar>b{
+
+  text-align:right;
+
+  font-size:16px;
+}
+
+
+.dots{
+
+  display:flex;
+
+  gap:4px;
+}
+
+
+.dots i{
+
+  width:9px;
+
+  height:9px;
+
+  border:
+    1.5px solid var(--ink);
+
+  border-radius:
+    50%;
+
+  background:
+    var(--lime);
+}
+
+
+.dots i:nth-child(2){
+
+  background:
+    var(--pink);
+}
+
+
+.dots i:nth-child(3){
+
+  background:
+    var(--cream);
+}
+
+
+/***************************************************************
+ * LABELS
+ ***************************************************************/
+
+.tag,
+.category{
+
+  font-size:
+    10px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/***************************************************************
+ * INTRO
+ ***************************************************************/
+
+.blog-intro{
+
+  background:
+    var(--purple);
+
+  color:white;
+}
+
+
+.blog-intro>div:last-child{
+
+  padding:
+    38px 48px 42px;
+}
+
+
+.blog-intro h1{
+
+  max-width:
+    780px;
+
+  margin:
+    12px 0 15px;
+
+  font-size:
+    clamp(
+      38px,
+      5vw,
+      58px
+    );
+
+  line-height:
+    .98;
+
+  letter-spacing:
+    -.045em;
+}
+
+
+.blog-intro h1 em{
+
+  display:block;
+
+  color:
+    var(--lime);
+
+  font-family:
+    Georgia,serif;
+
+  font-weight:
+    400;
+}
+
+
+.blog-intro p:last-child{
+
+  max-width:
+    650px;
+
+  margin-bottom:0;
+
+  color:
+    #f1eafb;
+
+  font-size:
+    15px;
+
+  line-height:
+    1.55;
+}
+
+
+/***************************************************************
+ * FEATURE
+ ***************************************************************/
+
 .feature{
-  display:block !important;
-  grid-template-columns:none !important;
-  max-width:980px !important;
-  margin:28px auto !important;
+
+  margin:
+    30px 0;
 }
-.feature > div{
-  width:100% !important;
-}
+
+
 .feature-copy{
-  padding:22px 28px 24px !important;
+
+  padding:
+    23px 30px 25px;
 }
+
+
 .feature h2{
-  font-size:clamp(28px,3vw,40px) !important;
-  line-height:1.02 !important;
-  margin:10px 0 12px !important;
-  max-width:760px !important;
+
+  max-width:
+    760px;
+
+  margin:
+    8px 0 10px;
+
+  font-size:
+    clamp(
+      28px,
+      3vw,
+      38px
+    );
+
+  line-height:
+    1.04;
+
+  letter-spacing:
+    -.035em;
 }
-.feature p{
-  font-size:14px !important;
-  line-height:1.5 !important;
-  max-width:720px !important;
-  margin-bottom:10px !important;
+
+
+.feature h2 a:hover{
+
+  color:
+    var(--purple);
 }
-.feature .meta{
-  margin:12px 0 !important;
+
+
+.feature-copy>
+p:not(.category){
+
+  max-width:
+    710px;
+
+  margin-bottom:
+    12px;
+
+  color:
+    #665576;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.5;
 }
-.feature .read{
-  margin-top:2px !important;
-  padding-top:10px !important;
+
+
+/***************************************************************
+ * META
+ ***************************************************************/
+
+.meta{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:13px;
+
+  margin-top:
+    12px;
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
 }
-.feature-side{
-  display:none !important;
+
+
+.read{
+
+  display:inline-block;
+
+  margin-top:
+    13px;
+
+  padding-top:
+    9px;
+
+  border-top:
+    2px solid var(--ink);
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
 }
-@media(max-width:620px){
-  .feature-copy{
-    padding:20px 22px 22px !important;
+
+
+/***************************************************************
+ * BROWSE
+ ***************************************************************/
+
+.browse{
+
+  margin-top:
+    46px;
+}
+
+
+.browse>header{
+
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    end;
+
+  gap:40px;
+
+  margin-bottom:
+    18px;
+}
+
+
+.browse h2{
+
+  margin:
+    6px 0 0;
+
+  font-size:
+    38px;
+
+  letter-spacing:
+    -.04em;
+}
+
+
+.browse h2 em{
+
+  color:
+    var(--purple);
+
+  font-family:
+    Georgia,serif;
+
+  font-weight:
+    400;
+}
+
+
+.browse>header>p{
+
+  margin-bottom:
+    5px;
+
+  color:
+    #665576;
+
+  font-size:
+    12px;
+}
+
+
+/***************************************************************
+ * FILTERS
+ ***************************************************************/
+
+.filters{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:7px;
+
+  margin-bottom:
+    24px;
+}
+
+
+.filter{
+
+  padding:
+    7px 12px;
+
+  border:
+    2px solid var(--ink);
+
+  border-radius:
+    100px;
+
+  background:
+    var(--cream);
+
+  color:
+    var(--ink);
+
+  font-size:
+    10px;
+
+  font-weight:
+    900;
+
+  cursor:pointer;
+}
+
+
+.filter.active{
+
+  background:
+    var(--lime);
+}
+
+
+/***************************************************************
+ * ARTICLE GRID
+ ***************************************************************/
+
+.article-grid{
+
+  display:grid;
+
+  grid-template-columns:
+
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
+
+  gap:18px;
+}
+
+
+.article-card{
+
+  min-height:0;
+}
+
+
+.article-card[hidden]{
+
+  display:none;
+}
+
+
+.card-content{
+
+  padding:
+    21px;
+}
+
+
+.article-card h3{
+
+  margin:
+    7px 0 10px;
+
+  font-size:
+    20px;
+
+  line-height:
+    1.1;
+
+  letter-spacing:
+    -.025em;
+}
+
+
+.article-card h3 a:hover{
+
+  color:
+    var(--purple);
+}
+
+
+.card-content>
+p:not(.category){
+
+  min-height:
+    58px;
+
+  margin-bottom:
+    13px;
+
+  color:
+    #665576;
+
+  font-size:
+    12px;
+
+  line-height:
+    1.5;
+}
+
+
+/***************************************************************
+ * CTA
+ ***************************************************************/
+
+.bottom-cta{
+
+  margin-top:
+    50px;
+
+  padding:
+    25px 28px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:
+    space-between;
+
+  gap:30px;
+
+  background:
+    var(--cream);
+
+  border:
+    3px solid var(--ink);
+
+  border-radius:
+    9px;
+}
+
+
+.bottom-cta h2{
+
+  margin-bottom:
+    2px;
+
+  font-size:
+    22px;
+}
+
+
+.bottom-cta p{
+
+  margin-bottom:0;
+
+  color:
+    #665576;
+
+  font-size:
+    12px;
+}
+
+
+.bottom-cta>a{
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
+
+  text-decoration:
+    underline;
+}
+
+
+/***************************************************************
+ * FOOTER
+ ***************************************************************/
+
+.site-footer{
+
+  padding:
+    35px 6vw;
+
+  display:grid;
+
+  grid-template-columns:
+    auto 1fr auto;
+
+  align-items:center;
+
+  gap:35px;
+
+  background:
+    var(--cream);
+
+  border-top:
+    3px solid var(--ink);
+
+  font-size:
+    12px;
+}
+
+
+.site-footer p{
+
+  margin:0;
+
+  color:
+    #665576;
+}
+
+
+.site-footer>div{
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:
+    flex-end;
+
+  gap:7px;
+}
+
+
+/***************************************************************
+ * TABLET
+ ***************************************************************/
+
+@media(
+  max-width:850px
+){
+
+  .article-grid{
+
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+
+  .nav nav>a:not(
+    .active,
+    .nav-button
+  ){
+
+    display:none;
+  }
+
+
+  .site-footer{
+
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .site-footer>div{
+
+    align-items:
+      flex-start;
   }
 }
+
+
+/***************************************************************
+ * MOBILE
+ ***************************************************************/
+
+@media(
+  max-width:560px
+){
+
+  .blog-shell{
+
+    width:
+      calc(100% - 28px);
+
+    margin-top:
+      25px;
+  }
+
+
+  .blog-intro>
+  div:last-child{
+
+    padding:
+      30px 23px;
+  }
+
+
+  .blog-intro h1{
+
+    font-size:
+      38px;
+  }
+
+
+  .feature-copy{
+
+    padding:
+      20px 21px 22px;
+  }
+
+
+  .browse>header{
+
+    display:block;
+  }
+
+
+  .browse>
+  header>p{
+
+    margin-top:
+      12px;
+  }
+
+
+  .article-grid{
+
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .bottom-cta{
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+
+  .nav{
+
+    padding:
+      0 15px;
+  }
+
+
+  .nav-button{
+
+    padding:
+      9px 10px;
+
+    font-size:
+      10px;
+  }
+}
+
 </style>
+
 
 </head>
+
+
 <body>
-<header class="nav"><a class="logo" href="/">Clarity<span>.</span></a><nav><a href="/">Home</a><a href="/blog/" aria-current="page">Articles</a><a href="/#about">About</a><a class="nav-button" href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02">Book your Clarity Session →</a></nav></header>
-<main class="page">
-  <section class="window hero">
-    <div class="window-bar light"><div class="dots"><i></i><i></i><i></i></div><span>clarity_notes.exe</span><b>×</b></div>
-    <div class="hero-inner"><p class="eyebrow">CLARITY NOTES</p><h1>Less noise.<br><em>More useful thinking.</em></h1><p>Practical ideas about marketing, customer journeys, systems, automation and making better business decisions.</p></div>
-  </section>
 
-  <section class="window feature">
-    <div>
-      <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>featured_note_001</span><b>×</b></div>
-      <div class="feature-copy">
-        <span class="tag">MARKETING</span>
-        <h2>Busy marketing isn’t always <em>effective.</em></h2>
-        <p>There can be plenty happening in your marketing without much clarity about what any of it is actually meant to produce. This note is about working backwards from the result.</p>
-        <div class="meta"><span>Clarity Notes #001</span><span>6 min read</span><span>11 August 2026</span></div>
-        <a class="read" href="/blog/busy-marketing/">Read the note <span>↗</span></a>
+
+<header class="nav">
+
+  <a
+    class="logo"
+    href="/"
+  >
+    Clarity<span>.</span>
+  </a>
+
+
+  <nav>
+
+    <a href="/">
+      Home
+    </a>
+
+    <a
+      class="active"
+      href="/blog/"
+    >
+      Articles
+    </a>
+
+    <a href="/#about">
+      About
+    </a>
+
+    <a
+      class="nav-button"
+      href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02"
+      target="_blank"
+      rel="noreferrer"
+    >
+      Book your Clarity Session →
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main class="blog-shell">
+
+
+  <section class="blog-intro window">
+
+
+    <div class="window-bar light">
+
+      <div class="dots">
+
+        <i></i>
+        <i></i>
+        <i></i>
+
       </div>
+
+      <span>
+        CLARITY_NOTES.EXE
+      </span>
+
+      <b>×</b>
+
     </div>
+
+
+    <div>
+
+      <p class="tag">
+        CLARITY NOTES
+      </p>
+
+      <h1>
+
+        Less noise.
+
+        <em>
+          More useful thinking.
+        </em>
+
+      </h1>
+
+      <p>
+        Practical ideas about marketing, customer journeys,
+        systems, automation and making better business decisions.
+      </p>
+
+    </div>
+
+
   </section>
 
-  <div class="section-title"><h2>Browse the <em>notes.</em></h2><p>More practical thinking coming soon.</p></div>
-  <div class="filters" aria-label="Blog categories"><button class="active">All</button><button>Marketing</button><button>Customer Journey</button><button>Systems</button><button>Automation</button><button>Clarity</button></div>
 
-  <section class="grid">
-    <article class="window card">
-      <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>marketing_001.note</span><b>×</b></div>
-      <div class="card-body"><span class="tag">MARKETING</span><h3>Busy marketing isn’t always effective</h3><p>Being active and making progress are not necessarily the same thing.</p><div class="meta"><span>6 min read</span><span>11 Aug 2026</span></div><a class="read" href="/blog/busy-marketing/">Read note <span>↗</span></a></div>
+  
+
+      <article class="feature window">
+
+
+        <div class="window-bar">
+
+          <div class="dots">
+
+            <i></i>
+            <i></i>
+            <i></i>
+
+          </div>
+
+          <span>
+            FEATURED_NOTE_001
+          </span>
+
+          <b>×</b>
+
+        </div>
+
+
+        <div class="feature-copy">
+
+          <p class="category">
+            Marketing
+          </p>
+
+
+          <h2>
+
+            <a
+              href="/blog/busy-marketing-isnt-always-effective/"
+            >
+              Busy marketing isn’t always effective
+            </a>
+
+          </h2>
+
+
+          <p>
+            Being busy with your marketing doesn’t necessarily mean it’s working. Before adding more activity, get clear on what each piece of marketing is actually meant to achieve.
+          </p>
+
+
+          <div class="meta">
+
+            <span>
+              Clarity Notes #001
+            </span>
+
+            <span>
+              3 min read
+            </span>
+
+            <span>
+
+              11 August 2026
+
+            </span>
+
+          </div>
+
+
+          <a
+            class="read"
+            href="/blog/busy-marketing-isnt-always-effective/"
+          >
+            Read the note →
+          </a>
+
+        </div>
+
+
+      </article>
+    
+
+
+  <section class="browse">
+
+
+    <header>
+
+      <div>
+
+        <p class="tag">
+          ALL ARTICLES
+        </p>
+
+        <h2>
+
+          Browse the
+
+          <em>
+            notes.
+          </em>
+
+        </h2>
+
+      </div>
+
+      <p>
+        Useful thinking. Practical action.
+      </p>
+
+    </header>
+
+
+    <div class="filters">
+
+      <button
+        class="filter active"
+        data-category="all"
+      >
+        All
+      </button>
+
+
+      
+
+          <button
+            class="filter"
+            data-category="marketing"
+          >
+            Marketing
+          </button>
+
+        
+
+    </div>
+
+
+    <div
+      class="article-grid"
+      id="article-grid"
+    >
+
+      
+
+    <article
+      class="article-card window"
+      data-categories="marketing"
+    >
+
+
+      <div class="window-bar">
+
+        <div class="dots">
+
+          <i></i>
+          <i></i>
+          <i></i>
+
+        </div>
+
+        <span>
+
+          MARKETING_001.NOTE
+
+        </span>
+
+        <b>×</b>
+
+      </div>
+
+
+      <div class="card-content">
+
+        <p class="category">
+          Marketing
+        </p>
+
+
+        <h3>
+
+          <a
+            href="/blog/busy-marketing-isnt-always-effective/"
+          >
+
+            Busy marketing isn’t always effective
+
+          </a>
+
+        </h3>
+
+
+        <p>
+          Being busy with your marketing doesn’t necessarily mean it’s working. Before adding more activity, get clear on what each piece of marketing is actually meant to achieve.
+        </p>
+
+
+        <div class="meta">
+
+          <span>
+            3 min read
+          </span>
+
+          <span>
+
+            11 Aug 2026
+
+          </span>
+
+        </div>
+
+
+        <a
+          class="read"
+          href="/blog/busy-marketing-isnt-always-effective/"
+        >
+          Read note →
+        </a>
+
+
+      </div>
+
+
     </article>
-    <article class="window card empty">
-      <div class="window-bar light"><div class="dots"><i></i><i></i><i></i></div><span>next_note.loading</span><b>×</b></div>
-      <div class="card-body"><span class="tag">COMING SOON</span><h3>The next untangle is on its way.</h3><p>Future notes will cover customer journeys, systems, automation and practical business clarity.</p></div>
-    </article>
+  
+
+    </div>
+
+
   </section>
 
-  <div class="footer"><div><strong>Still feels tangled?</strong><p>A Clarity Session is designed to uncover what deserves attention first.</p></div><a href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02">Book your Clarity Session →</a></div>
+
+  <section class="bottom-cta">
+
+    <div>
+
+      <h2>
+        Still feels tangled?
+      </h2>
+
+      <p>
+        A Clarity Session is designed to uncover
+        what deserves attention first.
+      </p>
+
+    </div>
+
+
+    <a
+      href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02"
+      target="_blank"
+      rel="noreferrer"
+    >
+      Book your Clarity Session →
+    </a>
+
+  </section>
+
+
 </main>
 
+
+<footer class="site-footer">
+
+  <a
+    class="logo"
+    href="/"
+  >
+    Clarity<span>.</span>
+  </a>
+
+  <p>
+    Strategy, systems and hands-on execution for founders
+    who want a clearer way forward.
+  </p>
+
+  <div>
+
+    <a
+      href="mailto:claritybyjayden@gmail.com"
+    >
+      claritybyjayden@gmail.com
+    </a>
+
+    <span>
+      © 2026 Clarity by Jayden
+    </span>
+
+  </div>
+
+</footer>
+
+
 <script>
-/* GA4 lead-action tracking */
-(function () {
-  function sendGA4Event(name, params) {
-    if (typeof gtag !== 'function') return;
-    gtag('event', name, Object.assign({
-      send_to: 'G-WWB8LXBHV5'
-    }, params || {}));
-  }
 
-  document.addEventListener('click', function (event) {
-    const link = event.target.closest('a');
-    if (!link) return;
+document
+  .querySelectorAll(
+    '.filter'
+  )
+  .forEach(
+    button => {
 
-    const href = link.getAttribute('href') || '';
-    const linkText = (link.textContent || '').replace(/\s+/g, ' ').trim();
 
-    if (href.includes('buy.stripe.com/aFadRa0iSb2E8HIaoc73G02')) {
-      sendGA4Event('book_clarity_session', {
-        link_text: linkText,
-        link_url: href
-      });
-      return;
+      button.addEventListener(
+        'click',
+        () => {
+
+
+          const category =
+            button.dataset.category;
+
+
+          document
+            .querySelectorAll(
+              '.filter'
+            )
+            .forEach(
+              item =>
+                item.classList.remove(
+                  'active'
+                )
+            );
+
+
+          button.classList.add(
+            'active'
+          );
+
+
+          document
+            .querySelectorAll(
+              '.article-card'
+            )
+            .forEach(
+              card => {
+
+
+                const categories =
+
+                  card
+                    .dataset
+                    .categories
+                    .split('|');
+
+
+                const visible =
+
+                  category === 'all' ||
+
+                  categories.includes(
+                    category
+                  );
+
+
+                card.hidden =
+                  !visible;
+
+              }
+            );
+
+        }
+      );
+
     }
+  );
 
-    if (href.includes('calendar.notion.so/meet/jayden-cooke/clarity20')) {
-      sendGA4Event('book_free_call', {
-        link_text: linkText,
-        link_url: href
-      });
-      return;
-    }
-
-    if (href.toLowerCase().startsWith('mailto:')) {
-      sendGA4Event('email_click', {
-        link_text: linkText,
-        link_url: href
-      });
-    }
-  });
-})();
 </script>
 
+
+
+<script>
+
+(function () {
+
+
+  function sendGA4Event(
+    name,
+    params
+  ) {
+
+
+    if (
+      typeof gtag !==
+      'function'
+    ) {
+
+      return;
+    }
+
+
+    gtag(
+
+      'event',
+
+      name,
+
+      Object.assign(
+
+        {
+
+          send_to:
+            'G-WWB8LXBHV5'
+
+        },
+
+        params || {}
+
+      )
+
+    );
+  }
+
+
+  document.addEventListener(
+
+    'click',
+
+    function (event) {
+
+
+      const link =
+        event.target.closest(
+          'a'
+        );
+
+
+      if (!link) {
+
+        return;
+      }
+
+
+      const href =
+
+        link.getAttribute(
+          'href'
+        ) || '';
+
+
+      const linkText =
+
+        (
+          link.textContent ||
+          ''
+        )
+
+          .replace(
+            /\s+/g,
+            ' '
+          )
+
+          .trim();
+
+
+      /*
+       * CLARITY SESSION
+       */
+
+      if (
+
+        href.includes(
+
+          'buy.stripe.com/aFadRa0iSb2E8HIaoc73G02'
+
+        )
+
+      ) {
+
+
+        sendGA4Event(
+
+          'book_clarity_session',
+
+          {
+
+            link_text:
+              linkText,
+
+            link_url:
+              href
+
+          }
+
+        );
+
+
+        return;
+      }
+
+
+      /*
+       * FREE CALL
+       */
+
+      if (
+
+        href.includes(
+
+          'calendar.notion.so/meet/jayden-cooke/clarity20'
+
+        )
+
+      ) {
+
+
+        sendGA4Event(
+
+          'book_free_call',
+
+          {
+
+            link_text:
+              linkText,
+
+            link_url:
+              href
+
+          }
+
+        );
+
+
+        return;
+      }
+
+
+      /*
+       * EMAIL
+       */
+
+      if (
+
+        href
+          .toLowerCase()
+          .startsWith(
+            'mailto:'
+          )
+
+      ) {
+
+
+        sendGA4Event(
+
+          'email_click',
+
+          {
+
+            link_text:
+              linkText,
+
+            link_url:
+              href
+
+          }
+
+        );
+
+      }
+
+    }
+
+  );
+
+})();
+
+</script>
+
+
+
 </body>
+
 </html>
