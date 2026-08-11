@@ -6,9 +6,6 @@
 
   <meta charset="utf-8">
 
-
-  <!-- GOOGLE ANALYTICS -->
-
   <script
     async
     src="https://www.googletagmanager.com/gtag/js?id=G-WWB8LXBHV5">
@@ -23,10 +20,7 @@
       dataLayer.push(arguments);
     }
 
-    gtag(
-      'js',
-      new Date()
-    );
+    gtag('js',new Date());
 
     gtag(
       'config',
@@ -87,1257 +81,665 @@
 <style>
 
 :root{
-
   --ink:#2d1945;
-
   --purple:#8255bd;
-
   --lilac:#eee5fa;
-
   --lime:#b9ff25;
-
   --cream:#faf7f2;
-
   --pink:#f2c8eb;
-
-  --shadow:
-    4px 4px 0 var(--ink);
+  --shadow:4px 4px 0 var(--ink);
 }
-
 
 *{
   box-sizing:border-box;
 }
 
-
 html{
   scroll-behavior:smooth;
 }
 
-
 body{
-
   margin:0;
-
   color:var(--ink);
-
   background:var(--lilac);
-
   background-image:
-
     radial-gradient(
       #8255bd22 1px,
       transparent 1px
     );
-
-  background-size:
-    18px 18px;
-
-  font-family:
-    Arial,sans-serif;
+  background-size:18px 18px;
+  font-family:Arial,sans-serif;
 }
 
-
 a{
-
   color:inherit;
-
   text-decoration:none;
 }
 
-
-h1,
-h2,
-h3,
-p{
-
+h1,h2,h3,p{
   margin-top:0;
 }
 
 
-/***************************************************************
- * NAV
- ***************************************************************/
+/* NAV */
 
 .nav{
-
   height:68px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
-  padding:
-    0 max(30px,5vw);
-
-  background:
-    var(--cream);
-
-  border-bottom:
-    3px solid var(--ink);
-
+  padding:0 max(30px,5vw);
+  background:var(--cream);
+  border-bottom:3px solid var(--ink);
   position:sticky;
-
   top:0;
-
   z-index:20;
 }
 
-
 .logo{
-
-  font:
-    700 29px Georgia,serif;
-
-  letter-spacing:
-    -2px;
+  font:700 29px Georgia,serif;
+  letter-spacing:-2px;
 }
-
 
 .logo span{
-
-  color:
-    var(--lime);
+  color:var(--lime);
 }
 
-
 .nav nav{
-
   display:flex;
-
   align-items:center;
-
   gap:25px;
-
   font-size:12px;
-
   font-weight:800;
 }
 
-
 .nav nav .active{
-
-  border-bottom:
-    2px solid var(--ink);
+  border-bottom:2px solid var(--ink);
 }
-
 
 .nav-button{
-
-  border:
-    2px solid var(--ink);
-
-  border-radius:
-    6px;
-
-  padding:
-    10px 15px;
-
-  background:
-    var(--lime);
-
-  box-shadow:
-    3px 3px 0 var(--ink);
+  border:2px solid var(--ink);
+  border-radius:6px;
+  padding:10px 15px;
+  background:var(--lime);
+  box-shadow:3px 3px 0 var(--ink);
 }
 
 
+/* NAV TOGGLE (mobile hamburger) */
+
 .nav-toggle{
-
   display:none;
-
   align-items:center;
-
   justify-content:center;
-
   width:40px;
-
   height:40px;
-
   flex:0 0 auto;
-
-  border:
-    2px solid var(--ink);
-
-  border-radius:
-    6px;
-
-  background:
-    var(--lime);
-
-  box-shadow:
-    3px 3px 0 var(--ink);
-
+  border:2px solid var(--ink);
+  border-radius:6px;
+  background:var(--lime);
+  box-shadow:3px 3px 0 var(--ink);
   padding:0;
-
   cursor:pointer;
 }
 
-
 .nav-toggle:active{
-
-  transform:
-    translate(3px,3px);
-
+  transform:translate(3px,3px);
   box-shadow:none;
 }
 
-
 .nav-toggle span{
-
   position:relative;
-
   width:18px;
-
   height:2px;
-
-  background:
-    var(--ink);
-
+  background:var(--ink);
   display:block;
 }
 
-
 .nav-toggle span::before,
 .nav-toggle span::after{
-
   content:"";
-
   position:absolute;
-
   left:0;
-
   width:18px;
-
   height:2px;
-
-  background:
-    var(--ink);
-
-  transition:
-    transform .2s ease;
+  background:var(--ink);
+  transition:transform .2s ease;
 }
-
 
 .nav-toggle span::before{
   top:-6px;
 }
 
-
 .nav-toggle span::after{
   top:6px;
 }
-
 
 .nav.menu-open .nav-toggle span{
   background:transparent;
 }
 
-
 .nav.menu-open .nav-toggle span::before{
-  transform:
-    translateY(6px) rotate(45deg);
+  transform:translateY(6px) rotate(45deg);
 }
-
 
 .nav.menu-open .nav-toggle span::after{
-  transform:
-    translateY(-6px) rotate(-45deg);
+  transform:translateY(-6px) rotate(-45deg);
 }
 
 
-/***************************************************************
- * PAGE
- ***************************************************************/
+/* PAGE */
 
 .blog-shell{
-
-  width:
-    min(
-      1100px,
-      calc(100% - 40px)
-    );
-
-  margin:
-    46px auto 80px;
+  width:min(
+    1100px,
+    calc(100% - 40px)
+  );
+  margin:46px auto 80px;
 }
 
 
-/***************************************************************
- * WINDOWS
- ***************************************************************/
+/* WINDOWS */
 
 .window{
-
-  border:
-    3px solid var(--ink);
-
-  border-radius:
-    10px;
-
+  border:3px solid var(--ink);
+  border-radius:10px;
   overflow:hidden;
-
-  background:
-    var(--cream);
-
-  box-shadow:
-    var(--shadow);
+  background:var(--cream);
+  box-shadow:var(--shadow);
 }
-
 
 .window-bar{
-
-  min-height:
-    31px;
-
-  padding:
-    6px 9px;
-
+  min-height:31px;
+  padding:6px 9px;
   display:grid;
-
-  grid-template-columns:
-    1fr auto 1fr;
-
+  grid-template-columns:1fr auto 1fr;
   align-items:center;
-
-  background:
-    var(--purple);
-
+  background:var(--purple);
   color:white;
-
-  border-bottom:
-    3px solid var(--ink);
-
-  font-size:
-    9px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .08em;
-
-  text-transform:
-    uppercase;
+  border-bottom:3px solid var(--ink);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
-
 
 .window-bar.light{
-
-  background:
-    var(--lilac);
-
-  color:
-    var(--ink);
+  background:var(--lilac);
+  color:var(--ink);
 }
 
-
 .window-bar>b{
-
   text-align:right;
-
   font-size:16px;
 }
 
-
 .dots{
-
   display:flex;
-
   gap:4px;
 }
 
-
 .dots i{
-
   width:9px;
-
   height:9px;
-
-  border:
-    1.5px solid var(--ink);
-
-  border-radius:
-    50%;
-
-  background:
-    var(--lime);
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  background:var(--lime);
 }
-
 
 .dots i:nth-child(2){
-
-  background:
-    var(--pink);
+  background:var(--pink);
 }
-
 
 .dots i:nth-child(3){
-
-  background:
-    var(--cream);
+  background:var(--cream);
 }
 
 
-/***************************************************************
- * LABELS
- ***************************************************************/
+/* LABELS */
 
 .tag,
 .category{
-
-  font-size:
-    10px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .14em;
-
-  text-transform:
-    uppercase;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
 }
 
 
-/***************************************************************
- * INTRO
- ***************************************************************/
+/* INTRO */
 
 .intro-grid{
-
   display:grid;
-
-  grid-template-columns:
-    1.35fr .95fr;
-
+  grid-template-columns:1.35fr .95fr;
   gap:20px;
-
   align-items:start;
 }
 
-
-.blog-intro{
-
-  background:
-    var(--purple);
-
-  color:white;
-}
-
-
-.blog-intro>div:last-child{
-
-  padding:
-    38px 48px 42px;
-}
-
-
-.blog-intro h1{
-
-  max-width:
-    780px;
-
-  margin:
-    12px 0 15px;
-
-  font-size:
-    clamp(
-      38px,
-      5vw,
-      58px
-    );
-
-  line-height:
-    .98;
-
-  letter-spacing:
-    -.045em;
-}
-
-
-.blog-intro h1 em{
-
-  display:block;
-
-  color:
-    var(--lime);
-
-  font-family:
-    Georgia,serif;
-
-  font-weight:
-    400;
-}
-
-
-.blog-intro p:last-child{
-
-  max-width:
-    650px;
-
-  margin-bottom:0;
-
-  color:
-    #f1eafb;
-
-  font-size:
-    15px;
-
-  line-height:
-    1.55;
-}
-
-
-/***************************************************************
- * SUBSCRIBE
- ***************************************************************/
-
-.subscribe-card{
-
-  background:
-    var(--lilac);
-
-  display:flex;
-
-  flex-direction:column;
-}
-
-
-.subscribe-card>.window-bar{
-
-  background:
-    var(--pink);
-
-  color:
-    var(--ink);
-}
-
-
-.subscribe-card>div:last-child{
-
-  padding:
-    24px 24px 20px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  flex:1;
-}
-
-
-.subscribe-card h2{
-
-  max-width:
-    360px;
-
-  margin:
-    8px 0 10px;
-
-  font-size:
-    clamp(
-      21px,
-      2.2vw,
-      27px
-    );
-
-  line-height:
-    1.05;
-
-  letter-spacing:
-    -.03em;
-}
-
-
-.subscribe-card h2 em{
-
-  color:
-    var(--purple);
-
-  font-family:
-    Georgia,serif;
-
-  font-weight:
-    400;
-}
-
-
-.subscribe-card>div:last-child>
-p:not(.tag){
-
-  max-width:
-    360px;
-
-  margin-bottom:
-    14px;
-
-  color:
-    #544267;
-
-  font-size:
-    13px;
-
-  line-height:
-    1.5;
-}
-
-
-.tally-embed{
-
-  margin-top:auto;
-
-  border:
-    2px solid var(--ink);
-
-  border-radius:
-    8px;
-
-  overflow:hidden;
-
-  background:white;
-}
-
-
-.tally-embed iframe{
-
-  display:block;
-}
-
-
-/***************************************************************
- * FEATURE
- ***************************************************************/
-
 .intro-left{
-
   display:flex;
-
   flex-direction:column;
-
   gap:20px;
 }
 
+.blog-intro{
+  background:var(--purple);
+  color:white;
+}
+
+.blog-intro>div:last-child{
+  padding:38px 48px 42px;
+}
+
+.blog-intro h1{
+  max-width:780px;
+  margin:12px 0 15px;
+  font-size:clamp(
+    38px,
+    5vw,
+    58px
+  );
+  line-height:.98;
+  letter-spacing:-.045em;
+}
+
+.blog-intro h1 em{
+  display:block;
+  color:var(--lime);
+  font-family:Georgia,serif;
+  font-weight:400;
+}
+
+.blog-intro p:last-child{
+  max-width:650px;
+  margin-bottom:0;
+  color:#f1eafb;
+  font-size:15px;
+  line-height:1.55;
+}
+
+
+/* SUBSCRIBE */
+
+.subscribe-card{
+  background:var(--lilac);
+  display:flex;
+  flex-direction:column;
+}
+
+.subscribe-card>.window-bar{
+  background:var(--pink);
+  color:var(--ink);
+}
+
+.subscribe-card>div:last-child{
+  padding:24px 24px 20px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.subscribe-card h2{
+  max-width:360px;
+  margin:8px 0 10px;
+  font-size:clamp(
+    21px,
+    2.2vw,
+    27px
+  );
+  line-height:1.05;
+  letter-spacing:-.03em;
+}
+
+.subscribe-card h2 em{
+  color:var(--purple);
+  font-family:Georgia,serif;
+  font-weight:400;
+}
+
+.subscribe-card>div:last-child>p:not(.tag){
+  max-width:360px;
+  margin-bottom:14px;
+  color:#544267;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.tally-embed{
+  margin-top:auto;
+  border:2px solid var(--ink);
+  border-radius:8px;
+  overflow:hidden;
+  background:white;
+}
+
+.tally-embed iframe{
+  display:block;
+}
+
+
+/* FEATURE */
 
 .feature{
-
   margin:0;
 }
 
-
 .feature-copy{
-
-  padding:
-    23px 30px 25px;
+  padding:23px 30px 25px;
 }
-
 
 .feature h2{
-
-  max-width:
-    760px;
-
-  margin:
-    8px 0 10px;
-
-  font-size:
-    clamp(
-      28px,
-      3vw,
-      38px
-    );
-
-  line-height:
-    1.04;
-
-  letter-spacing:
-    -.035em;
+  max-width:760px;
+  margin:8px 0 10px;
+  font-size:clamp(
+    28px,
+    3vw,
+    38px
+  );
+  line-height:1.04;
+  letter-spacing:-.035em;
 }
-
 
 .feature h2 a:hover{
+  color:var(--purple);
+}
 
-  color:
-    var(--purple);
+.feature-copy>p:not(.category){
+  max-width:710px;
+  margin-bottom:12px;
+  color:#665576;
+  font-size:14px;
+  line-height:1.5;
 }
 
 
-.feature-copy>
-p:not(.category){
-
-  max-width:
-    710px;
-
-  margin-bottom:
-    12px;
-
-  color:
-    #665576;
-
-  font-size:
-    14px;
-
-  line-height:
-    1.5;
-}
-
-
-/***************************************************************
- * META
- ***************************************************************/
+/* META */
 
 .meta{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:13px;
-
-  margin-top:
-    12px;
-
-  font-size:
-    10px;
-
-  font-weight:
-    800;
+  margin-top:12px;
+  font-size:10px;
+  font-weight:800;
 }
-
 
 .read{
-
   display:inline-block;
-
-  margin-top:
-    13px;
-
-  padding-top:
-    9px;
-
-  border-top:
-    2px solid var(--ink);
-
-  font-size:
-    13px;
-
-  font-weight:
-    900;
+  margin-top:13px;
+  padding-top:9px;
+  border-top:2px solid var(--ink);
+  font-size:13px;
+  font-weight:900;
 }
 
 
-/***************************************************************
- * BROWSE
- ***************************************************************/
+/* BROWSE */
 
 .browse{
-
-  margin-top:
-    46px;
+  margin-top:46px;
 }
-
 
 .browse>header{
-
   display:flex;
-
-  justify-content:
-    space-between;
-
-  align-items:
-    end;
-
+  justify-content:space-between;
+  align-items:end;
   gap:40px;
-
-  margin-bottom:
-    18px;
+  margin-bottom:18px;
 }
-
 
 .browse h2{
-
-  margin:
-    6px 0 0;
-
-  font-size:
-    38px;
-
-  letter-spacing:
-    -.04em;
+  margin:6px 0 0;
+  font-size:38px;
+  letter-spacing:-.04em;
 }
-
 
 .browse h2 em{
-
-  color:
-    var(--purple);
-
-  font-family:
-    Georgia,serif;
-
-  font-weight:
-    400;
+  color:var(--purple);
+  font-family:Georgia,serif;
+  font-weight:400;
 }
-
 
 .browse>header>p{
-
-  margin-bottom:
-    5px;
-
-  color:
-    #665576;
-
-  font-size:
-    12px;
+  margin-bottom:5px;
+  color:#665576;
+  font-size:12px;
 }
 
 
-/***************************************************************
- * FILTERS
- ***************************************************************/
+/* FILTERS */
 
 .filters{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:7px;
-
-  margin-bottom:
-    24px;
+  margin-bottom:24px;
 }
 
-
 .filter{
-
-  padding:
-    7px 12px;
-
-  border:
-    2px solid var(--ink);
-
-  border-radius:
-    100px;
-
-  background:
-    var(--cream);
-
-  color:
-    var(--ink);
-
-  font-size:
-    10px;
-
-  font-weight:
-    900;
-
+  padding:7px 12px;
+  border:2px solid var(--ink);
+  border-radius:100px;
+  background:var(--cream);
+  color:var(--ink);
+  font-size:10px;
+  font-weight:900;
   cursor:pointer;
 }
 
-
 .filter.active{
-
-  background:
-    var(--lime);
+  background:var(--lime);
 }
 
 
-/***************************************************************
- * ARTICLE GRID
- ***************************************************************/
+/* CARDS */
 
 .article-grid{
-
   display:grid;
-
   grid-template-columns:
-
     repeat(
       3,
       minmax(0,1fr)
     );
-
   gap:18px;
 }
 
-
 .article-card{
-
   min-height:0;
 }
 
-
 .article-card[hidden]{
-
   display:none;
 }
 
-
 .card-content{
-
-  padding:
-    21px;
+  padding:21px;
 }
-
 
 .article-card h3{
-
-  margin:
-    7px 0 10px;
-
-  font-size:
-    20px;
-
-  line-height:
-    1.1;
-
-  letter-spacing:
-    -.025em;
+  margin:7px 0 10px;
+  font-size:20px;
+  line-height:1.1;
+  letter-spacing:-.025em;
 }
-
 
 .article-card h3 a:hover{
+  color:var(--purple);
+}
 
-  color:
-    var(--purple);
+.card-content>p:not(.category){
+  min-height:58px;
+  margin-bottom:13px;
+  color:#665576;
+  font-size:12px;
+  line-height:1.5;
 }
 
 
-.card-content>
-p:not(.category){
-
-  min-height:
-    58px;
-
-  margin-bottom:
-    13px;
-
-  color:
-    #665576;
-
-  font-size:
-    12px;
-
-  line-height:
-    1.5;
-}
-
-
-/***************************************************************
- * CTA
- ***************************************************************/
+/* CTA */
 
 .bottom-cta{
-
-  margin-top:
-    50px;
-
-  padding:
-    25px 28px;
-
+  margin-top:50px;
+  padding:25px 28px;
   display:flex;
-
   align-items:center;
-
-  justify-content:
-    space-between;
-
+  justify-content:space-between;
   gap:30px;
-
-  background:
-    var(--cream);
-
-  border:
-    3px solid var(--ink);
-
-  border-radius:
-    9px;
+  background:var(--cream);
+  border:3px solid var(--ink);
+  border-radius:9px;
 }
-
 
 .bottom-cta h2{
-
-  margin-bottom:
-    2px;
-
-  font-size:
-    22px;
+  margin-bottom:2px;
+  font-size:22px;
 }
-
 
 .bottom-cta p{
-
   margin-bottom:0;
-
-  color:
-    #665576;
-
-  font-size:
-    12px;
+  color:#665576;
+  font-size:12px;
 }
-
 
 .bottom-cta>a{
-
-  font-size:
-    13px;
-
-  font-weight:
-    900;
-
-  text-decoration:
-    underline;
+  font-size:13px;
+  font-weight:900;
+  text-decoration:underline;
 }
 
 
-/***************************************************************
- * FOOTER
- ***************************************************************/
+/* FOOTER */
 
 .site-footer{
-
-  padding:
-    35px 6vw;
-
+  padding:35px 6vw;
   display:grid;
-
-  grid-template-columns:
-    auto 1fr auto;
-
+  grid-template-columns:auto 1fr auto;
   align-items:center;
-
   gap:35px;
-
-  background:
-    var(--cream);
-
-  border-top:
-    3px solid var(--ink);
-
-  font-size:
-    12px;
+  background:var(--cream);
+  border-top:3px solid var(--ink);
+  font-size:12px;
 }
-
 
 .site-footer p{
-
   margin:0;
-
-  color:
-    #665576;
+  color:#665576;
 }
 
-
 .site-footer>div{
-
   display:flex;
-
   flex-direction:column;
-
-  align-items:
-    flex-end;
-
+  align-items:flex-end;
   gap:7px;
 }
 
 
-/***************************************************************
- * TABLET
- ***************************************************************/
+/* TABLET */
 
-@media(
-  max-width:850px
-){
+@media(max-width:850px){
 
   .article-grid{
-
-    grid-template-columns:
-      1fr 1fr;
+    grid-template-columns:1fr 1fr;
   }
-
 
   .intro-grid{
-
-    grid-template-columns:
-      1fr;
+    grid-template-columns:1fr;
   }
-
 
   .nav-toggle{
     display:inline-flex;
   }
 
-
   .nav nav{
-
     position:absolute;
-
     top:100%;
-
     left:0;
-
     right:0;
-
     flex-direction:column;
-
     align-items:stretch;
-
     gap:0;
-
-    padding:
-      8px max(30px,5vw) 18px;
-
-    background:
-      var(--cream);
-
-    border-bottom:
-      3px solid var(--ink);
-
+    padding:8px max(30px,5vw) 18px;
+    background:var(--cream);
+    border-bottom:3px solid var(--ink);
     max-height:0;
-
     overflow:hidden;
-
     opacity:0;
-
     transition:
       max-height .25s ease,
       opacity .2s ease;
   }
 
-
   .nav nav>a:not(.nav-button){
-
     display:block;
-
-    padding:
-      13px 2px;
-
-    border-bottom:
-      2px solid #2d194522;
+    padding:13px 2px;
+    border-bottom:2px solid #2d194522;
   }
-
 
   .nav nav>a.nav-button{
-
-    margin-top:
-      14px;
-
-    justify-content:
-      center;
+    margin-top:14px;
+    justify-content:center;
   }
 
-
   .nav.menu-open nav{
-
     max-height:320px;
-
     opacity:1;
   }
 
-
   .site-footer{
-
-    grid-template-columns:
-      1fr;
+    grid-template-columns:1fr;
   }
 
-
   .site-footer>div{
-
-    align-items:
-      flex-start;
+    align-items:flex-start;
   }
 }
 
 
-/***************************************************************
- * MOBILE
- ***************************************************************/
+/* MOBILE */
 
-@media(
-  max-width:560px
-){
+@media(max-width:560px){
 
   .blog-shell{
-
-    width:
-      calc(100% - 28px);
-
-    margin-top:
-      25px;
+    width:calc(100% - 28px);
+    margin-top:25px;
   }
 
-
-  .blog-intro>
-  div:last-child{
-
-    padding:
-      30px 23px;
+  .blog-intro>div:last-child{
+    padding:30px 23px;
   }
-
 
   .blog-intro h1{
-
-    font-size:
-      38px;
+    font-size:38px;
   }
-
 
   .feature-copy{
-
-    padding:
-      20px 21px 22px;
+    padding:20px 21px 22px;
   }
 
-
   .browse>header{
-
     display:block;
   }
 
-
-  .browse>
-  header>p{
-
-    margin-top:
-      12px;
+  .browse>header>p{
+    margin-top:12px;
   }
-
 
   .article-grid{
-
-    grid-template-columns:
-      1fr;
+    grid-template-columns:1fr;
   }
-
 
   .bottom-cta{
-
-    align-items:
-      flex-start;
-
-    flex-direction:
-      column;
+    align-items:flex-start;
+    flex-direction:column;
   }
-
 
   .nav{
-
-    padding:
-      0 15px;
+    padding:0 15px;
   }
 
-
   .nav-button{
-
-    padding:
-      9px 10px;
-
-    font-size:
-      10px;
+    padding:9px 10px;
+    font-size:10px;
   }
 }
 
@@ -1407,56 +809,58 @@ p:not(.category){
 
   <div class="intro-grid">
 
-  <div class="intro-left">
 
-  <section class="blog-intro window">
-
-
-    <div class="window-bar light">
-
-      <div class="dots">
-
-        <i></i>
-        <i></i>
-        <i></i>
-
-      </div>
-
-      <span>
-        CLARITY_NOTES.EXE
-      </span>
-
-      <b>×</b>
-
-    </div>
+    <div class="intro-left">
 
 
-    <div>
-
-      <p class="tag">
-        CLARITY NOTES
-      </p>
-
-      <h1>
-
-        Less noise.
-
-        <em>
-          More useful thinking.
-        </em>
-
-      </h1>
-
-      <p>
-        Practical ideas about marketing, customer journeys,
-        systems, automation and making better business decisions.
-      </p>
-
-    </div>
+      <section class="blog-intro window">
 
 
-  </section>
+        <div class="window-bar light">
 
+          <div class="dots">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <span>
+            CLARITY_NOTES.EXE
+          </span>
+
+          <b>×</b>
+
+        </div>
+
+
+        <div>
+
+          <p class="tag">
+            CLARITY NOTES
+          </p>
+
+          <h1>
+
+            Less noise.
+
+            <em>
+              More useful thinking.
+            </em>
+
+          </h1>
+
+          <p>
+            Practical ideas about marketing, customer journeys,
+            systems, automation and making better business decisions.
+          </p>
+
+        </div>
+
+
+      </section>
+
+
+      
 
       <article class="feature window">
 
@@ -1464,11 +868,9 @@ p:not(.category){
         <div class="window-bar">
 
           <div class="dots">
-
             <i></i>
             <i></i>
             <i></i>
-
           </div>
 
           <span>
@@ -1486,13 +888,12 @@ p:not(.category){
             Marketing
           </p>
 
-
           <h2>
 
-            <a
-              href="/blog/likes-are-nice-but-what-happened-next/"
-            >
+            <a href="/blog/likes-are-nice-but-what-happened-next/">
+
               Likes are nice. But what happened next?
+
             </a>
 
           </h2>
@@ -1514,9 +915,7 @@ p:not(.category){
             </span>
 
             <span>
-
               11 August 2026
-
             </span>
 
           </div>
@@ -1533,59 +932,57 @@ p:not(.category){
 
 
       </article>
+    
+
+
+    </div>
+
+
+    <aside class="subscribe-card window">
+
+      <div class="window-bar light">
+
+        <div class="dots">
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+
+        <span>
+          SUBSCRIBE.EXE
+        </span>
+
+        <b>×</b>
+
+      </div>
+
+      <div>
+
+        <p class="tag">
+          STAY IN THE LOOP
+        </p>
+
+        <h2>
+          Get Clarity Notes
+          <em>in your inbox.</em>
+        </h2>
+
+        <p>
+          New notes on marketing, systems and clearer thinking.
+          No spam, unsubscribe anytime.
+        </p>
+
+        <div class="tally-embed">
+          <iframe data-tally-src="https://tally.so/embed/440xeX?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="380" frameborder="0" marginheight="0" marginwidth="0" title="Subscribe"></iframe>
+        </div>
+
+      </div>
+
+    </aside>
 
 
   </div>
 
-
-  <aside class="subscribe-card window">
-
-    <div class="window-bar light">
-
-      <div class="dots">
-
-        <i></i>
-        <i></i>
-        <i></i>
-
-      </div>
-
-      <span>
-        SUBSCRIBE.EXE
-      </span>
-
-      <b>×</b>
-
-    </div>
-
-    <div>
-
-      <p class="tag">
-        STAY IN THE LOOP
-      </p>
-
-      <h2>
-        Get Clarity Notes
-        <em>in your inbox.</em>
-      </h2>
-
-      <p>
-        New notes on marketing, systems and clearer thinking.
-        No spam, unsubscribe anytime.
-      </p>
-
-      <div class="tally-embed">
-        <iframe data-tally-src="https://tally.so/embed/440xeX?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="380" frameborder="0" marginheight="0" marginwidth="0" title="Subscribe"></iframe>
-      </div>
-
-    </div>
-
-  </aside>
-
-  </div>
-
-
-  
 
   <section class="browse">
 
@@ -1626,17 +1023,16 @@ p:not(.category){
         All
       </button>
 
-
       
 
-          <button
-            class="filter"
-            data-category="marketing"
-          >
-            Marketing
-          </button>
+      <button
+        class="filter"
+        data-category="marketing"
+      >
+        Marketing
+      </button>
 
-        
+    
 
     </div>
 
@@ -1657,11 +1053,9 @@ p:not(.category){
       <div class="window-bar">
 
         <div class="dots">
-
           <i></i>
           <i></i>
           <i></i>
-
         </div>
 
         <span>
@@ -1684,9 +1078,7 @@ p:not(.category){
 
         <h3>
 
-          <a
-            href="/blog/likes-are-nice-but-what-happened-next/"
-          >
+          <a href="/blog/likes-are-nice-but-what-happened-next/">
 
             Likes are nice. But what happened next?
 
@@ -1707,9 +1099,7 @@ p:not(.category){
           </span>
 
           <span>
-
             11 Aug 2026
-
           </span>
 
         </div>
@@ -1721,7 +1111,6 @@ p:not(.category){
         >
           Read note →
         </a>
-
 
       </div>
 
@@ -1739,11 +1128,9 @@ p:not(.category){
       <div class="window-bar">
 
         <div class="dots">
-
           <i></i>
           <i></i>
           <i></i>
-
         </div>
 
         <span>
@@ -1766,9 +1153,7 @@ p:not(.category){
 
         <h3>
 
-          <a
-            href="/blog/stop-asking-what-should-i-post/"
-          >
+          <a href="/blog/stop-asking-what-should-i-post/">
 
             Stop asking “What should I post?”
 
@@ -1789,9 +1174,7 @@ p:not(.category){
           </span>
 
           <span>
-
             11 Aug 2026
-
           </span>
 
         </div>
@@ -1803,7 +1186,6 @@ p:not(.category){
         >
           Read note →
         </a>
-
 
       </div>
 
@@ -1821,11 +1203,9 @@ p:not(.category){
       <div class="window-bar">
 
         <div class="dots">
-
           <i></i>
           <i></i>
           <i></i>
-
         </div>
 
         <span>
@@ -1848,9 +1228,7 @@ p:not(.category){
 
         <h3>
 
-          <a
-            href="/blog/busy-marketing-isnt-always-effective/"
-          >
+          <a href="/blog/busy-marketing-isnt-always-effective/">
 
             Busy marketing isn’t always effective
 
@@ -1871,9 +1249,7 @@ p:not(.category){
           </span>
 
           <span>
-
             11 Aug 2026
-
           </span>
 
         </div>
@@ -1885,7 +1261,6 @@ p:not(.category){
         >
           Read note →
         </a>
-
 
       </div>
 
@@ -1913,7 +1288,6 @@ p:not(.category){
       </p>
 
     </div>
-
 
     <a
       href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02"
@@ -1945,9 +1319,7 @@ p:not(.category){
 
   <div>
 
-    <a
-      href="mailto:claritybyjayden@gmail.com"
-    >
+    <a href="mailto:claritybyjayden@gmail.com">
       claritybyjayden@gmail.com
     </a>
 
@@ -2008,72 +1380,62 @@ document
   .querySelectorAll(
     '.filter'
   )
-  .forEach(
-    button => {
+  .forEach(button => {
+
+    button.addEventListener(
+      'click',
+      () => {
+
+        const category =
+          button.dataset.category;
 
 
-      button.addEventListener(
-        'click',
-        () => {
-
-
-          const category =
-            button.dataset.category;
-
-
-          document
-            .querySelectorAll(
-              '.filter'
+        document
+          .querySelectorAll(
+            '.filter'
+          )
+          .forEach(item =>
+            item.classList.remove(
+              'active'
             )
-            .forEach(
-              item =>
-                item.classList.remove(
-                  'active'
-                )
-            );
-
-
-          button.classList.add(
-            'active'
           );
 
 
-          document
-            .querySelectorAll(
-              '.article-card'
-            )
-            .forEach(
-              card => {
+        button.classList.add(
+          'active'
+        );
 
 
-                const categories =
+        document
+          .querySelectorAll(
+            '.article-card'
+          )
+          .forEach(card => {
 
-                  card
-                    .dataset
-                    .categories
-                    .split('|');
-
-
-                const visible =
-
-                  category === 'all' ||
-
-                  categories.includes(
-                    category
-                  );
+            const categories =
+              card
+                .dataset
+                .categories
+                .split('|');
 
 
-                card.hidden =
-                  !visible;
+            const visible =
 
-              }
-            );
+              category === 'all' ||
 
-        }
-      );
+              categories.includes(
+                category
+              );
 
-    }
-  );
+
+            card.hidden =
+              !visible;
+          });
+
+      }
+    );
+
+  });
 
 </script>
 
@@ -2083,12 +1445,10 @@ document
 
 (function () {
 
-
   function sendGA4Event(
     name,
     params
   ) {
-
 
     if (
       typeof gtag !==
@@ -2108,26 +1468,20 @@ document
       Object.assign(
 
         {
-
           send_to:
             'G-WWB8LXBHV5'
-
         },
 
         params || {}
 
       )
-
     );
   }
 
 
   document.addEventListener(
-
     'click',
-
     function (event) {
-
 
       const link =
         event.target.closest(
@@ -2136,62 +1490,45 @@ document
 
 
       if (!link) {
-
         return;
       }
 
 
       const href =
-
         link.getAttribute(
           'href'
         ) || '';
 
 
       const linkText =
-
         (
           link.textContent ||
           ''
         )
-
           .replace(
             /\s+/g,
             ' '
           )
-
           .trim();
 
 
-      /*
-       * CLARITY SESSION
-       */
-
       if (
-
         href.includes(
-
           'buy.stripe.com/aFadRa0iSb2E8HIaoc73G02'
-
         )
-
       ) {
-
 
         sendGA4Event(
 
           'book_clarity_session',
 
           {
-
             link_text:
               linkText,
 
             link_url:
               href
-
           }
-
         );
 
 
@@ -2199,35 +1536,23 @@ document
       }
 
 
-      /*
-       * FREE CALL
-       */
-
       if (
-
         href.includes(
-
           'calendar.notion.so/meet/jayden-cooke/clarity20'
-
         )
-
       ) {
-
 
         sendGA4Event(
 
           'book_free_call',
 
           {
-
             link_text:
               linkText,
 
             link_url:
               href
-
           }
-
         );
 
 
@@ -2235,41 +1560,29 @@ document
       }
 
 
-      /*
-       * EMAIL
-       */
-
       if (
-
         href
           .toLowerCase()
           .startsWith(
             'mailto:'
           )
-
       ) {
-
 
         sendGA4Event(
 
           'email_click',
 
           {
-
             link_text:
               linkText,
 
             link_url:
               href
-
           }
-
         );
-
       }
 
     }
-
   );
 
 })();
