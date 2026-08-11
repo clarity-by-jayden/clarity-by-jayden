@@ -1,6 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWB8LXBHV5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WWB8LXBHV5');
+  </script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Busy marketing isn’t always effective | Clarity Notes</title>
@@ -17,7 +27,7 @@
   </style>
 </head>
 <body>
-<header class="nav"><a class="logo" href="/">Clarity<span>.</span></a><nav><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#about">About</a><a class="nav-button" href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02">Book your Clarity Session →</a></nav></header>
+<header class="nav"><a class="logo" href="/">Clarity<span>.</span></a><nav><a href="/">Home</a><a href="/blog/">Articles</a><a href="/#about">About</a><a class="nav-button" href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02">Book your Clarity Session →</a></nav></header>
 <main class="wrap">
   <section class="window hero">
     <div class="window-bar light"><div class="dots"><i></i><i></i><i></i></div><span>clarity_note_001</span><b>×</b></div>
@@ -96,5 +106,49 @@
     </aside>
   </div>
 </main>
+
+<script>
+/* GA4 lead-action tracking */
+(function () {
+  function sendGA4Event(name, params) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', name, Object.assign({
+      send_to: 'G-WWB8LXBHV5'
+    }, params || {}));
+  }
+
+  document.addEventListener('click', function (event) {
+    const link = event.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href') || '';
+    const linkText = (link.textContent || '').replace(/\s+/g, ' ').trim();
+
+    if (href.includes('buy.stripe.com/aFadRa0iSb2E8HIaoc73G02')) {
+      sendGA4Event('book_clarity_session', {
+        link_text: linkText,
+        link_url: href
+      });
+      return;
+    }
+
+    if (href.includes('calendar.notion.so/meet/jayden-cooke/clarity20')) {
+      sendGA4Event('book_free_call', {
+        link_text: linkText,
+        link_url: href
+      });
+      return;
+    }
+
+    if (href.toLowerCase().startsWith('mailto:')) {
+      sendGA4Event('email_click', {
+        link_text: linkText,
+        link_url: href
+      });
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
