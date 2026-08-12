@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /blueprint/
+Disallow: /bookclub/
 
 Sitemap: https://claritybyjayden.online/sitemap.xml

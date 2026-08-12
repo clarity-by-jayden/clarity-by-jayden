@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Green Carnation Readers — Book Club Time</title>
+  <style>    :root {      --green: #315c45;      --light-green: #edf4ef;      --cream: #fbfaf6;      --text: #243128;      --muted: #66736b;      --white: #ffffff;    }
+    * {      box-sizing: border-box;    }
+    body {      margin: 0;      min-height: 100vh;      padding: 24px;      background: var(--cream);      color: var(--text);      font-family:        system-ui,        -apple-system,        BlinkMacSystemFont,        "Segoe UI",        sans-serif;    }
+    .card {      width: min(620px, 100%);      margin: 40px auto;      background: var(--white);      border-radius: 24px;      padding: 42px 30px;      text-align: center;      box-shadow: 0 12px 40px rgba(36, 49, 40, 0.10);    }
+    .icon {      font-size: 42px;      margin-bottom: 10px;    }
+    h1 {      margin: 0;      color: var(--green);      font-family: Georgia, serif;      font-size: clamp(30px, 7vw, 46px);      line-height: 1.1;    }
+    .subtitle {      margin: 10px 0 32px;      color: var(--muted);      font-size: 16px;    }
+    .event {      background: var(--light-green);      border-radius: 18px;      padding: 22px 18px;    }
+    .label {      color: var(--muted);      font-size: 14px;      text-transform: uppercase;      letter-spacing: 0.08em;    }
+    .uk-time {      margin: 5px 0;      color: var(--green);      font-size: 34px;      font-weight: 800;    }
+    .date {      font-size: 16px;    }
+    .your-time {      margin: 28px 0 8px;      color: var(--muted);      font-size: 17px;    }
+    #localTime {      margin: 0;      color: var(--green);      font-size: clamp(36px, 9vw, 54px);      font-weight: 800;      line-height: 1.1;    }
+    #localDate {      margin-top: 8px;      font-size: 17px;      font-weight: 600;    }
+    #timezone {      margin-top: 6px;      color: var(--muted);      font-size: 14px;    }
+    .note {      margin: 28px auto 0;      max-width: 500px;      color: var(--muted);      font-size: 14px;      line-height: 1.6;    }
+    .rsvp-section {      margin-top: 35px;      padding-top: 30px;      border-top: 1px solid #e5ebe7;    }
+    .rsvp-section h2 {      margin: 0 0 8px;      color: var(--green);      font-family: Georgia, serif;      font-size: 26px;    }
+    .rsvp-section p {      margin: 0 auto 20px;      max-width: 480px;      color: var(--muted);      font-size: 14px;      line-height: 1.6;    }
+    .jotform {      width: 100%;      min-height: 300px;      border: 0;    }
+    footer {      margin-top: 28px;      color: #89928c;      font-size: 13px;    }  </style></head>
+<body>
+  <main class="card">
+    <div class="icon" aria-hidden="true">🌿</div>
+    <h1>The Green Carnation Readers</h1>
+    <p class="subtitle">      Book Club Time Converter    </p>
+
+    <!-- BOOK CLUB TIME -->
+    <section class="event">
+      <div class="label">        Book club starts      </div>
+      <div class="uk-time">        8:00 p.m.      </div>
+      <div class="date">        Wednesday, 12 August 2026 · UK time      </div>
+    </section>
+
+    <!-- LOCAL TIME -->
+    <div class="your-time">      That's    </div>
+    <div id="localTime">      Working it out…    </div>
+    <div id="localDate"></div>
+    <div id="timezone"></div>
+    <p class="note">      We've detected your device's time zone automatically, so there's      nothing for you to enter. The time above is when you should join      the book club.    </p>
+
+    <!-- RSVP -->
+    <section class="rsvp-section">
+      <h2>Are you joining us?</h2>
+      <p>        Pop your email address below so we know who's coming.      </p>
+      <iframe        class="jotform"        src="https://form.jotform.com/jsform/262232565530048"        title="The Green Carnation Readers RSVP"        scrolling="no">      </iframe>
+    </section>
+
+    <footer>      The Green Carnation Readers    </footer>
+  </main>
+
+  <script>
+    /*      ============================================================      BOOK CLUB TIME      ============================================================
+      8:00 p.m. British Summer Time      Wednesday 12 August 2026
+      +01:00 = BST    */
+    const event = new Date("2026-08-12T20:00:00+01:00");
+
+    /*      ============================================================      LOCAL TIME      ============================================================    */
+    const timeFormatter = new Intl.DateTimeFormat(undefined, {      hour: "numeric",      minute: "2-digit",      hour12: true    });
+    const dateFormatter = new Intl.DateTimeFormat(undefined, {      weekday: "long",      day: "numeric",      month: "long",      year: "numeric"    });
+    const zoneFormatter = new Intl.DateTimeFormat(undefined, {      timeZoneName: "long"    });
+
+    document.getElementById("localTime").textContent =      timeFormatter.format(event);
+    document.getElementById("localDate").textContent =      dateFormatter.format(event);
+
+    /*      Display the visitor's time zone.    */
+    const zonePart = zoneFormatter      .formatToParts(event)      .find(part => part.type === "timeZoneName");
+    document.getElementById("timezone").textContent =      zonePart        ? zonePart.value        : Intl.DateTimeFormat().resolvedOptions().timeZone;
+  </script>
+</body></html>
