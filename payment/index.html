@@ -177,15 +177,72 @@
       padding:0;
       box-shadow:4px 4px 0 var(--ink);
       overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      display:grid;
+      place-items:center;
+      position:relative;
+      min-height:380px;
     }
 
     stripe-buy-button {
       display:block;
       width:100%;
       margin:0;
+      grid-area:1 / 1;
+      position:relative;
+      z-index:2;
+    }
+
+    .stripe-loader {
+      grid-area:1 / 1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      color:var(--ink);
+      font-size:13px;
+      font-weight:800;
+      transition:opacity .25s ease;
+      z-index:1;
+    }
+
+    .stripe-loader.is-hidden {
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .loader-dots {
+      display:flex;
+      gap:7px;
+    }
+
+    .loader-dots i {
+      width:12px;
+      height:12px;
+      border:2px solid var(--ink);
+      border-radius:50%;
+      background:var(--lime);
+      animation:loaderBounce .9s ease-in-out infinite;
+    }
+
+    .loader-dots i:nth-child(2) {
+      background:var(--pink);
+      animation-delay:.15s;
+    }
+
+    .loader-dots i:nth-child(3) {
+      background:var(--cream);
+      animation-delay:.3s;
+    }
+
+    @keyframes loaderBounce {
+      0%, 60%, 100% {
+        transform:translateY(0);
+      }
+
+      30% {
+        transform:translateY(-8px);
+      }
     }
 
     .secure {
@@ -241,10 +298,24 @@
         font-size:43px;
       }
 
+      .payment-panel {
+        min-height:360px;
+      }
+
       footer {
         padding:28px 24px;
         flex-direction:column;
         align-items:flex-start;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .loader-dots i {
+        animation:none;
+      }
+
+      .stripe-loader {
+        transition:none;
       }
     }
   </style>
@@ -289,7 +360,23 @@
 
         <div class="payment-panel">
 
+          <div
+            class="stripe-loader"
+            id="stripeLoader"
+            role="status"
+            aria-live="polite"
+          >
+            <div class="loader-dots" aria-hidden="true">
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+
+            <span>Loading secure payment...</span>
+          </div>
+
           <stripe-buy-button
+            id="stripeBuyButton"
             buy-button-id="buy_btn_1U4OHsJYMYjoApFo0c8pWiqV"
             publishable-key="pk_live_51U0r9CJYMYjoApFoXHRbRIA3zw0TmvXNNVq4z7lIrNRwFZxLw19gtLF7CYx7MW3cAwXzRPEwuLmejnOCoegDwvUl00nd21hxCK"
           >
@@ -324,6 +411,82 @@
     </a>
 
   </footer>
+
+  <script>
+    (function () {
+      const stripeButton = document.getElementById('stripeBuyButton');
+      const loader = document.getElementById('stripeLoader');
+
+      if (!stripeButton || !loader) return;
+
+      let loaderHidden = false;
+
+      function hideLoader() {
+        if (loaderHidden) return;
+
+        loaderHidden = true;
+        loader.classList.add('is-hidden');
+
+        setTimeout(function () {
+          loader.style.display = 'none';
+        }, 300);
+      }
+
+      function stripeHasRendered() {
+        /*
+          Stripe renders its Buy Button inside the custom element's
+          shadow root. Once the shadow root contains content, the
+          embedded payment card is ready to display.
+        */
+        if (
+          stripeButton.shadowRoot &&
+          stripeButton.shadowRoot.childNodes.length > 0
+        ) {
+          hideLoader();
+          return true;
+        }
+
+        return false;
+      }
+
+      /*
+        Check immediately in case Stripe loaded very quickly.
+      */
+      if (stripeHasRendered()) {
+        return;
+      }
+
+      /*
+        Poll briefly while Stripe initialises.
+        This is more reliable for a third-party custom element because
+        changes inside a closed/external component aren't always exposed
+        through a normal MutationObserver.
+      */
+      const checkInterval = setInterval(function () {
+        if (stripeHasRendered()) {
+          clearInterval(checkInterval);
+        }
+      }, 100);
+
+      /*
+        Safety timeout:
+        Don't leave the loader running forever if Stripe encounters
+        a network or browser issue.
+      */
+      setTimeout(function () {
+        clearInterval(checkInterval);
+
+        if (!loaderHidden) {
+          const message = loader.querySelector('span');
+
+          if (message) {
+            message.textContent = 'Secure payment is taking a little longer to load...';
+          }
+        }
+      }, 10000);
+
+    })();
+  </script>
 
 </body>
 </html>
