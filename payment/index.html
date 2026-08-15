@@ -33,7 +33,7 @@
       --lime:#b9ff25;
       --cream:#faf7f2;
       --pink:#f2c8eb;
-      --shadow:6px 6px 0 var(--ink);
+      --stripe-blue:#98d4ea;
     }
 
     * {
@@ -50,7 +50,8 @@
       background:var(--lilac);
       color:var(--ink);
       font-family:Arial,sans-serif;
-      background-image:radial-gradient(#8255bd22 1px,transparent 1px);
+      background-image:
+        radial-gradient(#8255bd22 1px,transparent 1px);
       background-size:18px 18px;
       display:flex;
       flex-direction:column;
@@ -169,13 +170,18 @@
       line-height:1.55;
     }
 
+    /*
+      This container deliberately matches the blue
+      used inside the Stripe Buy Button, so the whole
+      payment area reads as one seamless card.
+    */
     .payment-panel {
-      background:var(--lilac);
+      background:var(--stripe-blue);
       border:3px solid var(--ink);
       border-radius:9px;
-      padding:28px 20px;
+      padding:0;
       box-shadow:4px 4px 0 var(--ink);
-      min-height:120px;
+      overflow:hidden;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -184,8 +190,7 @@
     stripe-buy-button {
       display:block;
       width:100%;
-      max-width:100%;
-      margin:auto;
+      margin:0;
     }
 
     .secure {
@@ -241,10 +246,6 @@
         font-size:43px;
       }
 
-      .payment-panel {
-        padding:22px 12px;
-      }
-
       footer {
         padding:28px 24px;
         flex-direction:column;
@@ -257,14 +258,21 @@
 <body>
 
   <header class="nav">
-    <a class="logo" href="/">Clarity<span>.</span></a>
-    <a class="back-link" href="/">← Back to Clarity</a>
+    <a class="logo" href="/">
+      Clarity<span>.</span>
+    </a>
+
+    <a class="back-link" href="/">
+      ← Back to Clarity
+    </a>
   </header>
 
   <main>
+
     <section class="window" aria-labelledby="payment-title">
 
       <div class="window-bar">
+
         <div class="dots">
           <i></i>
           <i></i>
@@ -274,6 +282,7 @@
         <span>secure_payment</span>
 
         <b>×</b>
+
       </div>
 
       <div class="content">
@@ -302,13 +311,18 @@
         </p>
 
       </div>
+
     </section>
+
   </main>
 
   <footer>
 
     <div>
-      <a class="logo" href="/">Clarity<span>.</span></a>
+      <a class="logo" href="/">
+        Clarity<span>.</span>
+      </a>
+
       <p>
         Strategy, systems and hands-on execution for founders who want a clearer way forward.
       </p>
