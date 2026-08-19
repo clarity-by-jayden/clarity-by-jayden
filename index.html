@@ -118,7 +118,7 @@ h1,h2,h3,p{margin-top:0}
 
 /* Section Spacing & Layout */
 .compact,.section-block{padding:clamp(50px, 5.5vw, 75px) max(5vw, calc((100vw - 1300px)/2))}
-.shell-grid{max-width:1380px;margin:auto;padding:36px 5vw 48px;display:grid;grid-template-columns:1.42fr .78fr;gap:22px;align-items:start}
+.shell-grid{max-width:1380px;margin:auto;padding:36px 5vw 48px;display:grid;grid-template-columns:1.42fr .78fr;gap:22px;align-items:stretch}
 
 /* Hero Section */
 .hero-copy{padding:38px clamp(22px, 3.5vw, 48px) 34px}
@@ -130,9 +130,9 @@ h1,h2,h3,p{margin-top:0}
 .chunky{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;margin-top:16px;border:3px solid var(--ink);border-radius:7px;padding:13px 18px;font-weight:900;box-shadow:4px 4px 0 var(--ink)}
 .lime-button{background:var(--lime);color:var(--ink)}
 
-/* Hero Side Column */
-.hero-side{display:flex;flex-direction:column;gap:18px}
-.search-card{background:#9bdcf0}
+/* Hero Side Column: Dynamic full-height container */
+.hero-side{display:flex;flex-direction:column;gap:18px;height:100%}
+.search-card{background:#9bdcf0;flex:0 0 auto}
 .search-card>div:last-of-type,.search-row{margin:14px 16px 8px}
 .search-row{display:flex;align-items:center;justify-content:space-between;background:white;border:2px solid var(--ink);border-radius:6px;padding:10px 12px}
 .search-row b{background:var(--lime);border:2px solid var(--ink);border-radius:4px;padding:2px 6px;font-size:12px}
@@ -140,8 +140,8 @@ h1,h2,h3,p{margin-top:0}
 .search-card li{border-bottom:2px solid #2d194544;padding:0;font-weight:700;font-size:12.5px;display:block;transition:background-color .2s ease,color .2s ease}
 .search-card li span{color:var(--purple)}
 
-/* Headshot Card (Cleanly Contained) */
-.answer-card{background:var(--lime);display:flex;flex-direction:column;position:relative;overflow:visible;height:240px}
+/* Headshot Card: Dynamically fills remaining height flush to the bottom */
+.answer-card{background:var(--lime);display:flex;flex-direction:column;position:relative;overflow:visible;flex:1 1 0;min-height:180px}
 .answer-card>.window-bar{background:var(--pink);color:var(--ink)}
 .answer-card>img{display:block;width:100%;flex:1 1 0;min-height:0;height:auto;object-fit:cover;object-position:center 25%;border-radius:0 0 9px 9px}
 .meet-float{position:absolute;left:-20px;bottom:14px;z-index:2;min-width:170px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 14px;background:var(--lime);border:3px solid var(--ink);border-radius:7px;box-shadow:4px 4px 0 var(--ink);font-size:13px;font-weight:900;transition:transform .15s ease,box-shadow .15s ease}
@@ -290,8 +290,8 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
   .nav nav>a.nav-button{margin-top:16px;justify-content:center}
   .nav.menu-open nav{max-height:420px;opacity:1}
   .shell-grid{grid-template-columns:1fr;padding-top:28px}
-  .hero-side{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .answer-card{height:200px}
+  .hero-side{display:grid;grid-template-columns:1fr 1fr;gap:18px;height:auto}
+  .answer-card{height:200px;flex:initial}
   .statement{grid-template-columns:1fr}
   .section-heading{grid-template-columns:1fr;gap:18px;margin-bottom:32px}
   .service-grid,.steps,.offer-grid,.journey-grid{grid-template-columns:1fr}
