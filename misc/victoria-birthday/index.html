@@ -288,7 +288,22 @@
 
         <div class="face back" aria-label="Card inside">
           <div class="message">
-            <h3>For you, Victoria</h3>
+            <h3>Born in 1997 — quick birthday quiz</h3>
+
+            <p class="tiny" style="margin-top:-2px;">
+              Tap an answer. (It’ll tell you if you’re right.)
+            </p>
+
+            <div id="quiz" style="display:grid; gap:10px; margin-top:10px;"></div>
+
+            <div class="sig" style="margin-top:12px;">
+              <span class="tiny">Score: <b id="score">0</b>/<span id="total">0</span></span>
+              <button class="btn ghost" id="resetQuizBtn" type="button" style="padding:10px 12px;">Reset</button>
+            </div>
+
+            <hr style="border:none; border-top:1px solid rgba(0,0,0,.06); margin:14px 0;" />
+
+            <h3 style="margin:0 0 8px 0;">For you, Victoria</h3>
             <p>
               I hope this year brings you calm where you need it,
               energy where you want it, and plenty of moments that make you smile.
@@ -330,6 +345,114 @@
     openBtn.addEventListener("click", openCard);
     closeBtn.addEventListener("click", closeCard);
     againBtn.addEventListener("click", () => burstConfetti(220));
+
+    // --- 1997 Quiz ---
+    const quizEl = document.getElementById("quiz");
+    const scoreEl = document.getElementById("score");
+    const totalEl = document.getElementById("total");
+    const resetQuizBtn = document.getElementById("resetQuizBtn");
+
+    const questions = [
+      {
+        q: "Which major climate treaty was adopted in 1997?",
+        options: ["Kyoto Protocol", "Paris Agreement", "Montreal Protocol"],
+        a: 0
+      },
+      {
+        q: "Which blockbuster film came out in 1997?",
+        options: ["Titanic", "Avatar", "Jurassic Park"],
+        a: 0
+      },
+      {
+        q: "Which Radiohead album was released in 1997?",
+        options: ["OK Computer", "Nevermind", "Hot Fuss"],
+        a: 0
+      },
+      {
+        q: "1997 kicked off a major economic shock — which one?",
+        options: ["Asian financial crisis", "Great Depression", "Dot‑com crash"],
+        a: 0
+      }
+    ];
+
+    let score = 0;
+    let answered = new Array(questions.length).fill(false);
+
+    function renderQuiz(){
+      if(!quizEl) return;
+
+      quizEl.innerHTML = "";
+      totalEl.textContent = String(questions.length);
+      scoreEl.textContent = String(score);
+
+      questions.forEach((item, idx) => {
+        const card = document.createElement("div");
+        card.style.background = "rgba(255,255,255,.72)";
+        card.style.border = "1px solid rgba(0,0,0,.06)";
+        card.style.borderRadius = "14px";
+        card.style.padding = "12px 12px 10px";
+        card.style.display = "grid";
+        card.style.gap = "8px";
+
+        const q = document.createElement("div");
+        q.style.fontWeight = "650";
+        q.textContent = item.q;
+
+        const row = document.createElement("div");
+        row.style.display = "flex";
+        row.style.gap = "8px";
+        row.style.flexWrap = "wrap";
+
+        const feedback = document.createElement("div");
+        feedback.className = "tiny";
+        feedback.style.color = "var(--muted)";
+
+        item.options.forEach((label, optIdx) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "btn ghost";
+          b.style.padding = "10px 12px";
+          b.textContent = label;
+
+          b.addEventListener("click", () => {
+            if(answered[idx]) return;
+
+            answered[idx] = true;
+
+            const correct = optIdx === item.a;
+            if(correct){
+              score += 1;
+              scoreEl.textContent = String(score);
+              feedback.innerHTML = `<b style="color:#0a8f5b">Correct!</b> 1997 baby energy.`;
+              burstConfetti(140);
+            } else {
+              feedback.innerHTML = `Not quite — the answer is <b>${item.options[item.a]}</b>.`;
+            }
+
+            // disable all buttons in this question
+            row.querySelectorAll("button").forEach(btn => {
+              btn.disabled = true;
+              btn.style.opacity = ".85";
+            });
+          });
+
+          row.appendChild(b);
+        });
+
+        card.appendChild(q);
+        card.appendChild(row);
+        card.appendChild(feedback);
+        quizEl.appendChild(card);
+      });
+    }
+
+    resetQuizBtn?.addEventListener("click", () => {
+      score = 0;
+      answered = new Array(questions.length).fill(false);
+      renderQuiz();
+    });
+
+    renderQuiz();
 
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
