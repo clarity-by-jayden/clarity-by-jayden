@@ -6,31 +6,42 @@
   <title>Happy Birthday Victoria</title>
   <style>
     :root{
-      --bg1:#fff2f6;
-      --bg2:#f3f7ff;
-      --ink:#2b2b2b;
-      --muted:#5b5b5b;
-      --accent:#ff5fa2;
-      --accent2:#7c5cff;
-      --card:#ffffffcc;
-      --shadow: 0 20px 60px rgba(25, 25, 60, .18);
+      --bg1:#0a0016;
+      --bg2:#001a33;
+      --ink:#f7f4ff;
+      --muted:#cbbcff;
+      --accent:#ff4fd8;
+      --accent2:#00e5ff;
+      --card: rgba(10, 0, 22, .70);
+      --shadow: 0 24px 80px rgba(0, 0, 0, .45);
       --radius: 22px;
+      --grid: rgba(255, 255, 255, .08);
     }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       color:var(--ink);
       background:
-        radial-gradient(1000px 600px at 15% 20%, rgba(255,95,162,.25), transparent 60%),
-        radial-gradient(900px 650px at 85% 25%, rgba(124,92,255,.22), transparent 60%),
-        radial-gradient(900px 650px at 50% 85%, rgba(69,195,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 20% 20%, rgba(255,79,216,.22), transparent 62%),
+        radial-gradient(900px 650px at 80% 25%, rgba(0,229,255,.18), transparent 62%),
         linear-gradient(135deg, var(--bg1), var(--bg2));
       display:grid;
       place-items:center;
       overflow:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,.06), rgba(0,0,0,0) 12%, rgba(0,0,0,0) 88%, rgba(0,0,0,.10)),
+        repeating-linear-gradient(to bottom, rgba(255,255,255,.05), rgba(255,255,255,.05) 1px, rgba(0,0,0,0) 3px, rgba(0,0,0,0) 6px);
+      mix-blend-mode: overlay;
+      opacity: .55;
     }
 
     .dots{
@@ -102,7 +113,20 @@
       backface-visibility:hidden;
       overflow:hidden;
       background: var(--card);
-      border: 1px solid rgba(255,255,255,.45);
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .face:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(1200px 400px at 50% -10%, rgba(255,79,216,.24), transparent 60%),
+        radial-gradient(1200px 400px at 50% 110%, rgba(0,229,255,.18), transparent 60%),
+        repeating-linear-gradient(to right, transparent, transparent 44px, var(--grid) 45px),
+        repeating-linear-gradient(to bottom, transparent, transparent 44px, var(--grid) 45px);
+      opacity: .55;
+      mix-blend-mode: screen;
     }
 
     .front{
@@ -168,15 +192,26 @@
       cursor:pointer;
       border-radius: 14px;
       padding: 12px 16px;
-      font-weight: 650;
-      font-size: 15px;
-      color: white;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: #070010;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 14px 30px rgba(255,95,162,.25);
-      transition: transform 140ms ease, box-shadow 140ms ease;
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
       display:inline-flex;
       align-items:center;
       gap:10px;
+      position: relative;
+    }
+    .btn:after{
+      content:"";
+      position:absolute;
+      inset: 1px;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,.22);
+      pointer-events:none;
     }
     .btn:hover{ transform: translateY(-1px); box-shadow: 0 18px 40px rgba(255,95,162,.28); }
     .btn:active{ transform: translateY(1px); }
@@ -288,20 +323,21 @@
 
         <div class="face back" aria-label="Card inside">
           <div class="message">
-            <h3>Born in 1997 — quick birthday quiz</h3>
+            <h3>Born in 1997 — one-question birthday quiz</h3>
 
             <p class="tiny" style="margin-top:-2px;">
-              Tap an answer. (It’ll tell you if you’re right.)
+              Pick an answer. Next question unlocks after you choose.
             </p>
 
-            <div id="quiz" style="display:grid; gap:10px; margin-top:10px;"></div>
+            <div id="quizOne" style="display:grid; gap:10px; margin-top:10px;"></div>
 
             <div class="sig" style="margin-top:12px;">
               <span class="tiny">Score: <b id="score">0</b>/<span id="total">0</span></span>
+              <button class="btn ghost" id="nextQuizBtn" type="button" style="padding:10px 12px;" disabled>Next</button>
               <button class="btn ghost" id="resetQuizBtn" type="button" style="padding:10px 12px;">Reset</button>
             </div>
 
-            <hr style="border:none; border-top:1px solid rgba(0,0,0,.06); margin:14px 0;" />
+            <hr style="border:none; border-top:1px solid rgba(0,0,0,.08); margin:14px 0;" />
 
             <h3 style="margin:0 0 8px 0;">For you, Victoria</h3>
             <p>
@@ -346,10 +382,11 @@
     closeBtn.addEventListener("click", closeCard);
     againBtn.addEventListener("click", () => burstConfetti(220));
 
-    // --- 1997 Quiz ---
-    const quizEl = document.getElementById("quiz");
+    // --- 1997 Quiz (one question at a time) ---
+    const quizOneEl = document.getElementById("quizOne");
     const scoreEl = document.getElementById("score");
     const totalEl = document.getElementById("total");
+    const nextQuizBtn = document.getElementById("nextQuizBtn");
     const resetQuizBtn = document.getElementById("resetQuizBtn");
 
     const questions = [
@@ -375,84 +412,102 @@
       }
     ];
 
+    totalEl.textContent = String(questions.length);
+
     let score = 0;
-    let answered = new Array(questions.length).fill(false);
+    let idx = 0;
+    let locked = false;
 
-    function renderQuiz(){
-      if(!quizEl) return;
+    function setNextEnabled(enabled){
+      if(!nextQuizBtn) return;
+      nextQuizBtn.disabled = !enabled;
+      nextQuizBtn.style.opacity = enabled ? "1" : ".6";
+      nextQuizBtn.style.cursor = enabled ? "pointer" : "not-allowed";
+    }
 
-      quizEl.innerHTML = "";
-      totalEl.textContent = String(questions.length);
-      scoreEl.textContent = String(score);
+    function renderOne(){
+      if(!quizOneEl) return;
 
-      questions.forEach((item, idx) => {
-        const card = document.createElement("div");
-        card.style.background = "rgba(255,255,255,.72)";
-        card.style.border = "1px solid rgba(0,0,0,.06)";
-        card.style.borderRadius = "14px";
-        card.style.padding = "12px 12px 10px";
-        card.style.display = "grid";
-        card.style.gap = "8px";
+      quizOneEl.innerHTML = "";
+      locked = false;
+      setNextEnabled(false);
 
-        const q = document.createElement("div");
-        q.style.fontWeight = "650";
-        q.textContent = item.q;
+      const item = questions[idx];
 
-        const row = document.createElement("div");
-        row.style.display = "flex";
-        row.style.gap = "8px";
-        row.style.flexWrap = "wrap";
+      const card = document.createElement("div");
+      card.style.background = "rgba(255,255,255,.72)";
+      card.style.border = "1px solid rgba(0,0,0,.06)";
+      card.style.borderRadius = "14px";
+      card.style.padding = "12px 12px 10px";
+      card.style.display = "grid";
+      card.style.gap = "10px";
 
-        const feedback = document.createElement("div");
-        feedback.className = "tiny";
-        feedback.style.color = "var(--muted)";
+      const q = document.createElement("div");
+      q.style.fontWeight = "750";
+      q.textContent = `${idx + 1}/${questions.length} — ${item.q}`;
 
-        item.options.forEach((label, optIdx) => {
-          const b = document.createElement("button");
-          b.type = "button";
-          b.className = "btn ghost";
-          b.style.padding = "10px 12px";
-          b.textContent = label;
+      const row = document.createElement("div");
+      row.style.display = "flex";
+      row.style.gap = "8px";
+      row.style.flexWrap = "wrap";
 
-          b.addEventListener("click", () => {
-            if(answered[idx]) return;
+      const feedback = document.createElement("div");
+      feedback.className = "tiny";
+      feedback.style.color = "var(--muted)";
 
-            answered[idx] = true;
+      item.options.forEach((label, optIdx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "btn ghost";
+        b.style.padding = "10px 12px";
+        b.textContent = label;
 
-            const correct = optIdx === item.a;
-            if(correct){
-              score += 1;
-              scoreEl.textContent = String(score);
-              feedback.innerHTML = `<b style="color:#0a8f5b">Correct!</b> 1997 baby energy.`;
-              burstConfetti(140);
-            } else {
-              feedback.innerHTML = `Not quite — the answer is <b>${item.options[item.a]}</b>.`;
-            }
+        b.addEventListener("click", () => {
+          if(locked) return;
+          locked = true;
 
-            // disable all buttons in this question
-            row.querySelectorAll("button").forEach(btn => {
-              btn.disabled = true;
-              btn.style.opacity = ".85";
-            });
+          const correct = optIdx === item.a;
+          if(correct){
+            score += 1;
+            scoreEl.textContent = String(score);
+            feedback.innerHTML = `<b style="color:#0a8f5b">Correct!</b> 1997 baby energy.`;
+            burstConfetti(140);
+          } else {
+            feedback.innerHTML = `Not quite — the answer is <b>${item.options[item.a]}</b>.`;
+          }
+
+          row.querySelectorAll("button").forEach(btn => {
+            btn.disabled = true;
+            btn.style.opacity = ".85";
           });
 
-          row.appendChild(b);
+          setNextEnabled(true);
         });
 
-        card.appendChild(q);
-        card.appendChild(row);
-        card.appendChild(feedback);
-        quizEl.appendChild(card);
+        row.appendChild(b);
       });
+
+      card.appendChild(q);
+      card.appendChild(row);
+      card.appendChild(feedback);
+      quizOneEl.appendChild(card);
     }
+
+    nextQuizBtn?.addEventListener("click", () => {
+      if(nextQuizBtn.disabled) return;
+      idx = (idx + 1) % questions.length;
+      renderOne();
+    });
 
     resetQuizBtn?.addEventListener("click", () => {
       score = 0;
-      answered = new Array(questions.length).fill(false);
-      renderQuiz();
+      idx = 0;
+      scoreEl.textContent = "0";
+      renderOne();
     });
 
-    renderQuiz();
+    scoreEl.textContent = "0";
+    renderOne();
 
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
