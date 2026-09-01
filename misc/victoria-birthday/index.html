@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Victoria</title>
+  <style>
+    :root{
+      --bg1:#fff2f6;
+      --bg2:#f3f7ff;
+      --ink:#2b2b2b;
+      --muted:#5b5b5b;
+      --accent:#ff5fa2;
+      --accent2:#7c5cff;
+      --card:#ffffffcc;
+      --shadow: 0 20px 60px rgba(25, 25, 60, .18);
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(1000px 600px at 15% 20%, rgba(255,95,162,.25), transparent 60%),
+        radial-gradient(900px 650px at 85% 25%, rgba(124,92,255,.22), transparent 60%),
+        radial-gradient(900px 650px at 50% 85%, rgba(69,195,255,.18), transparent 60%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+
+    .dots{
+      position:fixed;
+      inset:-20%;
+      pointer-events:none;
+      opacity:.25;
+      filter: blur(.2px);
+      background-image:
+        radial-gradient(circle at 20px 20px, rgba(255,95,162,.25) 2px, transparent 3px),
+        radial-gradient(circle at 60px 80px, rgba(124,92,255,.18) 2px, transparent 3px),
+        radial-gradient(circle at 120px 40px, rgba(69,195,255,.18) 2px, transparent 3px);
+      background-size: 160px 140px;
+      animation: drift 18s linear infinite;
+    }
+    @keyframes drift{
+      from{ transform: translate3d(0,0,0) rotate(0deg); }
+      to  { transform: translate3d(-6%, -8%,0) rotate(3deg); }
+    }
+
+    .wrap{
+      width:min(920px, 92vw);
+      display:grid;
+      gap:18px;
+      justify-items:center;
+      padding: 28px 0;
+    }
+
+    .title{
+      text-align:center;
+      line-height:1.1;
+      margin:0;
+      font-size: clamp(26px, 3.2vw, 44px);
+      letter-spacing:-0.02em;
+    }
+    .subtitle{
+      margin:0;
+      text-align:center;
+      color:var(--muted);
+      font-size: clamp(14px, 1.5vw, 16px);
+    }
+
+    .stage{
+      position:relative;
+      perspective: 1400px;
+      width:min(760px, 92vw);
+      height: min(440px, 62vh);
+      min-height: 360px;
+    }
+
+    .card{
+      position:absolute;
+      inset:0;
+      transform-style: preserve-3d;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform 900ms cubic-bezier(.2,.85,.2,1);
+      background: transparent;
+    }
+
+    .card.is-open{
+      transform: rotateY(-180deg);
+    }
+
+    .face{
+      position:absolute;
+      inset:0;
+      border-radius: var(--radius);
+      backface-visibility:hidden;
+      overflow:hidden;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.45);
+    }
+
+    .front{
+      display:grid;
+      place-items:center;
+      padding: 28px;
+    }
+
+    .front-inner{
+      text-align:center;
+      width:min(520px, 92%);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(0,0,0,.05);
+      margin-bottom: 16px;
+    }
+    .heart{
+      width:14px;
+      height:14px;
+      background: var(--accent);
+      transform: rotate(45deg);
+      position:relative;
+      border-radius: 3px;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .heart:before, .heart:after{
+      content:"";
+      position:absolute;
+      width:14px;
+      height:14px;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+    .heart:before{ left:-7px; top:0; }
+    .heart:after { top:-7px; left:0; }
+    @keyframes pulse{
+      0%,100%{ transform: rotate(45deg) scale(1); }
+      50%{ transform: rotate(45deg) scale(1.12); }
+    }
+
+    .front h2{
+      margin: 0 0 10px 0;
+      font-size: clamp(24px, 3vw, 40px);
+      letter-spacing:-0.02em;
+    }
+    .front p{
+      margin: 0 0 18px 0;
+      color: var(--muted);
+      font-size: clamp(14px, 1.6vw, 17px);
+      line-height: 1.5;
+    }
+
+    .btn{
+      appearance:none;
+      border:0;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 650;
+      font-size: 15px;
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 14px 30px rgba(255,95,162,.25);
+      transition: transform 140ms ease, box-shadow 140ms ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 18px 40px rgba(255,95,162,.28); }
+    .btn:active{ transform: translateY(1px); }
+    .btn:focus{ outline: 3px solid rgba(124,92,255,.25); outline-offset: 3px; }
+
+    .sparkle{
+      width: 10px; height:10px;
+      border-radius: 3px;
+      background: rgba(255,255,255,.85);
+      transform: rotate(25deg);
+      position:relative;
+    }
+    .sparkle:before, .sparkle:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius: 3px;
+      background: rgba(255,255,255,.75);
+      transform: rotate(60deg);
+      opacity:.9;
+    }
+
+    .back{
+      transform: rotateY(180deg);
+      padding: 26px;
+      display:grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 14px;
+    }
+
+    .message{
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      line-height: 1.6;
+    }
+    .message h3{
+      margin:0 0 8px 0;
+      font-size: 18px;
+      letter-spacing:-0.01em;
+    }
+    .message p{ margin: 0 0 10px 0; color: var(--muted); }
+    .message p:last-child{ margin-bottom:0; }
+
+    .sig{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tiny{
+      font-size: 12px;
+      opacity: .9;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .ghost{
+      background: rgba(255,255,255,.7);
+      color: var(--ink);
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: none;
+    }
+
+    canvas#confetti{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index: 999;
+    }
+
+    .script{
+      font-family: ui-rounded, "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+      color: rgba(43,43,43,.85);
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dots"></div>
+  <canvas id="confetti"></canvas>
+
+  <main class="wrap" role="main">
+    <h1 class="title">Happy Birthday Victoria</h1>
+    <p class="subtitle">A little note to celebrate you — open the card when you’re ready.</p>
+
+    <section class="stage" aria-label="Birthday card">
+      <div class="card" id="card" aria-live="polite">
+        <div class="face front" aria-label="Card front">
+          <div class="front-inner">
+            <div class="badge" aria-hidden="true">
+              <span class="heart"></span>
+              <span class="script">with warmth</span>
+            </div>
+
+            <h2>Happy Birthday, Victoria</h2>
+            <p>
+              Wishing you a day that feels light, kind, and genuinely joyful —
+              with the people and moments that make you feel most like you.
+            </p>
+
+            <button class="btn" id="openBtn" type="button">
+              <span class="sparkle" aria-hidden="true"></span>
+              Open your card
+            </button>
+          </div>
+        </div>
+
+        <div class="face back" aria-label="Card inside">
+          <div class="message">
+            <h3>For you, Victoria</h3>
+            <p>
+              I hope this year brings you more of the good stuff: calm where you need it,
+              energy where you want it, and plenty of moments that make you smile.
+            </p>
+            <p>
+              You’re appreciated — and I’m wishing you a really lovely birthday.
+            </p>
+            <p class="script">— Jayden</p>
+          </div>
+
+          <div class="actions">
+            <button class="btn ghost" id="closeBtn" type="button">Close</button>
+            <button class="btn" id="againBtn" type="button">More confetti</button>
+          </div>
+
+          <div class="sig">
+            <span class="tiny">Tip: click “More confetti” as many times as you like.</span>
+            <span class="tiny" aria-hidden="true">✨</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const card = document.getElementById("card");
+    const openBtn = document.getElementById("openBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const againBtn = document.getElementById("againBtn");
+
+    function openCard(){
+      card.classList.add("is-open");
+      burstConfetti(180);
+    }
+    function closeCard(){
+      card.classList.remove("is-open");
+    }
+
+    openBtn.addEventListener("click", openCard);
+    closeBtn.addEventListener("click", closeCard);
+    againBtn.addEventListener("click", () => burstConfetti(220));
+
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    let W, H, confetti = [], rafId = null;
+
+    function resizeSafe(){
+      canvas.width = window.innerWidth * devicePixelRatio;
+      canvas.height = window.innerHeight * devicePixelRatio;
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+      W = window.innerWidth;
+      H = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeSafe);
+    resizeSafe();
+
+    function rand(min,max){ return Math.random()*(max-min)+min; }
+
+    const palette = ["#ff5fa2","#7c5cff","#45c3ff","#ffd166","#06d6a0","#ffffff"];
+
+    function burstConfetti(count=160){
+      for(let i=0;i<count;i++){
+        confetti.push({
+          x: rand(0, W),
+          y: rand(-20, H*0.15),
+          w: rand(6,12),
+          h: rand(6,14),
+          vx: rand(-2.2, 2.2),
+          vy: rand(2.2, 5.8),
+          rot: rand(0, Math.PI),
+          vr: rand(-0.12, 0.12),
+          color: palette[Math.floor(rand(0,palette.length))],
+          life: rand(70, 120)
+        });
+      }
+      if(!rafId) animate();
+    }
+
+    function animate(){
+      rafId = requestAnimationFrame(animate);
+      ctx.clearRect(0,0,W,H);
+
+      confetti = confetti.filter(p => p.life-- > 0);
+      for(const p of confetti){
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.03;
+        p.rot += p.vr;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.min(1, p.life/30);
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+      }
+
+      if(confetti.length === 0){
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    }
+  </script>
+</body>
+</html>
