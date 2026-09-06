@@ -2,14 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWB8LXBHV5"></script>
+  <!-- Cookie consent + GA4 loader (loads Analytics only after consent) -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    const GA_ID = 'G-WWB8LXBHV5';
+    const CONSENT_KEY = 'cookieConsent_v1'; // bump version if you change policy/categories
 
-    gtag('config', 'G-WWB8LXBHV5');
+    function loadGA() {
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID);
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+
+      gtag('js', new Date());
+      // Still requires consent in the UK/EU, but reduces data where possible.
+      gtag('config', GA_ID, { anonymize_ip: true });
+    }
+
+    function getConsent() {
+      try { return JSON.parse(localStorage.getItem(CONSENT_KEY) || 'null'); }
+      catch (e) { return null; }
+    }
+
+    // If already accepted, load GA immediately.
+    const consent = getConsent();
+    if (consent && consent.analytics === true) loadGA();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Strategy, systems and hands-on execution for founders who want a clearer way forward.">
@@ -614,6 +637,22 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
   </footer>
 </main>
 
+<!-- Cookie banner -->
+<div id="cookie-banner" style="display:none; position:fixed; left:16px; right:16px; bottom:16px; z-index:9999; max-width:980px; margin:auto; background:#faf7f2; border:3px solid #2d1945; box-shadow:5px 5px 0 #2d1945; border-radius:12px; padding:14px 14px;">
+  <div style="display:flex; gap:12px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;">
+    <div style="min-width:240px; flex:1;">
+      <b style="display:block; margin-bottom:6px;">Cookies</b>
+      <span style="font-size:13px; line-height:1.4;">
+        I use cookies to understand how people use the site (Google Analytics). You can accept or reject analytics cookies.
+      </span>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <button id="cookie-reject" style="border:2px solid #2d1945; border-radius:7px; padding:10px 12px; background:#eee5fa; font-weight:800;">Reject</button>
+      <button id="cookie-accept" style="border:2px solid #2d1945; border-radius:7px; padding:10px 12px; background:#b9ff25; font-weight:800;">Accept</button>
+    </div>
+  </div>
+</div>
+
 <script>
 /* Mobile Navigation Controller */
 (function () {
@@ -720,6 +759,37 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         link_url: href
       });
     }
+  });
+})();
+
+/* Cookie banner controller */
+(function () {
+  const CONSENT_KEY = 'cookieConsent_v1';
+  function getConsent() {
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY) || 'null'); }
+    catch (e) { return null; }
+  }
+  function setConsent(value) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(value));
+  }
+
+  const banner = document.getElementById('cookie-banner');
+  const btnAccept = document.getElementById('cookie-accept');
+  const btnReject = document.getElementById('cookie-reject');
+  if (!banner || !btnAccept || !btnReject) return;
+
+  const consent = getConsent();
+  if (!consent) banner.style.display = 'block';
+
+  btnAccept.addEventListener('click', function () {
+    setConsent({ analytics: true, ts: new Date().toISOString() });
+    banner.style.display = 'none';
+    if (typeof loadGA === 'function') loadGA();
+  });
+
+  btnReject.addEventListener('click', function () {
+    setConsent({ analytics: false, ts: new Date().toISOString() });
+    banner.style.display = 'none';
   });
 })();
 </script>
