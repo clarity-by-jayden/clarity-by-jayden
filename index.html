@@ -779,7 +779,10 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   if (!banner || !btnAccept || !btnReject) return;
 
   const consent = getConsent();
-  if (!consent) banner.style.display = 'block';
+  if (!consent) {
+    // Slight delay so it doesn't feel like a "jump scare" on load.
+    setTimeout(() => { banner.style.display = 'block'; }, 800);
+  }
 
   btnAccept.addEventListener('click', function () {
     setConsent({ analytics: true, ts: new Date().toISOString() });
