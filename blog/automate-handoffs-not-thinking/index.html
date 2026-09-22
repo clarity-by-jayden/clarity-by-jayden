@@ -1,0 +1,1165 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WWB8LXBHV5">
+  </script>
+
+  <script>
+
+    window.dataLayer =
+      window.dataLayer || [];
+
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+
+    gtag(
+      'js',
+      new Date()
+    );
+
+    gtag(
+      'config',
+      'G-WWB8LXBHV5'
+    );
+
+  </script>
+
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+
+  <title>What to Automate in a Small Business (and What Not To) | Clarity by Jayden</title>
+
+
+  <meta
+    name="description"
+    content="Learn what small businesses should automate first: predictable handoffs, reminders, and data movement—not judgment, relationships, or strategy."
+  >
+
+
+  <link
+    rel="canonical"
+    href="https://claritybyjayden.online/blog/automate-handoffs-not-thinking/"
+  >
+
+
+  <meta
+    property="og:type"
+    content="article"
+  >
+
+
+  <meta
+    property="og:title"
+    content="What to Automate in a Small Business (and What Not To)"
+  >
+
+
+  <meta
+    property="og:description"
+    content="Learn what small businesses should automate first: predictable handoffs, reminders, and data movement—not judgment, relationships, or strategy."
+  >
+
+
+  <meta
+    property="og:url"
+    content="https://claritybyjayden.online/blog/automate-handoffs-not-thinking/"
+  >
+
+
+  <meta
+    property="og:site_name"
+    content="Clarity by Jayden"
+  >
+
+
+  <meta
+    property="article:published_time"
+    content="2026-09-22"
+  >
+
+
+  <meta
+    property="article:author"
+    content="Jayden"
+  >
+
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+
+  <script type="application/ld+json">
+
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Automate the Handoffs, Not the Thinking",
+  "description": "Learn what small businesses should automate first: predictable handoffs, reminders, and data movement—not judgment, relationships, or strategy.",
+  "datePublished": "2026-09-22",
+  "author": {
+    "@type": "Person",
+    "name": "Jayden"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Clarity by Jayden",
+    "url": "https://claritybyjayden.online"
+  },
+  "mainEntityOfPage": "https://claritybyjayden.online/blog/automate-handoffs-not-thinking/",
+  "articleSection": "Automation",
+  "url": "https://claritybyjayden.online/blog/automate-handoffs-not-thinking/"
+}
+
+  </script>
+
+
+  
+<style>
+
+:root{
+  --ink:#2d1945;
+  --purple:#8255bd;
+  --lilac:#eee5fa;
+  --lime:#b9ff25;
+  --cream:#faf7f2;
+  --pink:#f2c8eb;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--lilac);
+  background-image:
+    radial-gradient(
+      #8255bd22 1px,
+      transparent 1px
+    );
+  background-size:18px 18px;
+  font-family:Arial,sans-serif;
+}
+
+a{
+  color:inherit;
+}
+
+
+/* NAV */
+
+.nav{
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 max(30px,5vw);
+  background:var(--cream);
+  border-bottom:3px solid var(--ink);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.logo{
+  color:var(--ink);
+  text-decoration:none;
+  font:700 29px Georgia,serif;
+  letter-spacing:-2px;
+}
+
+.logo span{
+  color:var(--lime);
+}
+
+.nav nav{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.nav nav a{
+  text-decoration:none;
+}
+
+.nav .active{
+  border-bottom:2px solid var(--ink);
+}
+
+.nav-button{
+  padding:10px 15px;
+  background:var(--lime);
+  border:2px solid var(--ink);
+  border-radius:6px;
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+
+/* NAV TOGGLE (mobile hamburger) */
+
+.nav-toggle{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  flex:0 0 auto;
+  border:2px solid var(--ink);
+  border-radius:6px;
+  background:var(--lime);
+  box-shadow:3px 3px 0 var(--ink);
+  padding:0;
+  cursor:pointer;
+}
+
+.nav-toggle:active{
+  transform:translate(3px,3px);
+  box-shadow:none;
+}
+
+.nav-toggle span{
+  position:relative;
+  width:18px;
+  height:2px;
+  background:var(--ink);
+  display:block;
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:18px;
+  height:2px;
+  background:var(--ink);
+  transition:transform .2s ease;
+}
+
+.nav-toggle span::before{
+  top:-6px;
+}
+
+.nav-toggle span::after{
+  top:6px;
+}
+
+.nav.menu-open .nav-toggle span{
+  background:transparent;
+}
+
+.nav.menu-open .nav-toggle span::before{
+  transform:translateY(6px) rotate(45deg);
+}
+
+.nav.menu-open .nav-toggle span::after{
+  transform:translateY(-6px) rotate(-45deg);
+}
+
+
+/* ARTICLE */
+
+.article-shell{
+  width:min(
+    860px,
+    calc(100% - 36px)
+  );
+  margin:45px auto 80px;
+}
+
+.back-link{
+  display:inline-block;
+  margin-bottom:18px;
+  color:var(--purple);
+  font-size:12px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.article-window{
+  overflow:hidden;
+  background:var(--cream);
+  border:3px solid var(--ink);
+  border-radius:11px;
+  box-shadow:6px 6px 0 var(--purple);
+}
+
+
+/* WINDOW BAR */
+
+.window-bar{
+  min-height:32px;
+  padding:6px 9px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  background:var(--purple);
+  color:white;
+  border-bottom:3px solid var(--ink);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.window-bar>b{
+  text-align:right;
+  font-size:17px;
+}
+
+.dots{
+  display:flex;
+  gap:4px;
+}
+
+.dots i{
+  width:9px;
+  height:9px;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  background:var(--lime);
+}
+
+.dots i:nth-child(2){
+  background:var(--pink);
+}
+
+.dots i:nth-child(3){
+  background:var(--cream);
+}
+
+
+/* HEADER */
+
+.article-header{
+  padding:48px 62px 42px;
+  border-bottom:2px solid #2d194526;
+}
+
+.category,
+.note-number,
+.action-label{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.note-number{
+  color:var(--purple);
+}
+
+.article-header h1{
+  margin:13px 0 18px;
+  font-size:clamp(
+    42px,
+    6vw,
+    67px
+  );
+  line-height:.98;
+  letter-spacing:-.05em;
+}
+
+.excerpt{
+  max-width:650px;
+  margin-bottom:22px;
+  color:#665576;
+  font-size:17px;
+  line-height:1.55;
+}
+
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  font-size:11px;
+  font-weight:800;
+}
+
+
+/* BODY */
+
+.article-content{
+  max-width:720px;
+  margin:auto;
+  padding:50px 48px 60px;
+  font-size:17px;
+  line-height:1.75;
+}
+
+.article-content h2{
+  margin:45px 0 18px;
+  font-size:30px;
+  line-height:1.15;
+  letter-spacing:-.025em;
+}
+
+.article-content h3{
+  margin:34px 0 14px;
+  font-size:22px;
+}
+
+.article-content p{
+  margin:0 0 23px;
+}
+
+.article-content ul,
+.article-content ol{
+  margin:0 0 25px;
+  padding-left:26px;
+}
+
+.article-content li{
+  margin-bottom:9px;
+}
+
+.article-content blockquote{
+  margin:30px 0;
+  padding:20px 24px;
+  background:var(--lilac);
+  border-left:5px solid var(--purple);
+  font-family:Georgia,serif;
+  font-size:20px;
+}
+
+.article-content hr{
+  margin:40px 0;
+  border:0;
+  border-top:2px solid #2d194533;
+}
+
+.article-content a{
+  color:var(--purple);
+  font-weight:700;
+}
+
+
+/***************************************************************
+ * ARTICLE IMAGES / GIFS
+ *
+ * This is the change that stops GIFs and smaller images
+ * stretching across the whole article width.
+ ***************************************************************/
+
+.article-content figure,
+.article-content .article-image{
+  margin:35px auto;
+  text-align:center;
+}
+
+.article-content figure img,
+.article-content .article-image img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:420px;
+  margin:0 auto;
+  object-fit:contain;
+  border:2px solid var(--ink);
+  border-radius:7px;
+}
+
+.article-content figcaption{
+  margin:8px auto 0;
+  max-width:520px;
+  color:#665576;
+  font-size:12px;
+  line-height:1.45;
+}
+
+
+/* CALLOUT */
+
+.article-callout{
+  margin:30px 0;
+  padding:22px;
+  background:var(--pink);
+  border:2px solid var(--ink);
+  border-radius:7px;
+}
+
+
+/* CODE */
+
+.article-content pre{
+  overflow:auto;
+  padding:20px;
+  background:var(--ink);
+  color:white;
+  border-radius:7px;
+}
+
+
+/* TOGGLE */
+
+.article-content details{
+  margin:25px 0;
+  padding:17px 20px;
+  background:var(--lilac);
+  border:2px solid var(--ink);
+  border-radius:7px;
+}
+
+.article-content summary{
+  cursor:pointer;
+  font-weight:900;
+}
+
+
+/* ACTION */
+
+.action-box{
+  margin-top:50px;
+  padding:30px;
+  background:var(--lime);
+  border:3px solid var(--ink);
+  border-radius:8px;
+  box-shadow:5px 5px 0 var(--purple);
+}
+
+.action-box h2{
+  margin:9px 0 0;
+  font-size:26px;
+}
+
+
+/* CTA */
+
+.article-end{
+  padding:38px 48px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:50px;
+  align-items:center;
+  background:var(--purple);
+  color:white;
+}
+
+.article-end h2{
+  margin:8px 0;
+  font-size:28px;
+}
+
+.article-end p:not(.category){
+  max-width:500px;
+  margin:0;
+  color:#eee5f7;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.end-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.chunky{
+  display:inline-block;
+  padding:13px 16px;
+  background:var(--lime);
+  color:var(--ink);
+  border:3px solid var(--ink);
+  border-radius:6px;
+  box-shadow:4px 4px 0 var(--ink);
+  font-size:12px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.small-link{
+  margin-top:11px;
+  color:white;
+  font-size:10px;
+  font-weight:700;
+}
+
+
+/* FOOTER */
+
+.site-footer{
+  padding:35px 6vw;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:35px;
+  align-items:center;
+  background:var(--cream);
+  border-top:3px solid var(--ink);
+  font-size:12px;
+}
+
+.site-footer p{
+  margin:0;
+  color:#665576;
+}
+
+.site-footer>div{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:7px;
+}
+
+
+/* TABLET */
+
+@media(max-width:760px){
+
+  .nav-toggle{
+    display:inline-flex;
+  }
+
+  .nav nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:8px max(30px,5vw) 18px;
+    background:var(--cream);
+    border-bottom:3px solid var(--ink);
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:
+      max-height .25s ease,
+      opacity .2s ease;
+  }
+
+  .nav nav>a:not(.nav-button){
+    display:block;
+    padding:13px 2px;
+    border-bottom:2px solid #2d194522;
+  }
+
+  .nav nav>a.nav-button{
+    margin-top:14px;
+    justify-content:center;
+  }
+
+  .nav.menu-open nav{
+    max-height:320px;
+    opacity:1;
+  }
+
+  .article-header{
+    padding:36px 25px 32px;
+  }
+
+  .article-header h1{
+    font-size:42px;
+  }
+
+  .article-content{
+    padding:35px 25px 45px;
+    font-size:16px;
+  }
+
+  .article-content figure img,
+  .article-content .article-image img{
+    max-height:360px;
+  }
+
+  .article-end{
+    grid-template-columns:1fr;
+    gap:25px;
+    padding:35px 25px;
+  }
+
+  .site-footer{
+    grid-template-columns:1fr;
+  }
+
+  .site-footer>div{
+    align-items:flex-start;
+  }
+}
+
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+  .nav{
+    padding:0 14px;
+  }
+
+  .nav-button{
+    padding:9px;
+    font-size:10px;
+  }
+
+  .article-shell{
+    width:calc(100% - 24px);
+    margin-top:28px;
+  }
+
+  .article-content figure img,
+  .article-content .article-image img{
+    max-height:300px;
+  }
+}
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<header class="nav">
+
+  <a
+    class="logo"
+    href="/"
+  >
+    Clarity<span>.</span>
+  </a>
+
+
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="primary-nav"
+    aria-label="Open menu"
+  >
+    <span></span>
+  </button>
+
+
+  <nav id="primary-nav">
+
+    <a href="/">
+      Home
+    </a>
+
+    <a
+      class="active"
+      href="/blog/"
+    >
+      Articles
+    </a>
+
+    <a href="/#about">
+      About
+    </a>
+
+    <a
+      class="nav-button"
+      href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02"
+      target="_blank"
+      rel="noreferrer"
+    >
+      Book your Clarity Session →
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+
+  <section class="article-shell">
+
+
+    <a
+      class="back-link"
+      href="/blog/"
+    >
+      ← All Articles
+    </a>
+
+
+    <article class="article-window">
+
+
+      <div class="window-bar">
+
+        <div class="dots">
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+
+        <span>
+          CLARITY_NOTE_006.EXE
+        </span>
+
+        <b>×</b>
+
+      </div>
+
+
+      <header class="article-header">
+
+        <p class="category">
+          Automation
+        </p>
+
+        <p class="note-number">
+          CLARITY NOTES #006
+        </p>
+
+        <h1>
+          Automate the Handoffs, Not the Thinking
+        </h1>
+
+        <p class="excerpt">
+          Automation is most valuable when it removes repeated coordination without removing judgment. Start with the handoffs around your work, then keep the decisions that need context in human hands.
+        </p>
+
+        <div class="meta">
+
+          <span>
+            Jayden
+          </span>
+
+          <span>•</span>
+
+          <span>
+            4 min read
+          </span>
+
+          <span>•</span>
+
+          <time
+            datetime="2026-09-22"
+          >
+            22 September 2026
+          </time>
+
+        </div>
+
+      </header>
+
+
+      <div class="article-content">
+
+        <h2>Automation is not the same as less work</h2><p>A lot of automation advice starts with a tool.</p><p>Connect this app. Add that integration. Build a sequence. Let AI handle the rest.</p><p>But a business can have dozens of automations and still feel exhausting to run. The tools may be moving information around while you continue to make every decision, remember every exception, and repair every edge case.</p><p>The better question is not <strong>What can I automate?</strong></p><p>It is: <strong>Which handoff is creating repeated friction, and how predictable is it?</strong></p><h2>The best first target is the handoff</h2><p>A handoff happens whenever work moves from one place, person, or stage to another.</p><p>Examples include:</p><ul><li>a new enquiry becoming a follow-up task</li><li>a paid invoice becoming an onboarding email</li><li>a completed call becoming notes and next steps</li><li>a published post becoming a promotion checklist</li><li>a form submission becoming a tagged contact</li></ul><p>These moments are often repetitive enough to automate, but important enough that removing them creates real relief.</p><p>You are not trying to automate the whole business. You are trying to stop acting as the cable between systems.</p><h2>A simple test for automation candidates</h2><p>Before building anything, score a recurring step against four questions.</p><h3>1. Does it happen often?</h3><p>A five-minute task repeated three times a day may deserve attention sooner than a thirty-minute task done once a quarter.</p><p>Frequency creates a compounding return.</p><h3>2. Is the trigger clear?</h3><p>Good triggers are concrete: a form is submitted, a payment succeeds, a meeting ends, or a status changes.</p><p>If you cannot explain exactly when the process begins, automation will be fragile.</p><h3>3. Is the next step predictable?</h3><p>If the same input usually produces the same action, it is a strong candidate. If the correct action depends on nuance, context, or a relationship, keep a human decision in the loop.</p><h3>4. Is the cost of a mistake contained?</h3><p>Automate low-risk movement before high-risk communication. Creating a task is safer than sending a sensitive email. Adding a label is safer than changing a customer record.</p><h2>What to automate first</h2><h3>Data movement</h3><p>Move information from the place where it is collected to the place where it needs to be used. This removes copying and reduces stale records.</p><h3>Reminders and task creation</h3><p>When a known event occurs, create the next task automatically. The automation does not need to complete the work; it just needs to make the next step hard to forget.</p><h3>Standard preparation</h3><p>Create a checklist, folder, draft, or internal template when a project reaches a defined stage.</p><h3>Status visibility</h3><p>Update a status or add a tag when something predictable happens. This makes the system easier to scan without pretending that the status itself is the work.</p><h2>What not to automate too early</h2><h3>Positioning and strategy</h3><p>A tool can summarize your notes, but it cannot reliably decide what your business should stand for without your judgment.</p><h3>Relationship-heavy communication</h3><p>Templates can help you start. They should not replace the part of a message that shows you understand the person receiving it.</p><h3>Exceptions</h3><p>If a process requires constant “unless this, except when that” rules, improve the process before automating it.</p><h3>Work you have not done enough times to understand</h3><p>You cannot automate a process you have not yet observed. Run it manually until the patterns and exceptions are visible.</p><h2>The hidden cost: maintenance</h2><p>Every automation creates a small operational responsibility.</p><p>Someone has to know what it does. Someone has to notice when a field changes. Someone has to test it after a tool update. Someone has to handle the cases it cannot resolve.</p><p>That is why a useful automation has three parts:</p><ol><li>a clear trigger</li><li>a small number of predictable actions</li><li>a visible place for exceptions to land</li></ol><p>If the exception path is invisible, the automation is not saving time. It is hiding future work.</p><h2>A practical build sequence</h2><p>Start with the manual version:</p><ol><li>write down the trigger</li><li>list every handoff</li><li>mark each step as predictable, judgment-based, or exceptional</li><li>automate the predictable handoffs</li><li>leave judgment-based steps visible and human</li><li>create an exception queue for everything else</li><li>review the automation after two weeks</li></ol><p>The goal is not a clever workflow. It is a workflow you trust enough to stop checking every five minutes.</p><h2>The action</h2><p>Choose one recurring process and draw it from trigger to completion on paper. Circle the handoffs that are predictable and automate only those. Keep one explicit human checkpoint before anything customer-facing or difficult to reverse.</p>
+
+        
+
+        <section class="action-box">
+
+          <p class="action-label">
+            YOUR ACTION
+          </p>
+
+          <h2>
+            Map one recurring process from trigger to completion and automate only the predictable handoffs in the middle.
+          </h2>
+
+        </section>
+
+      
+
+      </div>
+
+
+      <footer class="article-end">
+
+        <div>
+
+          <p class="category">
+            STILL FEELS TANGLED?
+          </p>
+
+          <h2>
+            See what deserves your attention first.
+          </h2>
+
+          <p>
+            A Clarity Session is an in-depth look at your
+            marketing, customer journey and systems,
+            followed by a practical, prioritised
+            Clarity Blueprint.
+          </p>
+
+        </div>
+
+
+        <div class="end-actions">
+
+          <a
+            class="chunky"
+            href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Book your Clarity Session →
+          </a>
+
+          <a
+            class="small-link"
+            href="https://calendar.notion.so/meet/jayden-cooke/clarity20"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Not sure? Book a free 20-minute video call.
+          </a>
+
+        </div>
+
+      </footer>
+
+
+    </article>
+
+
+  </section>
+
+
+</main>
+
+
+<footer class="site-footer">
+
+  <a
+    class="logo"
+    href="/"
+  >
+    Clarity<span>.</span>
+  </a>
+
+  <p>
+    Strategy, systems and hands-on execution for founders
+    who want a clearer way forward.
+  </p>
+
+  <div>
+
+    <a href="mailto:claritybyjayden@gmail.com">
+      claritybyjayden@gmail.com
+    </a>
+
+    <span>
+      © 2026 Clarity by Jayden
+    </span>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+(function () {
+
+  const navHeader = document.querySelector('header.nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+
+  if (!navHeader || !toggle || !primaryNav) return;
+
+  function closeMenu() {
+    navHeader.classList.remove('menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  }
+
+  toggle.addEventListener('click', () => {
+    const isOpen = navHeader.classList.toggle('menu-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+
+  primaryNav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 850) closeMenu();
+  });
+
+})();
+
+</script>
+
+
+
+<script>
+
+(function () {
+
+  function sendGA4Event(
+    name,
+    params
+  ) {
+
+    if (
+      typeof gtag !==
+      'function'
+    ) {
+
+      return;
+    }
+
+
+    gtag(
+
+      'event',
+
+      name,
+
+      Object.assign(
+
+        {
+          send_to:
+            'G-WWB8LXBHV5'
+        },
+
+        params || {}
+
+      )
+    );
+  }
+
+
+  document.addEventListener(
+    'click',
+    function (event) {
+
+      const link =
+        event.target.closest(
+          'a'
+        );
+
+
+      if (!link) {
+        return;
+      }
+
+
+      const href =
+        link.getAttribute(
+          'href'
+        ) || '';
+
+
+      const linkText =
+        (
+          link.textContent ||
+          ''
+        )
+          .replace(
+            /\s+/g,
+            ' '
+          )
+          .trim();
+
+
+      if (
+        href.includes(
+          'buy.stripe.com/aFadRa0iSb2E8HIaoc73G02'
+        )
+      ) {
+
+        sendGA4Event(
+
+          'book_clarity_session',
+
+          {
+            link_text:
+              linkText,
+
+            link_url:
+              href
+          }
+        );
+
+
+        return;
+      }
+
+
+      if (
+        href.includes(
+          'calendar.notion.so/meet/jayden-cooke/clarity20'
+        )
+      ) {
+
+        sendGA4Event(
+
+          'book_free_call',
+
+          {
+            link_text:
+              linkText,
+
+            link_url:
+              href
+          }
+        );
+
+
+        return;
+      }
+
+
+      if (
+        href
+          .toLowerCase()
+          .startsWith(
+            'mailto:'
+          )
+      ) {
+
+        sendGA4Event(
+
+          'email_click',
+
+          {
+            link_text:
+              linkText,
+
+            link_url:
+              href
+          }
+        );
+      }
+
+    }
+  );
+
+})();
+
+</script>
+
+
+
+</body>
+
+</html>
