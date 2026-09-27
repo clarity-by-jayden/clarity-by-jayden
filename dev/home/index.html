@@ -164,10 +164,10 @@ h1,h2,h3,p{margin-top:0}
 .search-card li span{color:var(--purple)}
 
 /* Headshot Card: Dynamically fills remaining height flush to the bottom */
-.answer-card{background:var(--lime);display:flex;flex-direction:column;position:relative;overflow:visible;flex:1 1 0;min-height:180px}
+.answer-card{background:#20222a;display:flex;flex-direction:column;position:relative;overflow:hidden;flex:1 1 0;min-height:180px}
 .answer-card>.window-bar{background:var(--pink);color:var(--ink)}
-.answer-card>img{display:block;width:100%;flex:1 1 0;min-height:0;height:auto;object-fit:contain;object-position:center;background:var(--cream);border-radius:0 0 9px 9px}
-.meet-float{position:absolute;left:-20px;bottom:14px;z-index:2;min-width:170px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 14px;background:var(--lime);border:3px solid var(--ink);border-radius:7px;box-shadow:4px 4px 0 var(--ink);font-size:13px;font-weight:900;transition:transform .15s ease,box-shadow .15s ease}
+.answer-card>img{display:block;width:calc(100% - 24px);height:220px;flex:0 0 auto;margin:14px 12px 0;object-fit:cover;object-position:center;border-radius:14px;background:#101218}
+.meet-float{position:static;display:flex;align-items:center;justify-content:space-between;gap:18px;margin:14px 12px 14px;padding:10px 14px;background:var(--lime);border:3px solid var(--ink);border-radius:7px;box-shadow:4px 4px 0 var(--ink);font-size:13px;font-weight:900;transition:transform .15s ease,box-shadow .15s ease}
 .meet-float:hover,.meet-float:focus-visible{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
 .meet-float:active{transform:translate(3px,3px);box-shadow:none}
 
