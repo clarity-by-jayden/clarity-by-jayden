@@ -164,9 +164,9 @@ h1,h2,h3,p{margin-top:0}
 .search-card li span{color:var(--purple)}
 
 /* Headshot Card: Dynamically fills remaining height flush to the bottom */
-.answer-card{background:#20222a;display:flex;flex-direction:column;position:relative;overflow:hidden;flex:1 1 0;min-height:180px}
+.answer-card{background:#20222a;display:flex;flex-direction:column;position:relative;overflow:hidden;flex:0 0 auto;min-height:0}
 .answer-card>.window-bar{background:var(--pink);color:var(--ink)}
-.answer-card>img{display:block;width:calc(100% - 24px);height:220px;flex:0 0 auto;margin:14px 12px 0;object-fit:cover;object-position:center;border-radius:14px;background:#101218}
+.answer-card>img{display:block;width:calc(100% - 24px);max-width:336px;aspect-ratio:1.05 / 1;height:auto;flex:0 0 auto;align-self:center;margin:14px 12px 0;object-fit:cover;object-position:center;border-radius:14px;background:#101218}
 .meet-float{position:static;display:flex;align-items:center;justify-content:space-between;gap:18px;margin:14px 12px 14px;padding:10px 14px;background:var(--lime);border:3px solid var(--ink);border-radius:7px;box-shadow:4px 4px 0 var(--ink);font-size:13px;font-weight:900;transition:transform .15s ease,box-shadow .15s ease}
 .meet-float:hover,.meet-float:focus-visible{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
 .meet-float:active{transform:translate(3px,3px);box-shadow:none}
@@ -314,7 +314,7 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
   .nav.menu-open nav{max-height:420px;opacity:1}
   .shell-grid{grid-template-columns:1fr;padding-top:28px}
   .hero-side{display:grid;grid-template-columns:1fr 1fr;gap:18px;height:auto}
-  .answer-card{height:200px;flex:initial}
+  .answer-card{height:auto;flex:initial}
   .statement{grid-template-columns:1fr}
   .section-heading{grid-template-columns:1fr;gap:18px;margin-bottom:32px}
   .service-grid,.steps,.offer-grid,.journey-grid{grid-template-columns:1fr}
@@ -338,7 +338,7 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
   .hero-copy{padding:30px 18px}
   .hero h1{font-size:36px}
   .hero-side{grid-template-columns:1fr}
-  .answer-card{height:220px}
+  .answer-card{height:auto}
   .statement h2,.section-heading h2,.practice h2,.final h2{font-size:34px}
   .service-grid,.offer-grid{gap:14px}
   .method-head{padding:26px 18px}
