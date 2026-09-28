@@ -287,7 +287,7 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
 .secondary-cta.dark{color:#665576}
 .secondary-cta.dark:hover,.secondary-cta.dark:focus-visible{color:var(--purple)}
 .status-hint{margin:0 16px 2px;font-size:11px;font-weight:700;color:#544267}
-.search-card li button{width:100%;padding:9px 2px;display:flex;align-items:center;justify-content:flex-start;gap:10px;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer;transform-origin:10px center;animation:todo-jiggle 4.2s ease-in-out infinite}
+.search-card li button{width:100%;min-height:40px;padding:9px 2px;display:flex;align-items:center;justify-content:flex-start;gap:10px;border:0;background:transparent;color:inherit;font:inherit;line-height:1.3;text-align:left;cursor:pointer;transform-origin:10px center;animation:todo-jiggle 4.2s ease-in-out infinite}
 .search-card li:nth-child(2) button{animation-delay:.18s}
 .search-card li:nth-child(3) button{animation-delay:.36s}
 .search-card li button:hover,.search-card li button:focus-visible{color:#5a2f8e}
@@ -396,7 +396,7 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
       <div class="window search-card">
         <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>change_the_status</span><b>×</b></div>
         <div class="search-row"><span>See what clarity changes</span><b aria-hidden="true">✓</b></div>
-        <p class="status-hint">Click each to-do to reveal what’s possible.</p>
+        <p class="status-hint">Watch each one change, or tap to explore.</p>
         <ul>
           <li>
             <button type="button" 
@@ -659,19 +659,86 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
 })();
 
 /* Interactive Status Transformation */
-document.querySelectorAll('.search-card li button').forEach((button) => {
-  button.addEventListener('click', () => {
-    const item = button.closest('li');
+document.querySelectorAll('.search-card').forEach((card) => {
+  const items = Array.from(card.querySelectorAll('li'));
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let activeIndex = -1;
+  let timer = null;
+  let isVisible = false;
+  let userPaused = false;
+
+  function setItem(item, changed) {
+    const button = item.querySelector('button');
     const box = button.querySelector('.task-box');
     const label = button.querySelector('span');
-    const changed = item.classList.toggle('is-changed');
     const before = button.dataset.before || '';
     const after = button.dataset.after || '';
     label.textContent = changed ? after : before;
     box.textContent = changed ? '✓' : '';
+    item.classList.toggle('is-changed', changed);
     button.setAttribute('aria-pressed', String(changed));
-    button.setAttribute('aria-label', before + ': ' + (changed ? 'click to reset' : 'click to reveal the outcome'));
+    button.setAttribute('aria-label', (changed ? after : before) + ': ' + (changed ? 'tap to reset' : 'tap to reveal the outcome'));
+  }
+
+  function resetItems() {
+    items.forEach((item) => setItem(item, false));
+    activeIndex = -1;
+  }
+
+  function schedule(delay) {
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      timer = null;
+      advance();
+    }, delay);
+  }
+
+  function advance() {
+    if (!isVisible || userPaused || reducedMotion) return;
+
+    if (activeIndex === items.length - 1) {
+      resetItems();
+      schedule(750);
+      return;
+    }
+
+    activeIndex += 1;
+    setItem(items[activeIndex], true);
+    schedule(activeIndex === items.length - 1 ? 2600 : 1150);
+  }
+
+  function startLoop() {
+    if (!userPaused && isVisible && !reducedMotion && !timer) schedule(700);
+  }
+
+  function stopLoop() {
+    window.clearTimeout(timer);
+    timer = null;
+  }
+
+  items.forEach((item) => {
+    const button = item.querySelector('button');
+    button.addEventListener('click', () => {
+      userPaused = true;
+      stopLoop();
+      setItem(item, !item.classList.contains('is-changed'));
+    });
   });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopLoop();
+    else startLoop();
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible) startLoop();
+      else stopLoop();
+    });
+  }, { threshold: 0.35 });
+
+  observer.observe(card);
 });
 
 /* Window Scroll Reveal Animations */
