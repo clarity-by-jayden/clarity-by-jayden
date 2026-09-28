@@ -53,7 +53,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
   <!-- Preload hero assets in <head> for maximum speed -->
-  <link rel="preload" as="image" href="https://si4io.mjt.lu/img2/si4io/a00a7b3a-465b-4e68-8a9a-32c9e4287f96/content">
+  <link rel="preload" as="image" href="https://si4io.mjt.lu/img2/si4io/766dd424-0cad-434f-a1aa-5a4434469076/content">
   <link rel="preload" as="image" href="https://si4io.mjt.lu/img2/si4io/a696417f-4f98-491b-b506-3bf080779b53/content">
   <link rel="preload" as="image" href="https://si4io.mjt.lu/img2/si4io/20bbf2d0-254e-4138-84e2-a06b4a00308a/content">
 
@@ -164,19 +164,10 @@ h1,h2,h3,p{margin-top:0}
 .search-card li span{color:var(--purple)}
 
 /* Headshot Card: Dynamically fills remaining height flush to the bottom */
-.answer-card{background:#20222a;display:flex;flex-direction:column;position:relative;overflow:hidden;flex:0 0 auto;min-height:0}
+.answer-card{background:var(--lime);display:flex;flex-direction:column;position:relative;overflow:visible;flex:1 1 0;min-height:180px}
 .answer-card>.window-bar{background:var(--pink);color:var(--ink)}
-.call-stage{background:#20222a;padding:12px 12px 0}
-.call-status{display:flex;align-items:center;justify-content:center;gap:8px;min-height:24px;color:#eee5f7;font:800 10px/1 Arial;letter-spacing:.08em;text-transform:uppercase}
-.status-pulse{width:8px;height:8px;border:2px solid var(--lime);border-radius:50%;background:transparent;animation:status-pulse 1s ease-in-out infinite}
-.answer-card.is-connected .status-pulse{background:var(--lime);animation:none}
-.call-image{display:block;width:100%;max-width:336px;aspect-ratio:336 / 339;height:auto;margin:10px auto 0;object-fit:contain;border-radius:14px;background:#101218;opacity:0;transform:scale(.96);transition:opacity .45s ease,transform .45s ease}
-.answer-card.is-connected .call-image{opacity:1;transform:scale(1)}
-.bubble-tray{position:relative;min-height:54px;margin-top:10px}
-.speech-bubble{position:absolute;inset:0;margin:0;padding:8px 10px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);border-radius:12px 12px 12px 4px;box-shadow:2px 2px 0 var(--lime);font-size:12px;font-weight:800;line-height:1.25;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease}
-.speech-bubble.is-visible{opacity:1;transform:translateY(0)}
-@keyframes status-pulse{0%,100%{transform:scale(.75);opacity:.55}50%{transform:scale(1.15);opacity:1}}
-.meet-float{position:static;display:flex;align-items:center;justify-content:space-between;gap:18px;margin:14px 12px 14px;padding:10px 14px;background:var(--lime);border:3px solid var(--ink);border-radius:7px;box-shadow:4px 4px 0 var(--ink);font-size:13px;font-weight:900;transition:transform .15s ease,box-shadow .15s ease}
+.answer-card>img{display:block;width:100%;flex:1 1 0;min-height:0;height:auto;object-fit:cover;object-position:center 25%;border-radius:0 0 9px 9px}
+.meet-float{position:absolute;left:-20px;bottom:14px;z-index:2;min-width:170px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 14px;background:var(--lime);border:3px solid var(--ink);border-radius:7px;box-shadow:4px 4px 0 var(--ink);font-size:13px;font-weight:900;transition:transform .15s ease,box-shadow .15s ease}
 .meet-float:hover,.meet-float:focus-visible{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
 .meet-float:active{transform:translate(3px,3px);box-shadow:none}
 
@@ -323,7 +314,7 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
   .nav.menu-open nav{max-height:420px;opacity:1}
   .shell-grid{grid-template-columns:1fr;padding-top:28px}
   .hero-side{display:grid;grid-template-columns:1fr 1fr;gap:18px;height:auto}
-  .answer-card{height:auto;flex:initial}
+  .answer-card{height:200px;flex:initial}
   .statement{grid-template-columns:1fr}
   .section-heading{grid-template-columns:1fr;gap:18px;margin-bottom:32px}
   .service-grid,.steps,.offer-grid,.journey-grid{grid-template-columns:1fr}
@@ -347,7 +338,7 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
   .hero-copy{padding:30px 18px}
   .hero h1{font-size:36px}
   .hero-side{grid-template-columns:1fr}
-  .answer-card{height:auto}
+  .answer-card{height:220px}
   .statement h2,.section-heading h2,.practice h2,.final h2{font-size:34px}
   .service-grid,.offer-grid{gap:14px}
   .method-head{padding:26px 18px}
@@ -439,17 +430,9 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
           </li>
         </ul>
       </div>
-      <div class="window answer-card" aria-live="polite">
+      <div class="window answer-card">
         <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>meet_jayden</span><b>×</b></div>
-        <div class="call-stage">
-          <div class="call-status" role="status"><span class="status-pulse" aria-hidden="true"></span><span class="status-text">connecting_to_clarity.exe...</span></div>
-          <img class="call-image" src="https://si4io.mjt.lu/img2/si4io/a00a7b3a-465b-4e68-8a9a-32c9e4287f96/content" alt="Jayden on a Clarity video call"/>
-          <div class="bubble-tray" aria-label="Questions Jayden explores with founders">
-            <p class="speech-bubble bubble-one">Where does the work start to get messy?</p>
-            <p class="speech-bubble bubble-two">Which process feels harder than it should?</p>
-            <p class="speech-bubble bubble-three">What would make the biggest difference right now?</p>
-          </div>
-        </div>
+        <img src="https://si4io.mjt.lu/img2/si4io/766dd424-0cad-434f-a1aa-5a4434469076/content" alt="Jayden, founder of Clarity"/>
         <a class="meet-float" href="#about">Meet Jayden <span aria-hidden="true">↓</span></a>
       </div>
     </aside>
@@ -689,35 +672,6 @@ document.querySelectorAll('.search-card li button').forEach((button) => {
     button.setAttribute('aria-pressed', String(changed));
     button.setAttribute('aria-label', before + ': ' + (changed ? 'click to reset' : 'click to reveal the outcome'));
   });
-});
-
-/* Mock video-call connection and founder-question rotation */
-document.querySelectorAll('.answer-card').forEach((card) => {
-  const statusText = card.querySelector('.status-text');
-  const bubbles = Array.from(card.querySelectorAll('.speech-bubble'));
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let currentBubble = 0;
-
-  function showBubble(index) {
-    bubbles.forEach((bubble, bubbleIndex) => {
-      bubble.classList.toggle('is-visible', bubbleIndex === index);
-    });
-  }
-
-  function connectCall() {
-    card.classList.add('is-connected');
-    statusText.textContent = 'connection_established ✓';
-    showBubble(0);
-
-    if (!reducedMotion && bubbles.length > 1) {
-      window.setInterval(() => {
-        currentBubble = (currentBubble + 1) % bubbles.length;
-        showBubble(currentBubble);
-      }, 3600);
-    }
-  }
-
-  window.setTimeout(connectCall, reducedMotion ? 0 : 1300);
 });
 
 /* Window Scroll Reveal Animations */
