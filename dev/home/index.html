@@ -166,7 +166,16 @@ h1,h2,h3,p{margin-top:0}
 /* Headshot Card: Dynamically fills remaining height flush to the bottom */
 .answer-card{background:#20222a;display:flex;flex-direction:column;position:relative;overflow:hidden;flex:0 0 auto;min-height:0}
 .answer-card>.window-bar{background:var(--pink);color:var(--ink)}
-.answer-card>img{display:block;width:calc(100% - 24px);max-width:336px;aspect-ratio:1.05 / 1;height:auto;flex:0 0 auto;align-self:center;margin:14px 12px 0;object-fit:cover;object-position:center;border-radius:14px;background:#101218}
+.call-stage{background:#20222a;padding:12px 12px 0}
+.call-status{display:flex;align-items:center;justify-content:center;gap:8px;min-height:24px;color:#eee5f7;font:800 10px/1 Arial;letter-spacing:.08em;text-transform:uppercase}
+.status-pulse{width:8px;height:8px;border:2px solid var(--lime);border-radius:50%;background:transparent;animation:status-pulse 1s ease-in-out infinite}
+.answer-card.is-connected .status-pulse{background:var(--lime);animation:none}
+.call-image{display:block;width:100%;max-width:336px;aspect-ratio:336 / 339;height:auto;margin:10px auto 0;object-fit:contain;border-radius:14px;background:#101218;opacity:0;transform:scale(.96);transition:opacity .45s ease,transform .45s ease}
+.answer-card.is-connected .call-image{opacity:1;transform:scale(1)}
+.bubble-tray{position:relative;min-height:54px;margin-top:10px}
+.speech-bubble{position:absolute;inset:0;margin:0;padding:8px 10px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);border-radius:12px 12px 12px 4px;box-shadow:2px 2px 0 var(--lime);font-size:12px;font-weight:800;line-height:1.25;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease}
+.speech-bubble.is-visible{opacity:1;transform:translateY(0)}
+@keyframes status-pulse{0%,100%{transform:scale(.75);opacity:.55}50%{transform:scale(1.15);opacity:1}}
 .meet-float{position:static;display:flex;align-items:center;justify-content:space-between;gap:18px;margin:14px 12px 14px;padding:10px 14px;background:var(--lime);border:3px solid var(--ink);border-radius:7px;box-shadow:4px 4px 0 var(--ink);font-size:13px;font-weight:900;transition:transform .15s ease,box-shadow .15s ease}
 .meet-float:hover,.meet-float:focus-visible{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
 .meet-float:active{transform:translate(3px,3px);box-shadow:none}
@@ -430,9 +439,17 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
           </li>
         </ul>
       </div>
-      <div class="window answer-card">
+      <div class="window answer-card" aria-live="polite">
         <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>meet_jayden</span><b>×</b></div>
-        <img src="https://si4io.mjt.lu/img2/si4io/a00a7b3a-465b-4e68-8a9a-32c9e4287f96/content" alt="Jayden on a Clarity video call"/>
+        <div class="call-stage">
+          <div class="call-status" role="status"><span class="status-pulse" aria-hidden="true"></span><span class="status-text">connecting_to_clarity.exe...</span></div>
+          <img class="call-image" src="https://si4io.mjt.lu/img2/si4io/a00a7b3a-465b-4e68-8a9a-32c9e4287f96/content" alt="Jayden on a Clarity video call"/>
+          <div class="bubble-tray" aria-label="Questions Jayden explores with founders">
+            <p class="speech-bubble bubble-one">Where does the work start to get messy?</p>
+            <p class="speech-bubble bubble-two">Which process feels harder than it should?</p>
+            <p class="speech-bubble bubble-three">What would make the biggest difference right now?</p>
+          </div>
+        </div>
         <a class="meet-float" href="#about">Meet Jayden <span aria-hidden="true">↓</span></a>
       </div>
     </aside>
@@ -672,6 +689,35 @@ document.querySelectorAll('.search-card li button').forEach((button) => {
     button.setAttribute('aria-pressed', String(changed));
     button.setAttribute('aria-label', before + ': ' + (changed ? 'click to reset' : 'click to reveal the outcome'));
   });
+});
+
+/* Mock video-call connection and founder-question rotation */
+document.querySelectorAll('.answer-card').forEach((card) => {
+  const statusText = card.querySelector('.status-text');
+  const bubbles = Array.from(card.querySelectorAll('.speech-bubble'));
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let currentBubble = 0;
+
+  function showBubble(index) {
+    bubbles.forEach((bubble, bubbleIndex) => {
+      bubble.classList.toggle('is-visible', bubbleIndex === index);
+    });
+  }
+
+  function connectCall() {
+    card.classList.add('is-connected');
+    statusText.textContent = 'connection_established ✓';
+    showBubble(0);
+
+    if (!reducedMotion && bubbles.length > 1) {
+      window.setInterval(() => {
+        currentBubble = (currentBubble + 1) % bubbles.length;
+        showBubble(currentBubble);
+      }, 3600);
+    }
+  }
+
+  window.setTimeout(connectCall, reducedMotion ? 0 : 1300);
 });
 
 /* Window Scroll Reveal Animations */
