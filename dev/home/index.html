@@ -396,7 +396,7 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
       <div class="window search-card">
         <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>change_the_status</span><b>×</b></div>
         <div class="search-row"><span>See what clarity changes</span><b aria-hidden="true">✓</b></div>
-        <p class="status-hint">Watch each one change, or tap to explore.</p>
+        <p class="status-hint">Watch the first one change, or tap to explore.</p>
         <ul>
           <li>
             <button type="button" 
@@ -661,11 +661,12 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
 /* Interactive Status Transformation */
 document.querySelectorAll('.search-card').forEach((card) => {
   const items = Array.from(card.querySelectorAll('li'));
+  const firstItem = items[0];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let activeIndex = -1;
   let timer = null;
   let isVisible = false;
   let userPaused = false;
+  let firstChanged = false;
 
   function setItem(item, changed) {
     const button = item.querySelector('button');
@@ -680,35 +681,23 @@ document.querySelectorAll('.search-card').forEach((card) => {
     button.setAttribute('aria-label', (changed ? after : before) + ': ' + (changed ? 'tap to reset' : 'tap to reveal the outcome'));
   }
 
-  function resetItems() {
-    items.forEach((item) => setItem(item, false));
-    activeIndex = -1;
-  }
-
   function schedule(delay) {
     window.clearTimeout(timer);
     timer = window.setTimeout(() => {
       timer = null;
-      advance();
+      toggleFirst();
     }, delay);
   }
 
-  function advance() {
+  function toggleFirst() {
     if (!isVisible || userPaused || reducedMotion) return;
-
-    if (activeIndex === items.length - 1) {
-      resetItems();
-      schedule(750);
-      return;
-    }
-
-    activeIndex += 1;
-    setItem(items[activeIndex], true);
-    schedule(activeIndex === items.length - 1 ? 2600 : 1150);
+    firstChanged = !firstChanged;
+    setItem(firstItem, firstChanged);
+    schedule(3200);
   }
 
   function startLoop() {
-    if (!userPaused && isVisible && !reducedMotion && !timer) schedule(700);
+    if (!userPaused && isVisible && !reducedMotion && !timer) schedule(2200);
   }
 
   function stopLoop() {
@@ -721,6 +710,7 @@ document.querySelectorAll('.search-card').forEach((card) => {
     button.addEventListener('click', () => {
       userPaused = true;
       stopLoop();
+      if (item === firstItem) firstChanged = !item.classList.contains('is-changed');
       setItem(item, !item.classList.contains('is-changed'));
     });
   });
