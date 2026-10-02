@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Connect with Jayden, explore Clarity by Jayden and join Queer Between the Lines.">
+  <title>Connect — Clarity by Jayden</title>
+  <style>
+    :root {
+      --ink: #2d1945;
+      --purple: #8255bd;
+      --lilac: #eee5fa;
+      --lime: #b9ff25;
+      --cream: #faf7f2;
+      --pink: #f2c8eb;
+      --line: 3px solid var(--ink);
+      --shadow: 6px 6px 0 var(--ink);
+      --q-ink: #090909;
+      --q-paper: #fff7e8;
+      --q-pink: #ff2d8d;
+      --q-acid: #e9ff32;
+      --q-blue: #4757ff;
+      --q-orange: #ff6337;
+      --q-green: #00a86b;
+      --q-purple: #8b3dff;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 14px 14px, rgba(130, 85, 189, .22) 1.5px, transparent 1.6px) 0 0 / 28px 28px,
+        var(--lilac);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    :focus-visible { outline: 4px solid var(--purple); outline-offset: 4px; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 70px;
+      padding: 14px clamp(18px, 5vw, 72px);
+      background: var(--cream);
+      border-bottom: var(--line);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 2px solid var(--ink);
+      background: var(--lime);
+      box-shadow: 3px 3px 0 var(--ink);
+      font-size: 18px;
+      line-height: 1;
+    }
+    .header-link {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    main { width: min(100%, 440px); margin: 0 auto; padding: 46px 24px 64px; }
+    .hero {
+      display: block;
+      margin-bottom: 32px;
+    }
+    .window {
+      overflow: hidden;
+      border: var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      background: var(--cream);
+    }
+    .window-bar {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      min-height: 35px;
+      padding: 7px 12px;
+      background: var(--purple);
+      color: white;
+      border-bottom: var(--line);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .window-bar b { justify-self: end; font-size: 17px; line-height: .8; }
+    .dots { display: flex; gap: 5px; }
+    .dots i { width: 10px; height: 10px; border: 2px solid var(--ink); border-radius: 50%; background: var(--lime); }
+    .dots i:nth-child(2) { background: var(--pink); }
+    .dots i:nth-child(3) { background: var(--cream); }
+
+    .hero-copy { padding: clamp(28px, 4.5vw, 58px); background: var(--purple); color: white; }
+    .eyebrow, .section-label {
+      margin: 0 0 14px;
+      color: var(--lime);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 760px;
+      margin-bottom: 18px;
+      font-size: clamp(44px, 7vw, 92px);
+      line-height: .9;
+      letter-spacing: -.065em;
+    }
+    h1 em, h2 em { color: var(--lime); font-family: Georgia, serif; font-weight: 400; }
+    .hero-copy .intro { max-width: 610px; margin-bottom: 0; color: #f4ecfb; font-size: 17px; line-height: 1.55; }
+    .hero-identity { display: inline-block; margin: 0 0 18px; color: var(--lime); font-size: 13px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; border-bottom: 2px solid var(--lime); padding-bottom: 4px; }
+    .hero-stamp {
+      display: block;
+      position: relative;
+      width: min(100%, 920px);
+      min-height: 0;
+      margin: 0 auto;
+      padding: clamp(28px, 4vw, 42px) clamp(24px, 5vw, 52px) clamp(24px, 4vw, 34px);
+      background: var(--lime);
+      transform: rotate(1deg);
+    }
+    .stamp-flower { position: absolute; top: 24px; right: clamp(22px, 4vw, 42px); font-size: 28px; line-height: 1; }
+    .hero-stamp h2 { margin: 0; font-size: clamp(38px, 5vw, 66px); line-height: .86; letter-spacing: -.06em; }
+    .hero-stamp h2 em { color: var(--purple); }
+    .stamp-note { margin: 20px 0 0; font-size: 13px; font-weight: 900; line-height: 1.35; }
+
+    .section-intro { display: block; margin: 0 0 18px; }
+    .section-intro h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: .95; letter-spacing: -.05em; }
+    .section-intro p { max-width: 360px; margin: 12px 0 0; color: #665576; font-size: 14px; line-height: 1.5; }
+    .section-label { color: var(--purple); margin-bottom: 10px; }
+
+    .action-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-bottom: 46px; }
+    .action-card { min-height: 176px; display: flex; flex-direction: column; justify-content: space-between; padding: 22px; }
+    .action-card:nth-child(1) { background: var(--cream); }
+    .action-card:nth-child(2) { background: var(--pink); }
+    .action-card .meta { margin: 0 0 12px; font-size: 11px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    .action-card h3 { margin-bottom: 8px; font-size: 25px; line-height: .95; letter-spacing: -.04em; }
+    .action-card p { max-width: 480px; margin: 0 0 18px; color: #665576; font-size: 14px; line-height: 1.45; }
+    .action-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid var(--ink);
+      background: var(--lime);
+      box-shadow: 3px 3px 0 var(--ink);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .action-link:active { transform: translate(3px, 3px); box-shadow: none; }
+
+    .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 46px; }
+    .tiles.single { grid-template-columns: minmax(0, 660px); }
+    .site-tile { min-height: 280px; padding: 0; position: relative; }
+    .site-tile .tile-body { display: block; padding: 24px 24px 28px; }
+    .site-tile .tile-body > div:last-child { margin-top: 20px; }
+    .site-tile .tile-body > div:last-child p { margin-bottom: 18px; }
+    .site-tile h3 { max-width: 480px; margin: 12px 0 0; font-size: clamp(40px, 5.5vw, 72px); line-height: .84; letter-spacing: -.06em; }
+    .clarity-card-logo { max-width: none; font: 700 clamp(50px, 6vw, 86px)/.85 Georgia, serif; letter-spacing: -.07em; }
+    .clarity-card-logo span { color: var(--lime); }
+    .site-tile p { max-width: 470px; margin: 0; font-size: 14px; line-height: 1.45; font-weight: 700; }
+    .site-tile .tile-arrow { align-self: flex-end; font-size: 30px; line-height: 1; }
+    .clarity-tile { background: var(--cream); }
+    .clarity-tile .window-bar { background: var(--purple); }
+    .clarity-tile h3 em { color: var(--purple); }
+    .clarity-tile .tile-body { background: var(--lilac); }
+    .qbtl-tile { background: var(--q-paper); border-color: var(--q-ink); box-shadow: 7px 7px 0 var(--q-pink); transform: rotate(-.7deg); }
+    .qbtl-tile .window-bar { background: var(--q-blue); color: white; border-color: var(--q-ink); }
+    .qbtl-tile .dots i { border-color: var(--q-ink); }
+    .qbtl-tile .tile-body { background: var(--q-paper); color: var(--q-ink); }
+    .qbtl-tile h3 { font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-transform: uppercase; }
+    .qbtl-tile h3 em { color: var(--q-pink); text-shadow: 4px 4px 0 var(--q-acid); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; }
+    .qbtl-tile .action-link { background: var(--q-acid); color: var(--q-ink); border-color: var(--q-ink); box-shadow: 3px 3px 0 var(--q-ink); }
+
+    .social-wrap { padding: 24px; margin-bottom: 32px; background: var(--ink); color: white; border: var(--line); box-shadow: var(--shadow); }
+    .social-wrap .section-intro { margin-bottom: 20px; }
+    .social-wrap .section-label { color: var(--lime); }
+    .social-wrap .section-intro h2 { color: white; }
+    .social-wrap .section-intro p { color: #dfd3ea; }
+    .social-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .social-link { display: flex; align-items: center; gap: 12px; min-height: 78px; padding: 14px; background: var(--cream); color: var(--ink); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--lime); font-weight: 900; }
+    .social-link:nth-child(2) { background: var(--pink); }
+    .social-link:nth-child(3) { background: var(--lilac); }
+    .social-icon { display: grid; place-items: center; width: 34px; height: 34px; flex: 0 0 34px; border: 2px solid var(--ink); background: var(--lime); font-size: 14px; }
+    .social-link:nth-child(2) .social-icon { background: var(--q-pink); color: white; }
+    .social-link:nth-child(3) .social-icon { background: var(--q-blue); color: white; }
+    .social-link small { display: block; margin-top: 4px; color: #665576; font-size: 11px; font-weight: 700; }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-top: 22px;
+      border-top: 2px solid rgba(45, 25, 69, .3);
+      color: #665576;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .footer p { margin: 0; }
+    .footer a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+    @media (max-width: 780px) {
+      .hero-stamp { min-height: 0; transform: none; }
+      .tiles { grid-template-columns: 1fr; }
+      .social-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      main { padding-top: 28px; }
+      .site-header { min-height: 62px; }
+      .header-link { font-size: 10px; }
+      .brand { font-size: 16px; }
+      .brand-mark { width: 30px; height: 30px; }
+      .hero-copy { padding: 28px 22px; }
+      h1 { font-size: 52px; }
+      .hero-stamp { min-height: 200px; padding: 18px; }
+      .section-intro { display: block; }
+      .section-intro p { margin-top: 12px; }
+      .action-grid { grid-template-columns: 1fr; }
+      .action-card { min-height: 154px; }
+      .social-wrap { padding: 18px; }
+      .footer { align-items: flex-start; flex-direction: column; }
+    }
+    @media (min-width: 781px) {
+      .hero-stamp h2 { font-size: 48px; }
+      .site-tile h3 { font-size: 48px; }
+      .clarity-card-logo { font-size: 60px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="https://claritybyjayden.online/?utm_source=link-page&utm_medium=link-page&utm_campaign=link-page&utm_content=" aria-label="Clarity by Jayden home">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span>Clarity by Jayden</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <aside class="window hero-stamp" aria-label="Quick connection note">
+        <span class="stamp-flower" aria-hidden="true">✿</span>
+        <h2>Less<br>scrolling.<br>More <em>connecting.</em></h2>
+        <p class="stamp-note">Hey, we’ve just met. I’m Jayden, a systems thinker and professional untangler. I help make messy work clearer, lighter and easier to run.</p>
+      </aside>
+    </section>
+
+    <section class="social-wrap" aria-labelledby="social-heading">
+      <div class="section-intro">
+        <div>
+          <p class="section-label">Follow on socials</p>
+          <h2 id="social-heading">Keep in touch.</h2>
+        </div>
+        <p>Follow along for systems thinking, useful ideas and the occasional strong opinion.</p>
+      </div>
+      <div class="social-grid">
+        <a class="social-link" href="https://linkedin.com/in/jaydencooke/" target="_blank" rel="noopener noreferrer">
+          <span class="social-icon" aria-hidden="true">in</span>
+          <span>LinkedIn<small>@jaydencooke</small></span>
+        </a>
+        <a class="social-link" href="https://www.instagram.com/claritybyjayden" target="_blank" rel="noopener noreferrer">
+          <span class="social-icon" aria-hidden="true">◎</span>
+          <span>Instagram<small>@claritybyjayden</small></span>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="clarity-heading">
+      <div class="tiles single">
+        <article class="window site-tile clarity-tile">
+          <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>claritybyjayden.online</span><b>×</b></div>
+          <div class="tile-body">
+            <div>
+            <p class="meta">Systems / processes / operations</p>
+              <h3 class="clarity-card-logo">Clarity<span>.</span></h3>
+            </div>
+            <div>
+              <p>Untangle the messy middle of a business so work flows better and growth becomes easier to manage.</p>
+              <a class="action-link" href="https://claritybyjayden.online/?utm_source=link-page&utm_medium=link-page&utm_campaign=link-page&utm_content=" target="_blank" rel="noopener noreferrer">Visit the Clarity website <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <section aria-labelledby="side-heading">
+      <div class="tiles single">
+        <article class="window site-tile qbtl-tile">
+          <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>queerlines / home</span><b>×</b></div>
+          <div class="tile-body">
+            <div>
+              <p class="meta">Queer voices / great books / open conversation</p>
+              <h3>Queer <em>Between</em> the Lines.</h3>
+            </div>
+            <div>
+              <p>I run an LGBTQ+ book club for thoughtful reading, honest conversation and finding your people, one brilliant book at a time.</p>
+              <a class="action-link" href="https://clarity-by-jayden.github.io/queerlines//?utm_source=link-page&utm_medium=link-page&utm_campaign=link-page&utm_content=" target="_blank" rel="noopener noreferrer">Visit the book club <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="start-heading">
+      <div class="section-intro">
+        <div>
+          <p class="section-label">Quickest routes</p>
+          <h2 id="start-heading">Want to talk?</h2>
+        </div>
+        <p>Choose the route that suits you, and I’ll see you there.</p>
+      </div>
+      <div class="action-grid">
+        <article class="window action-card">
+          <div>
+            <p class="meta">Best for a quick hello</p>
+            <h3>Email Jayden</h3>
+            <p>Tell me what you’re working on, where it’s getting stuck, or what you’d like to untangle.</p>
+          </div>
+          <a class="action-link" href="mailto:claritybyjayden@gmail.com?subject=Hello%20Jayden">Send an email <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="window action-card">
+          <div>
+            <p class="meta">Best for a proper conversation</p>
+            <h3>Book a free 20-minute call</h3>
+            <p>No pitch, no pressure. Just a useful first conversation to see what might help.</p>
+          </div>
+          <a class="action-link" href="https://calendar.notion.so/meet/jayden-cooke/clarity20" target="_blank" rel="noopener noreferrer">Find a time <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Clarity by Jayden <span aria-hidden="true">✿</span></p>
+      <p><a href="https://claritybyjayden.online/?utm_source=link-page&utm_medium=link-page&utm_campaign=link-page&utm_content=" target="_blank" rel="noopener noreferrer">claritybyjayden.online</a> · built for easy sharing</p>
+    </footer>
+  </main>
+</body>
+</html>
