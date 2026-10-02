@@ -484,18 +484,18 @@
       const messages = [
         'Sorry if I talked non-stop about Notion.',
         'A digital business card, but with fewer awkward handshakes.',
-        'Loading the links I meant to send you…'
+        'Useful links incoming…'
       ];
       let index = 0;
       const hideLoader = () => loader.classList.add('is-hidden');
       const messageTimer = window.setInterval(() => {
         index += 1;
         if (index < messages.length) message.textContent = messages[index];
-      }, 1600);
+      }, 2400);
       window.setTimeout(() => {
         window.clearInterval(messageTimer);
         hideLoader();
-      }, 5000);
+      }, 7200);
       skip.addEventListener('click', () => {
         window.clearInterval(messageTimer);
         hideLoader();
