@@ -79,7 +79,7 @@
       border-bottom: 2px solid var(--ink);
     }
 
-    main { width: min(100%, 860px); margin: 0 auto; padding: 46px clamp(18px, 5vw, 72px) 64px; }
+    main { width: min(100%, 680px); margin: 0 auto; padding: 46px 24px 64px; }
     .hero {
       display: block;
       margin-bottom: 32px;
@@ -229,6 +229,7 @@
     .footer a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
     @media (max-width: 780px) {
+      main { width: 100%; padding-left: clamp(18px, 5vw, 72px); padding-right: clamp(18px, 5vw, 72px); }
       .hero-stamp { min-height: 0; transform: none; }
       .tiles { grid-template-columns: 1fr; }
       .social-grid { grid-template-columns: 1fr; }
