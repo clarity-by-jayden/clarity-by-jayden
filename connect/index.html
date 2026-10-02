@@ -27,6 +27,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    html.js body > *:not(.page-loader) { visibility: hidden; }
     body {
       margin: 0;
       min-width: 320px;
@@ -39,6 +40,103 @@
     a { color: inherit; text-decoration: none; }
     button { font: inherit; }
     :focus-visible { outline: 4px solid var(--purple); outline-offset: 4px; }
+
+    .page-loader {
+      display: none;
+    }
+    html.js .page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: var(--purple);
+      color: white;
+      opacity: 1;
+      transition: opacity .35s ease, visibility .35s ease;
+    }
+    html.js .page-loader.is-hidden {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+    html.js .page-loader.is-hidden ~ * { visibility: visible; }
+    .loader-card {
+      width: min(100%, 360px);
+      padding: 28px 24px 24px;
+      border: var(--line);
+      background: var(--ink);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .loader-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 20px;
+      border: 2px solid var(--ink);
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1;
+    }
+    .loader-kicker {
+      margin: 0 0 10px;
+      color: var(--lime);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .loader-message {
+      min-height: 2.4em;
+      margin: 0;
+      font-size: 25px;
+      font-weight: 900;
+      line-height: .98;
+      letter-spacing: -.04em;
+    }
+    .loader-note {
+      margin: 16px 0 0;
+      color: #dfd3ea;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .loader-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 22px;
+    }
+    .loader-dots i {
+      width: 9px;
+      height: 9px;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--lime);
+      animation: loader-bounce .8s infinite alternate;
+    }
+    .loader-dots i:nth-child(2) { background: var(--pink); animation-delay: .18s; }
+    .loader-dots i:nth-child(3) { background: var(--cream); animation-delay: .36s; }
+    .loader-skip {
+      margin-top: 22px;
+      padding: 0;
+      border: 0;
+      border-bottom: 2px solid var(--lime);
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    @keyframes loader-bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
+    }
 
     .site-header {
       position: sticky;
@@ -256,10 +354,22 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       * { transition: none !important; }
+      .loader-dots i { animation: none; }
     }
   </style>
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <div class="page-loader" role="status" aria-live="polite" aria-label="Loading the connection page">
+    <div class="loader-card">
+      <span class="loader-mark" aria-hidden="true">✳</span>
+      <p class="loader-kicker">A small networking interlude</p>
+      <p class="loader-message">Sorry if I talked non-stop about Notion.</p>
+      <p class="loader-note">No pitch. Just the useful bits.</p>
+      <div class="loader-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+      <button class="loader-skip" type="button">Skip the small talk ↗</button>
+    </div>
+  </div>
   <header class="site-header">
     <a class="brand" href="https://claritybyjayden.online/?utm_source=link-page&utm_medium=link-page&utm_campaign=link-page&utm_content=" aria-label="Clarity by Jayden home">
       <span class="brand-mark" aria-hidden="true">✳</span>
@@ -366,5 +476,31 @@
       <p><a href="https://claritybyjayden.online/?utm_source=link-page&utm_medium=link-page&utm_campaign=link-page&utm_content=" target="_blank" rel="noopener noreferrer">claritybyjayden.online</a> · built for easy sharing</p>
     </footer>
   </main>
+  <script>
+    (() => {
+      const loader = document.querySelector('.page-loader');
+      const message = document.querySelector('.loader-message');
+      const skip = document.querySelector('.loader-skip');
+      const messages = [
+        'Sorry if I talked non-stop about Notion.',
+        'A digital business card, but with fewer awkward handshakes.',
+        'Loading the links I meant to send you…'
+      ];
+      let index = 0;
+      const hideLoader = () => loader.classList.add('is-hidden');
+      const messageTimer = window.setInterval(() => {
+        index += 1;
+        if (index < messages.length) message.textContent = messages[index];
+      }, 1600);
+      window.setTimeout(() => {
+        window.clearInterval(messageTimer);
+        hideLoader();
+      }, 5000);
+      skip.addEventListener('click', () => {
+        window.clearInterval(messageTimer);
+        hideLoader();
+      });
+    })();
+  </script>
 </body>
 </html>
