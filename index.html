@@ -180,16 +180,14 @@ h1,h2,h3,p{margin-top:0}
 
 /* Services */
 .services{background:var(--ink);color:white}
-.service-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .service-card{color:var(--ink);box-shadow:5px 5px 0 #b9ff25}
 .service-card:nth-child(2n){background:var(--lilac)}
 .service-card>div:last-child{padding:24px;min-height:190px;position:relative}
 .number{display:inline-grid;place-items:center;width:36px;height:36px;border:2px solid;border-radius:50%;background:var(--lime);font:700 13px Georgia}
 .service-card h3{font-size:22px;margin:18px 0 8px}
 .service-card p{line-height:1.55;max-width:92%;color:#665576;font-size:14.5px}
-.service-card:last-child{grid-column:1/-1}
-.service-card:last-child>div:last-child{min-height:160px}
-.service-card:last-child p{max-width:75%}
+.framework-note{max-width:820px;margin:28px auto 0;text-align:center;color:#cbbbdc;line-height:1.6;font-size:15px}
 .corner{position:absolute;right:22px;bottom:18px;font-size:20px}
 
 /* Method */
@@ -440,56 +438,39 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
 
   <section class="services section-block" id="services">
     <div class="section-heading">
-      <div><p class="tag">WHERE THE WORK GETS STUCK</p><h2>Make the business<br/><em>easier to run.</em></h2></div>
-      <p>Your business becomes easier to manage when information flows, processes are clear and the right work happens at the right time.</p>
+      <div><p class="tag">WHERE THE WORK GETS STUCK</p><h2>See the work through<br/><em>three connected lenses.</em></h2></div>
+      <p>Every piece of work is shaped by a process, supported by a platform and experienced as a pathway. Friction appears when those three do not line up.</p>
     </div>
     <div class="service-grid">
       <article class="window service-card">
-        <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>value_01</span><b>×</b></div>
+        <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>process</span><b>×</b></div>
         <div>
           <span class="number">01</span>
-          <h3>See how work actually flows</h3>
-          <p>Understand how information, customers and tasks move through the business, including where things are being duplicated, delayed or lost.</p>
+          <h3>Process</h3>
+          <p>How the work gets done. SOPs, workflows, handovers, rules and repeatable ways of working that turn messy knowledge into something usable.</p>
           <b class="corner">↗</b>
         </div>
       </article>
       <article class="window service-card">
-        <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>value_02</span><b>×</b></div>
+        <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>platform</span><b>×</b></div>
         <div>
           <span class="number">02</span>
-          <h3>Remove friction from the customer journey</h3>
-          <p>Improve the processes behind enquiries, onboarding, delivery and follow-up so customers get a smoother experience.</p>
+          <h3>Platform</h3>
+          <p>Where the work and information live. The tools, apps, databases and workspaces that support the process.</p>
           <b class="corner">↗</b>
         </div>
       </article>
       <article class="window service-card">
-        <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>value_03</span><b>×</b></div>
+        <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>pathway</span><b>×</b></div>
         <div>
           <span class="number">03</span>
-          <h3>Turn messy knowledge into usable processes</h3>
-          <p>Create clear ways of working that do not depend on everything living in your head or being explained from scratch each time.</p>
-          <b class="corner">↗</b>
-        </div>
-      </article>
-      <article class="window service-card">
-        <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>value_04</span><b>×</b></div>
-        <div>
-          <span class="number">04</span>
-          <h3>Connect the systems behind the work</h3>
-          <p>Make your tools, databases and information work together properly, instead of creating more manual admin and duplicated effort.</p>
-          <b class="corner">↗</b>
-        </div>
-      </article>
-      <article class="window service-card">
-        <div class="window-bar"><div class="dots"><i></i><i></i><i></i></div><span>value_05</span><b>×</b></div>
-        <div>
-          <span class="number">05</span>
-          <h3>Automate with a purpose</h3>
-          <p>Reduce repetitive work where it saves time, improves quality or makes the customer experience better.</p>
+          <h3>Pathway</h3>
+          <p>What the customer or team experiences as the work moves through the business. The journey created when process and platform meet in real life.</p>
           <b class="corner">↗</b>
         </div>
       </article>
     </div>
+    <p class="framework-note">The 3Ps are not separate problem categories. Clarity looks at how they work together, where the connections break down and what needs to become clearer first.</p>
   </section>
 
   <section class="offers section-block" id="offers">
