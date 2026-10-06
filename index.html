@@ -1,4 +1,4 @@
-<!-- GitHub Pages deployment refresh -->\n<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -364,6 +364,17 @@ footer{background:var(--cream);border-top:3px solid;padding:32px 6vw 22px;displa
 </style>
 </head>
 <body>
+<script>
+/* Remove an escaped newline accidentally emitted before the page markup. */
+(function () {
+  const strayTextNodes = Array.from(document.body.childNodes).filter(function (node) {
+    if (node.nodeType !== Node.TEXT_NODE) return false;
+    const value = (node.nodeValue || '').trim();
+    return value === '' || /^\\n$/.test(value);
+  });
+  strayTextNodes.forEach(function (node) { node.remove(); });
+})();
+</script>
 <main id="top">
   <header class="nav">
     <a class="logo" href="#top">Clarity<span>.</span></a>
