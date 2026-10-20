@@ -39,12 +39,12 @@
   >
 
 
-  <title>Likes Are Nice. But What Happened Next? Measuring What Matters | Clarity by Jayden</title>
+  <title>How to Find Gaps in Your Enquiry and Follow-Up Workflow | Clarity by Jayden</title>
 
 
   <meta
     name="description"
-    content="Likes and views only tell part of the story. Learn how to look beyond vanity metrics and measure what your marketing actually leads to."
+    content="Trace enquiries and projects across your tools to find missed handovers, unclear ownership and forgotten follow-ups. Make the next action visible."
   >
 
 
@@ -62,13 +62,13 @@
 
   <meta
     property="og:title"
-    content="Likes Are Nice. But What Happened Next? Measuring What Matters"
+    content="How to Find Gaps in Your Enquiry and Follow-Up Workflow"
   >
 
 
   <meta
     property="og:description"
-    content="Likes and views only tell part of the story. Learn how to look beyond vanity metrics and measure what your marketing actually leads to."
+    content="Trace enquiries and projects across your tools to find missed handovers, unclear ownership and forgotten follow-ups. Make the next action visible."
   >
 
 
@@ -107,8 +107,8 @@
   {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Likes are nice. But what happened next?",
-  "description": "Likes and views only tell part of the story. Learn how to look beyond vanity metrics and measure what your marketing actually leads to.",
+  "headline": "An enquiry came in. What happened next?",
+  "description": "Trace enquiries and projects across your tools to find missed handovers, unclear ownership and forgotten follow-ups. Make the next action visible.",
   "datePublished": "2026-08-11",
   "author": {
     "@type": "Person",
@@ -120,7 +120,7 @@
     "url": "https://claritybyjayden.online"
   },
   "mainEntityOfPage": "https://claritybyjayden.online/blog/likes-are-nice-but-what-happened-next/",
-  "articleSection": "Marketing",
+  "articleSection": "Customer Journey",
   "url": "https://claritybyjayden.online/blog/likes-are-nice-but-what-happened-next/"
 }
 
@@ -216,6 +216,68 @@ a{
 }
 
 
+/* NAV TOGGLE (mobile hamburger) */
+
+.nav-toggle{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  flex:0 0 auto;
+  border:2px solid var(--ink);
+  border-radius:6px;
+  background:var(--lime);
+  box-shadow:3px 3px 0 var(--ink);
+  padding:0;
+  cursor:pointer;
+}
+
+.nav-toggle:active{
+  transform:translate(3px,3px);
+  box-shadow:none;
+}
+
+.nav-toggle span{
+  position:relative;
+  width:18px;
+  height:2px;
+  background:var(--ink);
+  display:block;
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:18px;
+  height:2px;
+  background:var(--ink);
+  transition:transform .2s ease;
+}
+
+.nav-toggle span::before{
+  top:-6px;
+}
+
+.nav-toggle span::after{
+  top:6px;
+}
+
+.nav.menu-open .nav-toggle span{
+  background:transparent;
+}
+
+.nav.menu-open .nav-toggle span::before{
+  transform:translateY(6px) rotate(45deg);
+}
+
+.nav.menu-open .nav-toggle span::after{
+  transform:translateY(-6px) rotate(-45deg);
+}
+
+
 /* ARTICLE */
 
 .article-shell{
@@ -296,8 +358,7 @@ a{
 }
 
 .category,
-.note-number,
-.action-label{
+.note-number{
   font-size:10px;
   font-weight:900;
   letter-spacing:.14em;
@@ -466,23 +527,6 @@ a{
 }
 
 
-/* ACTION */
-
-.action-box{
-  margin-top:50px;
-  padding:30px;
-  background:var(--lime);
-  border:3px solid var(--ink);
-  border-radius:8px;
-  box-shadow:5px 5px 0 var(--purple);
-}
-
-.action-box h2{
-  margin:9px 0 0;
-  font-size:26px;
-}
-
-
 /* CTA */
 
 .article-end{
@@ -565,11 +609,43 @@ a{
 
 @media(max-width:760px){
 
-  .nav nav>a:not(
-    .active,
-    .nav-button
-  ){
-    display:none;
+  .nav-toggle{
+    display:inline-flex;
+  }
+
+  .nav nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:8px max(30px,5vw) 18px;
+    background:var(--cream);
+    border-bottom:3px solid var(--ink);
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:
+      max-height .25s ease,
+      opacity .2s ease;
+  }
+
+  .nav nav>a:not(.nav-button){
+    display:block;
+    padding:13px 2px;
+    border-bottom:2px solid #2d194522;
+  }
+
+  .nav nav>a.nav-button{
+    margin-top:14px;
+    justify-content:center;
+  }
+
+  .nav.menu-open nav{
+    max-height:320px;
+    opacity:1;
   }
 
   .article-header{
@@ -649,7 +725,18 @@ a{
   </a>
 
 
-  <nav>
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="primary-nav"
+    aria-label="Open menu"
+  >
+    <span></span>
+  </button>
+
+
+  <nav id="primary-nav">
 
     <a href="/">
       Home
@@ -717,7 +804,7 @@ a{
       <header class="article-header">
 
         <p class="category">
-          Marketing
+          Customer Journey
         </p>
 
         <p class="note-number">
@@ -725,11 +812,11 @@ a{
         </p>
 
         <h1>
-          Likes are nice. But what happened next?
+          An enquiry came in. What happened next?
         </h1>
 
         <p class="excerpt">
-          Likes, views and reach can look impressive, but they don’t always tell you whether your marketing is working. The more useful question is: what happened next?
+          Enquiries, proposals and completed tasks only tell part of the story. Trace what happens between stages to find missing ownership, disconnected information and forgotten next actions.
         </p>
 
         <div class="meta">
@@ -741,7 +828,7 @@ a{
           <span>•</span>
 
           <span>
-            3 min read
+            4 min read
           </span>
 
           <span>•</span>
@@ -759,9 +846,7 @@ a{
 
       <div class="article-content">
 
-        <figure class="article-image"><img src="https://cliply.co/wp-content/uploads/2019/02/371901180_INSTALIKES_400.gif" alt="" loading="lazy"></figure><p>A post gets 10,000 views.</p><p>Brilliant.</p><p>Another gets 200.</p><p>Disappointing?</p><p>Maybe.</p><p>But before deciding which one performed better, there’s another question worth asking:</p><p><strong>What happened next?</strong></p><p>Because marketing metrics can look impressive without necessarily telling you very much about whether the marketing is working.</p><h2>The numbers we notice aren’t always the numbers that matter</h2><p>Social platforms make certain metrics very visible.</p><p>Views.</p><p>Likes.</p><p>Followers.</p><p>Comments.</p><p>Shares.</p><p>And those numbers aren’t meaningless.</p><p>They can tell you whether people are seeing or engaging with your content.</p><p>The problem is when they become the only measure of success.</p><p>Imagine one Reel gets 20,000 views.</p><p>Lots of people saw it.</p><p>But nobody visited your profile, clicked your link or enquired.</p><p>Another post gets just 12 likes.</p><p>But three people who are exactly the type of client you want send you a message.</p><p>Which one worked better?</p><p>The answer depends on what the content was designed to do.</p><h2>A smaller number can be much more valuable</h2><p>This is particularly important for smaller businesses.</p><p>You don’t necessarily need millions of people to see what you do.</p><p>You need the <strong>right people</strong> to notice, understand and act.</p><p>A business selling a £20 product online might quite reasonably care about very large reach.</p><p>A consultant who needs five new clients this year probably doesn’t need 100,000 followers.</p><p>They may be far more interested in whether the right decision-makers are engaging with their content.</p><p>Context matters.</p><h2>Look further down the journey</h2><p>Instead of stopping at the number the platform puts in front of you, look at what happened afterward.</p><p>If you publish a social post, you might look at:</p><ul><li>profile visits;</li><li>website visits;</li><li>link clicks;</li><li>new followers;</li><li>email sign-ups;</li><li>messages;</li><li>enquiries;</li><li>bookings;</li><li>sales.</li></ul><p>With email, you might look beyond open rates at:</p><ul><li>what people clicked;</li><li>what pages they visited;</li><li>whether they replied;</li><li>whether they booked;</li><li>whether they bought.</li></ul><p>With your website, traffic is useful to know.</p><p>But what are those visitors actually doing?</p><p>Are they reaching the important pages?</p><p>Are they abandoning the site?</p><p>Are they completing forms?</p><p>Are they booking?</p><p>The further you follow the journey, the clearer the picture becomes.</p><h2>This doesn’t mean vanity metrics are useless</h2><p>I’m not particularly keen on dividing everything neatly into “vanity metric” and “good metric.”</p><p>Because even something like views can be useful.</p><p>If your objective is awareness, reach matters.</p><p>If you’re testing different types of short-form video, watch time matters.</p><p>If you’re trying to build recognition, seeing that more people are regularly encountering your content can be valuable.</p><p>The problem is treating a metric as important simply because it’s easy to see.</p><p>The useful question is:</p><p><strong>Does this number tell me whether the thing did the job I wanted it to do?</strong></p><p>If yes, use it.</p><p>If not, look deeper.</p><h2>Your action</h2><p>Take your last <strong>three pieces of content</strong> and look beyond the headline numbers.</p><p>For each one, ask:</p><aside class="article-callout"><strong>What happened next? </strong></aside><p>Did someone visit your profile?</p><p>Click?</p><p>Subscribe?</p><p>Reply?</p><p>Enquire?</p><p>Book?</p><p>Buy?</p><p>You may discover that the post you thought “did badly” was actually doing far more useful work than the one that got all the attention.</p><p>And that’s the point of clarity.</p><p>Not chasing the biggest number.</p><p>Understanding which numbers actually matter.</p>
-
-        
+        <p>A post gets plenty of attention. An enquiry arrives. A proposal goes out.</p><p>Each looks like progress.</p><p>But what happened next?</p><p>Was the enquiry recorded? Did someone take responsibility for the reply? Did the proposal get a follow-up, or is it still sitting in a sent folder waiting for someone to remember?</p><p>It is possible to generate plenty of activity while losing track of the work that follows.</p><h2>Look beyond the event</h2><p>Most tools are good at showing what happened inside them.</p><p>Your social platform shows engagement. Your form tool shows submissions. Your email account shows messages sent. Your task list shows boxes ticked.</p><p>The harder question is how those events connect.</p><p>A form submission might be a new opportunity, an existing client&#039;s question or a supplier message. Until someone reviews it and decides the next action, “form received” tells you very little about progress.</p><p>The same applies to a proposal. Sending it completes one task. The wider piece of work remains open until someone knows the outcome or has decided when to follow up.</p><p>A completed task and a completed journey can be quite far apart.</p><h2>Follow one journey across the gaps</h2><p>Take a straightforward service enquiry:</p><ol><li>Someone submits a form.</li><li>Their details reach the person responsible.</li><li>The enquiry is reviewed.</li><li>A reply or call is arranged.</li><li>A proposal is prepared if appropriate.</li><li>A decision is recorded.</li><li>An agreed project moves into onboarding.</li></ol><p>At each transition, ask:</p><ul><li>What tells us this stage is complete?</li><li>Where is that information recorded?</li><li>Who owns the next action?</li><li>When does that action need to happen?</li><li>How would we notice if nothing happened?</li></ul><p>These questions expose the gaps between systems.</p><p>A form can submit successfully while its notification lands in an unchecked inbox. A proposal can be opened without anyone recording the follow-up. A payment can arrive without the delivery process starting.</p><p>Everything may have worked technically. The person still ends up waiting.</p><h2>Make the next action visible</h2><p>You do not necessarily need a new platform.</p><p>For an open enquiry or project, a useful record usually needs enough information to answer:</p><ul><li>What stage is this at?</li><li>Who is responsible?</li><li>What happens next?</li><li>When should it happen?</li><li>What are we waiting for?</li></ul><p>Keep the detail proportionate. A small consultancy may manage this with a simple database and linked correspondence.</p><p>The important test is whether someone can understand the current position without searching several tools or asking the person who last touched it.</p><p>A “Waiting” status is more useful when it says what you are waiting for, who needs to respond and when you will check again.</p><p>Otherwise it can become a very polite way of losing something.</p><h2>Measure the point you want to improve</h2><p>Choose measures that help answer a practical question.</p><p>If enquiries are being missed, check whether each eligible enquiry reaches the shared record and has an owner.</p><p>If responses are slow, look at the time between receiving an enquiry and sending a meaningful reply.</p><p>If proposals drift, review overdue follow-ups and record outcomes, including decisions not to proceed.</p><p>If onboarding feels confusing, look for missing access, repeated questions and delays in completing the first step.</p><p>Define the stages consistently before comparing them. A booking, a qualified enquiry and a website visit represent different things.</p><p>And avoid assuming that one event caused another. A person may read several articles, receive a referral and contact you weeks later. Where the connection is uncertain, record what you know rather than inventing a tidy story.</p><h2>Keep the reporting close to the work</h2><p>A useful dashboard should help someone make a decision.</p><p>For example:</p><ul><li>Which enquiries need attention today?</li><li>Which projects are waiting on information?</li><li>Which handovers have not been completed?</li><li>Where do people repeatedly get stuck?</li></ul><p>Start with those questions, then decide what information is needed to answer them.</p><p>You may need clearer statuses or more consistent record-keeping before you need another chart.</p><p>Likes, views and traffic can still help you understand visibility. They are part of the picture. To understand how the business is working, you also need to follow the people and work that move beyond those numbers.</p><h2>Your action</h2><p>Choose one recent enquiry or project and trace it from the first contact to its current position.</p><p>Mark every point where you have to search, guess or ask someone what happened.</p><p>Pick one gap and give it a reliable record, a clear owner and a dated next action.</p><p>That is a useful place to start improving the system.</p><p>If the journey crosses several tools and the gaps are difficult to untangle, a Clarity Session helps map what is happening. Your tailored Clarity Blueprint identifies practical implementation blocks, which you can build independently or choose to work on with Jayden.</p>
 
       </div>
 
@@ -849,6 +934,45 @@ a{
   </div>
 
 </footer>
+
+
+<script>
+
+(function () {
+
+  const navHeader = document.querySelector('header.nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+
+  if (!navHeader || !toggle || !primaryNav) return;
+
+  function closeMenu() {
+    navHeader.classList.remove('menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  }
+
+  toggle.addEventListener('click', () => {
+    const isOpen = navHeader.classList.toggle('menu-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+
+  primaryNav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 850) closeMenu();
+  });
+
+})();
+
+</script>
 
 
 
