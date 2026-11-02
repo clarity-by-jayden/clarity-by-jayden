@@ -1,0 +1,1131 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WWB8LXBHV5">
+  </script>
+
+  <script>
+
+    window.dataLayer =
+      window.dataLayer || [];
+
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+
+    gtag(
+      'js',
+      new Date()
+    );
+
+    gtag(
+      'config',
+      'G-WWB8LXBHV5'
+    );
+
+  </script>
+
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+
+  <title>When One Task Is Really a Workflow: Finding the Next Action | Clarity by Jayden</title>
+
+
+  <meta
+    name="description"
+    content="Does the same task keep rolling over? Learn how to uncover hidden steps, choose useful subtasks and build a repeatable workflow without adding admin."
+  >
+
+
+  <link
+    rel="canonical"
+    href="https://claritybyjayden.online/blog/when-one-task-is-really-a-workflow/"
+  >
+
+
+  <meta
+    property="og:type"
+    content="article"
+  >
+
+
+  <meta
+    property="og:title"
+    content="When One Task Is Really a Workflow: Finding the Next Action"
+  >
+
+
+  <meta
+    property="og:description"
+    content="Does the same task keep rolling over? Learn how to uncover hidden steps, choose useful subtasks and build a repeatable workflow without adding admin."
+  >
+
+
+  <meta
+    property="og:url"
+    content="https://claritybyjayden.online/blog/when-one-task-is-really-a-workflow/"
+  >
+
+
+  <meta
+    property="og:site_name"
+    content="Clarity by Jayden"
+  >
+
+
+  <meta
+    property="article:published_time"
+    content="2026-11-02T09:00:00.000+00:00"
+  >
+
+
+  <meta
+    property="article:author"
+    content="Jayden"
+  >
+
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+
+  <script type="application/ld+json">
+
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "When one task is really a workflow",
+  "description": "Does the same task keep rolling over? Learn how to uncover hidden steps, choose useful subtasks and build a repeatable workflow without adding admin.",
+  "datePublished": "2026-11-02T09:00:00.000+00:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jayden"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Clarity by Jayden",
+    "url": "https://claritybyjayden.online"
+  },
+  "mainEntityOfPage": "https://claritybyjayden.online/blog/when-one-task-is-really-a-workflow/",
+  "articleSection": "Clarity",
+  "url": "https://claritybyjayden.online/blog/when-one-task-is-really-a-workflow/"
+}
+
+  </script>
+
+
+  
+<style>
+
+:root{
+  --ink:#2d1945;
+  --purple:#8255bd;
+  --lilac:#eee5fa;
+  --lime:#b9ff25;
+  --cream:#faf7f2;
+  --pink:#f2c8eb;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--lilac);
+  background-image:
+    radial-gradient(
+      #8255bd22 1px,
+      transparent 1px
+    );
+  background-size:18px 18px;
+  font-family:Arial,sans-serif;
+}
+
+a{
+  color:inherit;
+}
+
+
+/* NAV */
+
+.nav{
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 max(30px,5vw);
+  background:var(--cream);
+  border-bottom:3px solid var(--ink);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.logo{
+  color:var(--ink);
+  text-decoration:none;
+  font:700 29px Georgia,serif;
+  letter-spacing:-2px;
+}
+
+.logo span{
+  color:var(--lime);
+}
+
+.nav nav{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.nav nav a{
+  text-decoration:none;
+}
+
+.nav .active{
+  border-bottom:2px solid var(--ink);
+}
+
+.nav-button{
+  padding:10px 15px;
+  background:var(--lime);
+  border:2px solid var(--ink);
+  border-radius:6px;
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+
+/* NAV TOGGLE (mobile hamburger) */
+
+.nav-toggle{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  flex:0 0 auto;
+  border:2px solid var(--ink);
+  border-radius:6px;
+  background:var(--lime);
+  box-shadow:3px 3px 0 var(--ink);
+  padding:0;
+  cursor:pointer;
+}
+
+.nav-toggle:active{
+  transform:translate(3px,3px);
+  box-shadow:none;
+}
+
+.nav-toggle span{
+  position:relative;
+  width:18px;
+  height:2px;
+  background:var(--ink);
+  display:block;
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:18px;
+  height:2px;
+  background:var(--ink);
+  transition:transform .2s ease;
+}
+
+.nav-toggle span::before{
+  top:-6px;
+}
+
+.nav-toggle span::after{
+  top:6px;
+}
+
+.nav.menu-open .nav-toggle span{
+  background:transparent;
+}
+
+.nav.menu-open .nav-toggle span::before{
+  transform:translateY(6px) rotate(45deg);
+}
+
+.nav.menu-open .nav-toggle span::after{
+  transform:translateY(-6px) rotate(-45deg);
+}
+
+
+/* ARTICLE */
+
+.article-shell{
+  width:min(
+    860px,
+    calc(100% - 36px)
+  );
+  margin:45px auto 80px;
+}
+
+.back-link{
+  display:inline-block;
+  margin-bottom:18px;
+  color:var(--purple);
+  font-size:12px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.article-window{
+  overflow:hidden;
+  background:var(--cream);
+  border:3px solid var(--ink);
+  border-radius:11px;
+  box-shadow:6px 6px 0 var(--purple);
+}
+
+
+/* WINDOW BAR */
+
+.window-bar{
+  min-height:32px;
+  padding:6px 9px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  background:var(--purple);
+  color:white;
+  border-bottom:3px solid var(--ink);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.window-bar>b{
+  text-align:right;
+  font-size:17px;
+}
+
+.dots{
+  display:flex;
+  gap:4px;
+}
+
+.dots i{
+  width:9px;
+  height:9px;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  background:var(--lime);
+}
+
+.dots i:nth-child(2){
+  background:var(--pink);
+}
+
+.dots i:nth-child(3){
+  background:var(--cream);
+}
+
+
+/* HEADER */
+
+.article-header{
+  padding:48px 62px 42px;
+  border-bottom:2px solid #2d194526;
+}
+
+.category,
+.note-number{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.note-number{
+  color:var(--purple);
+}
+
+.article-header h1{
+  margin:13px 0 18px;
+  font-size:clamp(
+    42px,
+    6vw,
+    67px
+  );
+  line-height:.98;
+  letter-spacing:-.05em;
+}
+
+.excerpt{
+  max-width:650px;
+  margin-bottom:22px;
+  color:#665576;
+  font-size:17px;
+  line-height:1.55;
+}
+
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  font-size:11px;
+  font-weight:800;
+}
+
+
+/* BODY */
+
+.article-content{
+  max-width:720px;
+  margin:auto;
+  padding:50px 48px 60px;
+  font-size:17px;
+  line-height:1.75;
+}
+
+.article-content h2{
+  margin:45px 0 18px;
+  font-size:30px;
+  line-height:1.15;
+  letter-spacing:-.025em;
+}
+
+.article-content h3{
+  margin:34px 0 14px;
+  font-size:22px;
+}
+
+.article-content p{
+  margin:0 0 23px;
+}
+
+.article-content ul,
+.article-content ol{
+  margin:0 0 25px;
+  padding-left:26px;
+}
+
+.article-content li{
+  margin-bottom:9px;
+}
+
+.article-content blockquote{
+  margin:30px 0;
+  padding:20px 24px;
+  background:var(--lilac);
+  border-left:5px solid var(--purple);
+  font-family:Georgia,serif;
+  font-size:20px;
+}
+
+.article-content hr{
+  margin:40px 0;
+  border:0;
+  border-top:2px solid #2d194533;
+}
+
+.article-content a{
+  color:var(--purple);
+  font-weight:700;
+}
+
+
+/***************************************************************
+ * ARTICLE IMAGES / GIFS
+ *
+ * This is the change that stops GIFs and smaller images
+ * stretching across the whole article width.
+ ***************************************************************/
+
+.article-content figure,
+.article-content .article-image{
+  margin:35px auto;
+  text-align:center;
+}
+
+.article-content figure img,
+.article-content .article-image img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:420px;
+  margin:0 auto;
+  object-fit:contain;
+  border:2px solid var(--ink);
+  border-radius:7px;
+}
+
+.article-content figcaption{
+  margin:8px auto 0;
+  max-width:520px;
+  color:#665576;
+  font-size:12px;
+  line-height:1.45;
+}
+
+
+/* CALLOUT */
+
+.article-callout{
+  margin:30px 0;
+  padding:22px;
+  background:var(--pink);
+  border:2px solid var(--ink);
+  border-radius:7px;
+}
+
+
+/* CODE */
+
+.article-content pre{
+  overflow:auto;
+  padding:20px;
+  background:var(--ink);
+  color:white;
+  border-radius:7px;
+}
+
+
+/* TOGGLE */
+
+.article-content details{
+  margin:25px 0;
+  padding:17px 20px;
+  background:var(--lilac);
+  border:2px solid var(--ink);
+  border-radius:7px;
+}
+
+.article-content summary{
+  cursor:pointer;
+  font-weight:900;
+}
+
+
+/* CTA */
+
+.article-end{
+  padding:38px 48px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:50px;
+  align-items:center;
+  background:var(--purple);
+  color:white;
+}
+
+.article-end h2{
+  margin:8px 0;
+  font-size:28px;
+}
+
+.article-end p:not(.category){
+  max-width:500px;
+  margin:0;
+  color:#eee5f7;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.end-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.chunky{
+  display:inline-block;
+  padding:13px 16px;
+  background:var(--lime);
+  color:var(--ink);
+  border:3px solid var(--ink);
+  border-radius:6px;
+  box-shadow:4px 4px 0 var(--ink);
+  font-size:12px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.small-link{
+  margin-top:11px;
+  color:white;
+  font-size:10px;
+  font-weight:700;
+}
+
+
+/* FOOTER */
+
+.site-footer{
+  padding:35px 6vw;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:35px;
+  align-items:center;
+  background:var(--cream);
+  border-top:3px solid var(--ink);
+  font-size:12px;
+}
+
+.site-footer p{
+  margin:0;
+  color:#665576;
+}
+
+.site-footer>div{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:7px;
+}
+
+
+/* TABLET */
+
+@media(max-width:760px){
+
+  .nav-toggle{
+    display:inline-flex;
+  }
+
+  .nav nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:8px max(30px,5vw) 18px;
+    background:var(--cream);
+    border-bottom:3px solid var(--ink);
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:
+      max-height .25s ease,
+      opacity .2s ease;
+  }
+
+  .nav nav>a:not(.nav-button){
+    display:block;
+    padding:13px 2px;
+    border-bottom:2px solid #2d194522;
+  }
+
+  .nav nav>a.nav-button{
+    margin-top:14px;
+    justify-content:center;
+  }
+
+  .nav.menu-open nav{
+    max-height:320px;
+    opacity:1;
+  }
+
+  .article-header{
+    padding:36px 25px 32px;
+  }
+
+  .article-header h1{
+    font-size:42px;
+  }
+
+  .article-content{
+    padding:35px 25px 45px;
+    font-size:16px;
+  }
+
+  .article-content figure img,
+  .article-content .article-image img{
+    max-height:360px;
+  }
+
+  .article-end{
+    grid-template-columns:1fr;
+    gap:25px;
+    padding:35px 25px;
+  }
+
+  .site-footer{
+    grid-template-columns:1fr;
+  }
+
+  .site-footer>div{
+    align-items:flex-start;
+  }
+}
+
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+  .nav{
+    padding:0 14px;
+  }
+
+  .nav-button{
+    padding:9px;
+    font-size:10px;
+  }
+
+  .article-shell{
+    width:calc(100% - 24px);
+    margin-top:28px;
+  }
+
+  .article-content figure img,
+  .article-content .article-image img{
+    max-height:300px;
+  }
+}
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<header class="nav">
+
+  <a
+    class="logo"
+    href="/"
+  >
+    Clarity<span>.</span>
+  </a>
+
+
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="primary-nav"
+    aria-label="Open menu"
+  >
+    <span></span>
+  </button>
+
+
+  <nav id="primary-nav">
+
+    <a href="/">
+      Home
+    </a>
+
+    <a
+      class="active"
+      href="/blog/"
+    >
+      Articles
+    </a>
+
+    <a href="/#about">
+      About
+    </a>
+
+    <a
+      class="nav-button"
+      href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02"
+      target="_blank"
+      rel="noreferrer"
+    >
+      Book your Clarity Session →
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+
+  <section class="article-shell">
+
+
+    <a
+      class="back-link"
+      href="/blog/"
+    >
+      ← All Articles
+    </a>
+
+
+    <article class="article-window">
+
+
+      <div class="window-bar">
+
+        <div class="dots">
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+
+        <span>
+          CLARITY_NOTE_009.EXE
+        </span>
+
+        <b>×</b>
+
+      </div>
+
+
+      <header class="article-header">
+
+        <p class="category">
+          Clarity
+        </p>
+
+        <p class="note-number">
+          CLARITY NOTES #009
+        </p>
+
+        <h1>
+          When one task is really a workflow
+        </h1>
+
+        <p class="excerpt">
+          A task that keeps rolling over may contain several different actions. Learn when to clarify the next step, use subtasks or create a repeatable workflow.
+        </p>
+
+        <div class="meta">
+
+          <span>
+            Jayden
+          </span>
+
+          <span>•</span>
+
+          <span>
+            4 min read
+          </span>
+
+          <span>•</span>
+
+          <time
+            datetime="2026-11-02T09:00:00.000+00:00"
+          >
+            1 January 1970
+          </time>
+
+        </div>
+
+      </header>
+
+
+      <div class="article-content">
+
+        <p>That task you have moved to next week three times might not be one task.</p><p>“Publish an article” looks straightforward on a list. But when you sit down to do it, you may still need to finish the draft, choose a visual, prepare the page and check how it will appear.</p><p>The title describes the result you want. It does not necessarily tell you what to do next.</p><p>That distinction matters when you return to unfinished work. If the task makes you reconstruct the whole process before you can begin, the list is holding an intention rather than helping you act.</p><h2>Look inside the task</h2><p>In a client workspace session, we talked through a publishing item that initially looked like a single task.</p><p>The work contained three separate actions: draft the article, create the visual and publish it.</p><p>We grouped the work under one project and made those actions separate subtasks. Each could be completed and tracked without losing its connection to the overall piece of work.</p><p>The point was not to create a more elaborate project system. It was to make the difference between “the article is unfinished” and “the draft is finished, but the visual still needs doing” easier to see.</p><h2>Not every stalled task needs more subtasks</h2><p>Breaking work down can help, but it is not the answer to every item that stays open.</p><p>Before adding structure, ask what is stopping the work:</p><ul><li><strong>The next action is unclear.</strong> Name the specific thing you can do next.</li><li><strong>A decision has not been made.</strong> Record the decision needed rather than pretending execution can begin.</li><li><strong>You are waiting on someone.</strong> Make the dependency visible and decide when to review it.</li><li><strong>There is no capacity for it.</strong> Reconsider the commitment or timing.</li><li><strong>The work is no longer needed.</strong> Remove it from the active list.</li></ul><p>A detailed checklist will not solve a missing decision or create time that is not available.</p><h2>Choose the lightest useful structure</h2><h3>Use one clearer task when there is one action</h3><p>“Newsletter” leaves a lot to interpret. “Review the draft introduction for the November newsletter” tells you what to do and what it relates to.</p><p>Include enough context that the task makes sense outside the project page where you created it.</p><h3>Use a checklist when the steps belong together</h3><p>A short checklist can work when one person completes a familiar sequence in one sitting and the individual steps do not need separate tracking.</p><p>For example, a final publishing check might cover links, formatting and the preview image. Those checks do not automatically need separate owners, dates and records.</p><h3>Use subtasks when the actions need their own progress</h3><p>Separate tasks are useful when the work happens across different sessions, involves different people or depends on an earlier step being finished.</p><p>Drafting, creating a visual and publishing are distinct enough that knowing which one remains can help someone decide what to do next.</p><h3>Use a project when you need to manage the wider outcome</h3><p>If several related actions need coordination, keep them connected to a clear outcome.</p><p>The project holds the purpose and context. The tasks describe the actions. Avoid making every small activity a project if that adds more administration than clarity.</p><h2>Test the workflow before turning it into a template</h2><p>Once a sequence repeats, a reusable template may be helpful. But first check what actually repeats.</p><p>Does every article need a new visual? Is approval always required, or only for certain material? Do different publishing destinations need different preparation?</p><p>Run the sequence through real work and adjust it before treating it as the standard. Otherwise, a template can preserve assumptions that make every future task harder.</p><p>A useful template should reduce repeated decisions, not generate a list of boxes nobody needs to tick.</p><h2>Make progress mean something</h2><p>Completing two of three subtasks does not necessarily mean two-thirds of the effort is finished. Drafting may take much longer than publishing.</p><p>Use the task breakdown to understand what remains, rather than treating a completion percentage as a precise measure of effort or readiness.</p><p>The useful question is: “What needs to happen before this can move forward?”</p><h2>Your action</h2><p>Choose one item that keeps rolling over. Write down what “finished” means, then identify the next action you could complete.</p><p>If several distinct actions are hiding inside it, choose the simplest structure that makes them manageable. Keep the overall context, but stop asking one vague title to do the work of an entire workflow.</p><p>If recurring work is difficult to untangle, a Clarity Session can help identify the decisions, dependencies and steps behind it. Your tailored Clarity Blueprint gives you a practical route forward, whether you implement it yourself or work with me on selected changes.</p>
+
+      </div>
+
+
+      <footer class="article-end">
+
+        <div>
+
+          <p class="category">
+            STILL FEELS TANGLED?
+          </p>
+
+          <h2>
+            See what deserves your attention first.
+          </h2>
+
+          <p>
+            A Clarity Session is an in-depth look at your
+            marketing, customer journey and systems,
+            followed by a practical, prioritised
+            Clarity Blueprint.
+          </p>
+
+        </div>
+
+
+        <div class="end-actions">
+
+          <a
+            class="chunky"
+            href="https://buy.stripe.com/aFadRa0iSb2E8HIaoc73G02"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Book your Clarity Session →
+          </a>
+
+          <a
+            class="small-link"
+            href="https://calendar.notion.so/meet/jayden-cooke/clarity20"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Not sure? Book a free 20-minute video call.
+          </a>
+
+        </div>
+
+      </footer>
+
+
+    </article>
+
+
+  </section>
+
+
+</main>
+
+
+<footer class="site-footer">
+
+  <a
+    class="logo"
+    href="/"
+  >
+    Clarity<span>.</span>
+  </a>
+
+  <p>
+    Strategy, systems and hands-on execution for founders
+    who want a clearer way forward.
+  </p>
+
+  <div>
+
+    <a href="mailto:claritybyjayden@gmail.com">
+      claritybyjayden@gmail.com
+    </a>
+
+    <span>
+      © 2026 Clarity by Jayden
+    </span>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+(function () {
+
+  const navHeader = document.querySelector('header.nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+
+  if (!navHeader || !toggle || !primaryNav) return;
+
+  function closeMenu() {
+    navHeader.classList.remove('menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  }
+
+  toggle.addEventListener('click', () => {
+    const isOpen = navHeader.classList.toggle('menu-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+
+  primaryNav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 850) closeMenu();
+  });
+
+})();
+
+</script>
+
+
+
+<script>
+
+(function () {
+
+  function sendGA4Event(
+    name,
+    params
+  ) {
+
+    if (
+      typeof gtag !==
+      'function'
+    ) {
+
+      return;
+    }
+
+
+    gtag(
+
+      'event',
+
+      name,
+
+      Object.assign(
+
+        {
+          send_to:
+            'G-WWB8LXBHV5'
+        },
+
+        params || {}
+
+      )
+    );
+  }
+
+
+  document.addEventListener(
+    'click',
+    function (event) {
+
+      const link =
+        event.target.closest(
+          'a'
+        );
+
+
+      if (!link) {
+        return;
+      }
+
+
+      const href =
+        link.getAttribute(
+          'href'
+        ) || '';
+
+
+      const linkText =
+        (
+          link.textContent ||
+          ''
+        )
+          .replace(
+            /\s+/g,
+            ' '
+          )
+          .trim();
+
+
+      if (
+        href.includes(
+          'buy.stripe.com/aFadRa0iSb2E8HIaoc73G02'
+        )
+      ) {
+
+        sendGA4Event(
+
+          'book_clarity_session',
+
+          {
+            link_text:
+              linkText,
+
+            link_url:
+              href
+          }
+        );
+
+
+        return;
+      }
+
+
+      if (
+        href.includes(
+          'calendar.notion.so/meet/jayden-cooke/clarity20'
+        )
+      ) {
+
+        sendGA4Event(
+
+          'book_free_call',
+
+          {
+            link_text:
+              linkText,
+
+            link_url:
+              href
+          }
+        );
+
+
+        return;
+      }
+
+
+      if (
+        href
+          .toLowerCase()
+          .startsWith(
+            'mailto:'
+          )
+      ) {
+
+        sendGA4Event(
+
+          'email_click',
+
+          {
+            link_text:
+              linkText,
+
+            link_url:
+              href
+          }
+        );
+      }
+
+    }
+  );
+
+})();
+
+</script>
+
+
+
+</body>
+
+</html>
