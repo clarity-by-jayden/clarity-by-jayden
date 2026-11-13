@@ -6,9 +6,6 @@
 
   <meta charset="utf-8">
 
-
-  <!-- GOOGLE ANALYTICS -->
-
   <script
     async
     src="https://www.googletagmanager.com/gtag/js?id=G-WWB8LXBHV5">
@@ -42,14 +39,12 @@
   >
 
 
-  <title>
-    Stop Asking “What Should I Post?” — Start With Your Audience | Clarity by Jayden
-  </title>
+  <title>What Repeated Customer Questions Reveal About Your Processes | Clarity by Jayden</title>
 
 
   <meta
     name="description"
-    content="Stop asking what to post and start with what your audience needs. A simple way to create more purposeful, useful content for your business."
+    content="Repeated customer questions can reveal gaps in onboarding, information and handovers. Find where people get stuck and make their next step clearer."
   >
 
 
@@ -59,37 +54,41 @@
   >
 
 
-  <!-- OPEN GRAPH -->
-
   <meta
     property="og:type"
     content="article"
   >
 
+
   <meta
     property="og:title"
-    content="Stop Asking “What Should I Post?” — Start With Your Audience"
+    content="What Repeated Customer Questions Reveal About Your Processes"
   >
+
 
   <meta
     property="og:description"
-    content="Stop asking what to post and start with what your audience needs. A simple way to create more purposeful, useful content for your business."
+    content="Repeated customer questions can reveal gaps in onboarding, information and handovers. Find where people get stuck and make their next step clearer."
   >
+
 
   <meta
     property="og:url"
     content="https://claritybyjayden.online/blog/stop-asking-what-should-i-post/"
   >
 
+
   <meta
     property="og:site_name"
     content="Clarity by Jayden"
   >
 
+
   <meta
     property="article:published_time"
     content="2026-08-11"
   >
+
 
   <meta
     property="article:author"
@@ -103,15 +102,13 @@
   >
 
 
-  <!-- ARTICLE SCHEMA -->
-
   <script type="application/ld+json">
 
   {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Stop asking “What should I post?”",
-  "description": "Stop asking what to post and start with what your audience needs. A simple way to create more purposeful, useful content for your business.",
+  "headline": "The questions you keep answering are clues to your process",
+  "description": "Repeated customer questions can reveal gaps in onboarding, information and handovers. Find where people get stuck and make their next step clearer.",
   "datePublished": "2026-08-11",
   "author": {
     "@type": "Person",
@@ -123,7 +120,7 @@
     "url": "https://claritybyjayden.online"
   },
   "mainEntityOfPage": "https://claritybyjayden.online/blog/stop-asking-what-should-i-post/",
-  "articleSection": "Marketing",
+  "articleSection": "Customer Journey",
   "url": "https://claritybyjayden.online/blog/stop-asking-what-should-i-post/"
 }
 
@@ -134,925 +131,578 @@
 <style>
 
 :root{
-
   --ink:#2d1945;
-
   --purple:#8255bd;
-
   --lilac:#eee5fa;
-
   --lime:#b9ff25;
-
   --cream:#faf7f2;
-
   --pink:#f2c8eb;
 }
-
 
 *{
   box-sizing:border-box;
 }
 
-
 html{
   scroll-behavior:smooth;
 }
 
-
 body{
-
   margin:0;
-
-  color:
-    var(--ink);
-
-  background:
-    var(--lilac);
-
+  color:var(--ink);
+  background:var(--lilac);
   background-image:
-
     radial-gradient(
       #8255bd22 1px,
       transparent 1px
     );
-
-  background-size:
-    18px 18px;
-
-  font-family:
-    Arial,sans-serif;
+  background-size:18px 18px;
+  font-family:Arial,sans-serif;
 }
-
 
 a{
   color:inherit;
 }
 
 
-/***************************************************************
- * NAV
- ***************************************************************/
+/* NAV */
 
 .nav{
-
   height:68px;
-
   display:flex;
-
   align-items:center;
-
-  justify-content:
-    space-between;
-
-  padding:
-    0 max(30px,5vw);
-
-  background:
-    var(--cream);
-
-  border-bottom:
-    3px solid var(--ink);
-
-  position:
-    sticky;
-
+  justify-content:space-between;
+  padding:0 max(30px,5vw);
+  background:var(--cream);
+  border-bottom:3px solid var(--ink);
+  position:sticky;
   top:0;
-
   z-index:20;
 }
 
-
 .logo{
-
-  color:
-    var(--ink);
-
-  text-decoration:
-    none;
-
-  font:
-    700 29px Georgia,serif;
-
-  letter-spacing:
-    -2px;
+  color:var(--ink);
+  text-decoration:none;
+  font:700 29px Georgia,serif;
+  letter-spacing:-2px;
 }
-
 
 .logo span{
-
-  color:
-    var(--lime);
+  color:var(--lime);
 }
-
 
 .nav nav{
-
   display:flex;
-
   align-items:center;
-
   gap:25px;
-
-  font-size:
-    12px;
-
-  font-weight:
-    800;
+  font-size:12px;
+  font-weight:800;
 }
-
 
 .nav nav a{
-
-  text-decoration:
-    none;
+  text-decoration:none;
 }
-
 
 .nav .active{
-
-  border-bottom:
-    2px solid var(--ink);
+  border-bottom:2px solid var(--ink);
 }
-
 
 .nav-button{
-
-  padding:
-    10px 15px;
-
-  background:
-    var(--lime);
-
-  border:
-    2px solid var(--ink);
-
-  border-radius:
-    6px;
-
-  box-shadow:
-    3px 3px 0 var(--ink);
+  padding:10px 15px;
+  background:var(--lime);
+  border:2px solid var(--ink);
+  border-radius:6px;
+  box-shadow:3px 3px 0 var(--ink);
 }
 
 
-/***************************************************************
- * ARTICLE WRAPPER
- ***************************************************************/
+/* NAV TOGGLE (mobile hamburger) */
+
+.nav-toggle{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  flex:0 0 auto;
+  border:2px solid var(--ink);
+  border-radius:6px;
+  background:var(--lime);
+  box-shadow:3px 3px 0 var(--ink);
+  padding:0;
+  cursor:pointer;
+}
+
+.nav-toggle:active{
+  transform:translate(3px,3px);
+  box-shadow:none;
+}
+
+.nav-toggle span{
+  position:relative;
+  width:18px;
+  height:2px;
+  background:var(--ink);
+  display:block;
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:18px;
+  height:2px;
+  background:var(--ink);
+  transition:transform .2s ease;
+}
+
+.nav-toggle span::before{
+  top:-6px;
+}
+
+.nav-toggle span::after{
+  top:6px;
+}
+
+.nav.menu-open .nav-toggle span{
+  background:transparent;
+}
+
+.nav.menu-open .nav-toggle span::before{
+  transform:translateY(6px) rotate(45deg);
+}
+
+.nav.menu-open .nav-toggle span::after{
+  transform:translateY(-6px) rotate(-45deg);
+}
+
+
+/* ARTICLE */
 
 .article-shell{
-
-  width:
-    min(
-      860px,
-      calc(100% - 36px)
-    );
-
-  margin:
-    45px auto 80px;
+  width:min(
+    860px,
+    calc(100% - 36px)
+  );
+  margin:45px auto 80px;
 }
-
 
 .back-link{
-
   display:inline-block;
-
-  margin-bottom:
-    18px;
-
-  color:
-    var(--purple);
-
-  font-size:
-    12px;
-
-  font-weight:
-    900;
-
-  text-decoration:
-    none;
+  margin-bottom:18px;
+  color:var(--purple);
+  font-size:12px;
+  font-weight:900;
+  text-decoration:none;
 }
-
 
 .article-window{
-
   overflow:hidden;
-
-  background:
-    var(--cream);
-
-  border:
-    3px solid var(--ink);
-
-  border-radius:
-    11px;
-
-  box-shadow:
-    6px 6px 0 var(--purple);
+  background:var(--cream);
+  border:3px solid var(--ink);
+  border-radius:11px;
+  box-shadow:6px 6px 0 var(--purple);
 }
 
 
-/***************************************************************
- * WINDOW BAR
- ***************************************************************/
+/* WINDOW BAR */
 
 .window-bar{
-
-  min-height:
-    32px;
-
-  padding:
-    6px 9px;
-
+  min-height:32px;
+  padding:6px 9px;
   display:grid;
-
-  grid-template-columns:
-    1fr auto 1fr;
-
+  grid-template-columns:1fr auto 1fr;
   align-items:center;
-
-  background:
-    var(--purple);
-
+  background:var(--purple);
   color:white;
-
-  border-bottom:
-    3px solid var(--ink);
-
-  font-size:
-    9px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .08em;
-
-  text-transform:
-    uppercase;
+  border-bottom:3px solid var(--ink);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
-
 
 .window-bar>b{
-
   text-align:right;
-
-  font-size:
-    17px;
+  font-size:17px;
 }
 
-
 .dots{
-
   display:flex;
-
   gap:4px;
 }
 
-
 .dots i{
-
-  width:
-    9px;
-
-  height:
-    9px;
-
-  border:
-    1.5px solid var(--ink);
-
-  border-radius:
-    50%;
-
-  background:
-    var(--lime);
+  width:9px;
+  height:9px;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  background:var(--lime);
 }
-
 
 .dots i:nth-child(2){
-
-  background:
-    var(--pink);
+  background:var(--pink);
 }
-
 
 .dots i:nth-child(3){
-
-  background:
-    var(--cream);
+  background:var(--cream);
 }
 
 
-/***************************************************************
- * HEADER
- ***************************************************************/
+/* HEADER */
 
 .article-header{
-
-  padding:
-    48px 62px 42px;
-
-  border-bottom:
-    2px solid #2d194526;
+  padding:48px 62px 42px;
+  border-bottom:2px solid #2d194526;
 }
-
 
 .category,
-.note-number,
-.action-label{
-
-  font-size:
-    10px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .14em;
-
-  text-transform:
-    uppercase;
+.note-number{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
 }
-
 
 .note-number{
-
-  color:
-    var(--purple);
+  color:var(--purple);
 }
-
 
 .article-header h1{
-
-  margin:
-    13px 0 18px;
-
-  font-size:
-    clamp(
-      42px,
-      6vw,
-      67px
-    );
-
-  line-height:
-    .98;
-
-  letter-spacing:
-    -.05em;
+  margin:13px 0 18px;
+  font-size:clamp(
+    42px,
+    6vw,
+    67px
+  );
+  line-height:.98;
+  letter-spacing:-.05em;
 }
-
 
 .excerpt{
-
-  max-width:
-    650px;
-
-  margin-bottom:
-    22px;
-
-  color:
-    #665576;
-
-  font-size:
-    17px;
-
-  line-height:
-    1.55;
+  max-width:650px;
+  margin-bottom:22px;
+  color:#665576;
+  font-size:17px;
+  line-height:1.55;
 }
-
 
 .meta{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:10px;
-
-  font-size:
-    11px;
-
-  font-weight:
-    800;
+  font-size:11px;
+  font-weight:800;
 }
 
 
-/***************************************************************
- * ARTICLE CONTENT
- ***************************************************************/
+/* BODY */
 
 .article-content{
-
-  max-width:
-    720px;
-
+  max-width:720px;
   margin:auto;
-
-  padding:
-    50px 48px 60px;
-
-  font-size:
-    17px;
-
-  line-height:
-    1.75;
+  padding:50px 48px 60px;
+  font-size:17px;
+  line-height:1.75;
 }
-
 
 .article-content h2{
-
-  margin:
-    45px 0 18px;
-
-  font-size:
-    30px;
-
-  line-height:
-    1.15;
-
-  letter-spacing:
-    -.025em;
+  margin:45px 0 18px;
+  font-size:30px;
+  line-height:1.15;
+  letter-spacing:-.025em;
 }
-
 
 .article-content h3{
-
-  margin:
-    34px 0 14px;
-
-  font-size:
-    22px;
+  margin:34px 0 14px;
+  font-size:22px;
 }
-
 
 .article-content p{
-
-  margin:
-    0 0 23px;
+  margin:0 0 23px;
 }
-
 
 .article-content ul,
 .article-content ol{
-
-  margin:
-    0 0 25px;
-
-  padding-left:
-    26px;
+  margin:0 0 25px;
+  padding-left:26px;
 }
-
 
 .article-content li{
-
-  margin-bottom:
-    9px;
+  margin-bottom:9px;
 }
-
 
 .article-content blockquote{
-
-  margin:
-    30px 0;
-
-  padding:
-    20px 24px;
-
-  background:
-    var(--lilac);
-
-  border-left:
-    5px solid var(--purple);
-
-  font-family:
-    Georgia,serif;
-
-  font-size:
-    20px;
+  margin:30px 0;
+  padding:20px 24px;
+  background:var(--lilac);
+  border-left:5px solid var(--purple);
+  font-family:Georgia,serif;
+  font-size:20px;
 }
-
 
 .article-content hr{
-
-  margin:
-    40px 0;
-
+  margin:40px 0;
   border:0;
-
-  border-top:
-    2px solid #2d194533;
+  border-top:2px solid #2d194533;
 }
-
 
 .article-content a{
-
-  color:
-    var(--purple);
-
-  font-weight:
-    700;
+  color:var(--purple);
+  font-weight:700;
 }
 
 
-.article-content figure{
+/***************************************************************
+ * ARTICLE IMAGES / GIFS
+ *
+ * This is the change that stops GIFs and smaller images
+ * stretching across the whole article width.
+ ***************************************************************/
 
-  margin:
-    35px 0;
+.article-content figure,
+.article-content .article-image{
+  margin:35px auto;
+  text-align:center;
 }
 
-
-.article-content figure img{
-
-  width:100%;
-
-  border:
-    2px solid var(--ink);
-
-  border-radius:
-    7px;
+.article-content figure img,
+.article-content .article-image img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:420px;
+  margin:0 auto;
+  object-fit:contain;
+  border:2px solid var(--ink);
+  border-radius:7px;
 }
-
 
 .article-content figcaption{
-
-  margin-top:
-    8px;
-
-  color:
-    #665576;
-
-  font-size:
-    12px;
+  margin:8px auto 0;
+  max-width:520px;
+  color:#665576;
+  font-size:12px;
+  line-height:1.45;
 }
 
+
+/* CALLOUT */
 
 .article-callout{
-
-  margin:
-    30px 0;
-
-  padding:
-    22px;
-
-  background:
-    var(--pink);
-
-  border:
-    2px solid var(--ink);
-
-  border-radius:
-    7px;
+  margin:30px 0;
+  padding:22px;
+  background:var(--pink);
+  border:2px solid var(--ink);
+  border-radius:7px;
 }
 
+
+/* CODE */
 
 .article-content pre{
-
   overflow:auto;
-
-  padding:
-    20px;
-
-  background:
-    var(--ink);
-
+  padding:20px;
+  background:var(--ink);
   color:white;
-
-  border-radius:
-    7px;
+  border-radius:7px;
 }
 
+
+/* TOGGLE */
 
 .article-content details{
-
-  margin:
-    25px 0;
-
-  padding:
-    17px 20px;
-
-  background:
-    var(--lilac);
-
-  border:
-    2px solid var(--ink);
-
-  border-radius:
-    7px;
+  margin:25px 0;
+  padding:17px 20px;
+  background:var(--lilac);
+  border:2px solid var(--ink);
+  border-radius:7px;
 }
-
 
 .article-content summary{
-
   cursor:pointer;
-
-  font-weight:
-    900;
+  font-weight:900;
 }
 
 
-/***************************************************************
- * ACTION
- ***************************************************************/
-
-.action-box{
-
-  margin-top:
-    50px;
-
-  padding:
-    30px;
-
-  background:
-    var(--lime);
-
-  border:
-    3px solid var(--ink);
-
-  border-radius:
-    8px;
-
-  box-shadow:
-    5px 5px 0 var(--purple);
-}
-
-
-.action-box h2{
-
-  margin:
-    9px 0 0;
-
-  font-size:
-    26px;
-}
-
-
-/***************************************************************
- * ARTICLE CTA
- ***************************************************************/
+/* CTA */
 
 .article-end{
-
-  padding:
-    38px 48px;
-
+  padding:38px 48px;
   display:grid;
-
-  grid-template-columns:
-    1fr auto;
-
-  gap:
-    50px;
-
-  align-items:
-    center;
-
-  background:
-    var(--purple);
-
+  grid-template-columns:1fr auto;
+  gap:50px;
+  align-items:center;
+  background:var(--purple);
   color:white;
 }
-
 
 .article-end h2{
-
-  margin:
-    8px 0;
-
-  font-size:
-    28px;
+  margin:8px 0;
+  font-size:28px;
 }
 
-
-.article-end
-p:not(.category){
-
-  max-width:
-    500px;
-
+.article-end p:not(.category){
+  max-width:500px;
   margin:0;
-
-  color:
-    #eee5f7;
-
-  font-size:
-    13px;
-
-  line-height:
-    1.5;
+  color:#eee5f7;
+  font-size:13px;
+  line-height:1.5;
 }
-
 
 .end-actions{
-
   display:flex;
-
-  flex-direction:
-    column;
-
-  align-items:
-    flex-start;
+  flex-direction:column;
+  align-items:flex-start;
 }
-
 
 .chunky{
-
-  display:
-    inline-block;
-
-  padding:
-    13px 16px;
-
-  background:
-    var(--lime);
-
-  color:
-    var(--ink);
-
-  border:
-    3px solid var(--ink);
-
-  border-radius:
-    6px;
-
-  box-shadow:
-    4px 4px 0 var(--ink);
-
-  font-size:
-    12px;
-
-  font-weight:
-    900;
-
-  text-decoration:
-    none;
+  display:inline-block;
+  padding:13px 16px;
+  background:var(--lime);
+  color:var(--ink);
+  border:3px solid var(--ink);
+  border-radius:6px;
+  box-shadow:4px 4px 0 var(--ink);
+  font-size:12px;
+  font-weight:900;
+  text-decoration:none;
 }
-
 
 .small-link{
-
-  margin-top:
-    11px;
-
+  margin-top:11px;
   color:white;
-
-  font-size:
-    10px;
-
-  font-weight:
-    700;
+  font-size:10px;
+  font-weight:700;
 }
 
 
-/***************************************************************
- * FOOTER
- ***************************************************************/
+/* FOOTER */
 
 .site-footer{
-
-  padding:
-    35px 6vw;
-
+  padding:35px 6vw;
   display:grid;
-
-  grid-template-columns:
-    auto 1fr auto;
-
-  gap:
-    35px;
-
-  align-items:
-    center;
-
-  background:
-    var(--cream);
-
-  border-top:
-    3px solid var(--ink);
-
-  font-size:
-    12px;
+  grid-template-columns:auto 1fr auto;
+  gap:35px;
+  align-items:center;
+  background:var(--cream);
+  border-top:3px solid var(--ink);
+  font-size:12px;
 }
-
 
 .site-footer p{
-
   margin:0;
-
-  color:
-    #665576;
+  color:#665576;
 }
-
 
 .site-footer>div{
-
   display:flex;
-
-  flex-direction:
-    column;
-
-  align-items:
-    flex-end;
-
-  gap:
-    7px;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:7px;
 }
 
 
-/***************************************************************
- * MOBILE
- ***************************************************************/
+/* TABLET */
 
-@media(
-  max-width:760px
-){
+@media(max-width:760px){
 
-  .nav nav>a:not(
-    .active,
-    .nav-button
-  ){
-
-    display:none;
+  .nav-toggle{
+    display:inline-flex;
   }
 
+  .nav nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:8px max(30px,5vw) 18px;
+    background:var(--cream);
+    border-bottom:3px solid var(--ink);
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:
+      max-height .25s ease,
+      opacity .2s ease;
+  }
+
+  .nav nav>a:not(.nav-button){
+    display:block;
+    padding:13px 2px;
+    border-bottom:2px solid #2d194522;
+  }
+
+  .nav nav>a.nav-button{
+    margin-top:14px;
+    justify-content:center;
+  }
+
+  .nav.menu-open nav{
+    max-height:320px;
+    opacity:1;
+  }
 
   .article-header{
-
-    padding:
-      36px 25px 32px;
+    padding:36px 25px 32px;
   }
-
 
   .article-header h1{
-
-    font-size:
-      42px;
+    font-size:42px;
   }
-
 
   .article-content{
-
-    padding:
-      35px 25px 45px;
-
-    font-size:
-      16px;
+    padding:35px 25px 45px;
+    font-size:16px;
   }
 
+  .article-content figure img,
+  .article-content .article-image img{
+    max-height:360px;
+  }
 
   .article-end{
-
-    grid-template-columns:
-      1fr;
-
-    gap:
-      25px;
-
-    padding:
-      35px 25px;
+    grid-template-columns:1fr;
+    gap:25px;
+    padding:35px 25px;
   }
-
 
   .site-footer{
-
-    grid-template-columns:
-      1fr;
+    grid-template-columns:1fr;
   }
 
-
   .site-footer>div{
-
-    align-items:
-      flex-start;
+    align-items:flex-start;
   }
 }
 
 
-@media(
-  max-width:500px
-){
+/* MOBILE */
+
+@media(max-width:500px){
 
   .nav{
-
-    padding:
-      0 14px;
+    padding:0 14px;
   }
-
 
   .nav-button{
-
-    padding:
-      9px;
-
-    font-size:
-      10px;
+    padding:9px;
+    font-size:10px;
   }
 
-
   .article-shell{
+    width:calc(100% - 24px);
+    margin-top:28px;
+  }
 
-    width:
-      calc(100% - 24px);
-
-    margin-top:
-      28px;
+  .article-content figure img,
+  .article-content .article-image img{
+    max-height:300px;
   }
 }
 
@@ -1075,7 +725,18 @@ p:not(.category){
   </a>
 
 
-  <nav>
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="primary-nav"
+    aria-label="Open menu"
+  >
+    <span></span>
+  </button>
+
+
+  <nav id="primary-nav">
 
     <a href="/">
       Home
@@ -1126,11 +787,9 @@ p:not(.category){
       <div class="window-bar">
 
         <div class="dots">
-
           <i></i>
           <i></i>
           <i></i>
-
         </div>
 
         <span>
@@ -1145,7 +804,7 @@ p:not(.category){
       <header class="article-header">
 
         <p class="category">
-          Marketing
+          Customer Journey
         </p>
 
         <p class="note-number">
@@ -1153,11 +812,11 @@ p:not(.category){
         </p>
 
         <h1>
-          Stop asking “What should I post?”
+          The questions you keep answering are clues to your process
         </h1>
 
         <p class="excerpt">
-          Struggling to decide what to post? Start with what your audience needs to understand, believe or do next — then choose the content that does that job.
+          Repeated questions can reveal missing information, unclear handovers or instructions arriving too late. Use them to improve the process and customer journey behind your work.
         </p>
 
         <div class="meta">
@@ -1169,7 +828,7 @@ p:not(.category){
           <span>•</span>
 
           <span>
-            3 min read
+            5 min read
           </span>
 
           <span>•</span>
@@ -1187,9 +846,7 @@ p:not(.category){
 
       <div class="article-content">
 
-        <p>“What should I post today?”</p><p>It’s probably one of the most common content questions.</p><p>And I think it’s often the wrong place to start.</p><p>Because as soon as you begin with the format — a post, a Reel, an email, a carousel — you’re trying to create content before deciding what the content actually needs to achieve.</p><p>A better question is:</p><blockquote><strong>What does my audience need to understand, believe or do next? </strong></blockquote><p>Then decide what to create.</p><h2>Content should come after the objective</h2><p>Imagine you’re a consultant.</p><p>You know potential clients often look at your service and think:</p><p>“Couldn’t I just do this myself?”</p><p>You could sit down and try to invent an interesting LinkedIn post.</p><p>Or you could recognise that there’s a specific belief you need to address.</p><p>Your content could explain the difference between doing something yourself and bringing in specialist support.</p><p>Now there’s a purpose behind the post.</p><p>Or perhaps you run a training business and people repeatedly ask:</p><p>“Is this suitable for beginners?”</p><p>There’s your content.</p><p>You don’t need a brainstorm.</p><p>You already know what the audience needs to understand.</p><h2>Your customers are giving you content ideas all the time</h2><p>Some of the best content ideas are already sitting inside your business.</p><p>Look at:</p><ul><li>questions customers ask before buying;</li><li>objections that come up regularly;</li><li>things people misunderstand about what you do;</li><li>questions asked during sales calls;</li><li>emails you find yourself answering repeatedly;</li><li>conversations with existing customers;</li><li>things people need reassurance about before taking the next step.</li></ul><p>Those are not just customer-service questions.</p><p>They’re marketing insight.</p><p>And they tend to produce much stronger content because you’re responding to something real rather than trying to invent something because your content calendar says Tuesday needs a post.</p><h2>Think about where your audience is</h2><p>Different people need different things from you.</p><p>Someone discovering you for the first time might need to understand the problem you solve.</p><p>Someone who has followed you for six months might already understand that. They may need proof that you can solve it.</p><p>Someone who is nearly ready to buy might simply need reassurance about price, timing or how the process works.</p><p>That means “What should I post?” becomes much easier when you start thinking about the audience’s next question.</p><p>For example:</p><p><strong>They don’t understand the problem yet.</strong></p><p>Create something that makes the problem visible.</p><p><strong>They understand the problem but don’t know their options.</strong></p><p>Explain the different approaches.</p><p><strong>They’re considering you but aren’t sure.</strong></p><p>Share a case study, example or answer a common objection.</p><p><strong>They’re ready.</strong></p><p>Give them a clear next step.</p><p>Suddenly your content has somewhere to go.</p><h2>You also stop creating content for the sake of it</h2><p>This matters because creating content takes time.</p><p>And when you’re running a business, there is always something else you could be doing.</p><p>If you’re going to spend that time making videos, writing posts or sending emails, they should contribute to something.</p><p>That doesn’t mean every post needs to sell something.</p><p>Far from it.</p><p>Some content exists to educate.</p><p>Some builds trust.</p><p>Some creates awareness.</p><p>Some reassures.</p><p>Some encourages people to take action.</p><p>But there should still be a reason for it.</p><h2>Your action</h2><p>Before creating your next piece of content, write down:</p><aside class="article-callout"><strong>“The one thing I want my audience to understand is…” </strong></aside><p>Then create the content around that.</p><p>Not around the algorithm.</p><p>Not around the fact that you haven’t posted since Tuesday.</p><p>And not around what everyone else seems to be talking about.</p><p>Start with what your audience needs.</p><p>Then choose the content that does the job.</p>
-
-        
+        <p>“What should I post today?”</p><p>It sounds like a content problem. Sometimes it is.</p><p>But if you keep answering the same questions in emails, calls and messages, there may be a more useful place to start: why do people need to keep asking?</p><p>Someone wondering how to book might need a clearer next step on your website. A new client asking where to upload documents might need better onboarding instructions. A team member checking which file is current might need one reliable place to find it.</p><p>A social post may help with awareness. It cannot reliably carry instructions that someone needs at a particular moment.</p><h2>Repeated questions show you where to look</h2><p>Questions are useful evidence about how people experience your business.</p><p>They can reveal:</p><ul><li>missing information;</li><li>instructions that arrive too late;</li><li>competing versions of the same document;</li><li>an unclear handover;</li><li>a next step that depends on someone explaining it personally.</li></ul><p>That does not mean every repeated question proves something is broken. People miss things, circumstances vary and some decisions genuinely need a conversation.</p><p>But if several people get stuck in the same place, it is worth examining the journey before writing another individual reply.</p><p>Your sent folder can be quite an informative process audit. Slightly less glamorous than a strategy workshop, but readily available.</p><h2>Find the moment of uncertainty</h2><p>Imagine a consultant receives the same question after every booking:</p><p>“What do you need from me before the session?”</p><p>They could publish a helpful post about preparing for a consultation.</p><p>The problem is that the next person who books may never see it.</p><p>A more dependable approach would put the instructions in the booking confirmation, link to one current preparation page and make any required action obvious.</p><p>Now look behind that message:</p><ul><li>Does a confirmed booking reliably trigger the preparation step?</li><li>Who checks whether the information has arrived?</li><li>Where are the answers stored?</li><li>Can the consultant find them before the session?</li></ul><p>The wording matters, but so does the process around it.</p><h2>Match the information to the stage</h2><p>People need different information at different points.</p><h3>Before they enquire</h3><p>Help them understand whether the service is relevant, how it works and what to do next.</p><p>A website page or useful article may be the right place.</p><h3>While a decision is being made</h3><p>Make scope, timing, responsibilities and outstanding questions easy to find.</p><p>That might belong in a proposal or a shared record, with a clear follow-up action.</p><h3>After they commit</h3><p>Explain what happens next, what you need from them and when they should expect to hear from you.</p><p>Booking confirmations, onboarding messages and client portals can support this.</p><h3>During delivery</h3><p>Keep progress, decisions and requests visible. Avoid making someone piece together a project from a long email chain.</p><h3>At completion</h3><p>Explain what has been handed over, where it lives and how to use or maintain it.</p><p>A completed project should not leave the customer wondering which link contains the final version.</p><h2>Give each piece of information a home</h2><p>You do not need to put everything in one application.</p><p>You do need to know which version is reliable and how people reach it when they need it.</p><p>A practical approach is to:</p><ol><li>Keep the core instructions in one maintained place.</li><li>Link to them from the relevant message or workflow.</li><li>Put the immediate next action directly in the message.</li><li>Make someone responsible for keeping the instructions current.</li></ol><p>Be thoughtful about access. A perfect set of instructions behind the wrong permissions is just another support request waiting to happen.</p><p>For repeatable internal work, a short checklist may be enough. For a client, a concise “what happens next” page might do the job better than an elaborate portal.</p><h2>Keep useful conversations</h2><p>Some questions deserve a personal answer.</p><p>A client asking how a recommendation applies to their circumstances needs judgement and context. A person who is uncertain about an important decision may need reassurance.</p><p>The aim is to remove avoidable confusion so those conversations get more attention.</p><p>Marketing still has a place. Customer questions can make excellent articles and posts. But first check whether the answer also needs to become part of the service, process or workspace.</p><p>Otherwise you can end up publishing helpful advice while the same confusion continues behind the scenes.</p><h2>Your action</h2><p>Choose one question you have answered more than once recently.</p><p>Write down:</p><ul><li>who asks it;</li><li>when they need the answer;</li><li>where they currently look;</li><li>what should happen after they understand it.</li></ul><p>Then improve that point in the journey. Put the answer where it is needed and give the next step a clear owner.</p><p>If you can see repeated confusion but cannot tell whether it comes from the process, the tools or the journey between them, a Clarity Session helps examine the whole picture. Your Clarity Blueprint turns those findings into practical improvements you can tackle yourself or build with support.</p>
 
       </div>
 
@@ -1266,9 +923,7 @@ p:not(.category){
 
   <div>
 
-    <a
-      href="mailto:claritybyjayden@gmail.com"
-    >
+    <a href="mailto:claritybyjayden@gmail.com">
       claritybyjayden@gmail.com
     </a>
 
@@ -1281,17 +936,54 @@ p:not(.category){
 </footer>
 
 
+<script>
+
+(function () {
+
+  const navHeader = document.querySelector('header.nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+
+  if (!navHeader || !toggle || !primaryNav) return;
+
+  function closeMenu() {
+    navHeader.classList.remove('menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  }
+
+  toggle.addEventListener('click', () => {
+    const isOpen = navHeader.classList.toggle('menu-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+
+  primaryNav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 850) closeMenu();
+  });
+
+})();
+
+</script>
+
+
 
 <script>
 
 (function () {
 
-
   function sendGA4Event(
     name,
     params
   ) {
-
 
     if (
       typeof gtag !==
@@ -1311,26 +1003,20 @@ p:not(.category){
       Object.assign(
 
         {
-
           send_to:
             'G-WWB8LXBHV5'
-
         },
 
         params || {}
 
       )
-
     );
   }
 
 
   document.addEventListener(
-
     'click',
-
     function (event) {
-
 
       const link =
         event.target.closest(
@@ -1339,62 +1025,45 @@ p:not(.category){
 
 
       if (!link) {
-
         return;
       }
 
 
       const href =
-
         link.getAttribute(
           'href'
         ) || '';
 
 
       const linkText =
-
         (
           link.textContent ||
           ''
         )
-
           .replace(
             /\s+/g,
             ' '
           )
-
           .trim();
 
 
-      /*
-       * CLARITY SESSION
-       */
-
       if (
-
         href.includes(
-
           'buy.stripe.com/aFadRa0iSb2E8HIaoc73G02'
-
         )
-
       ) {
-
 
         sendGA4Event(
 
           'book_clarity_session',
 
           {
-
             link_text:
               linkText,
 
             link_url:
               href
-
           }
-
         );
 
 
@@ -1402,35 +1071,23 @@ p:not(.category){
       }
 
 
-      /*
-       * FREE CALL
-       */
-
       if (
-
         href.includes(
-
           'calendar.notion.so/meet/jayden-cooke/clarity20'
-
         )
-
       ) {
-
 
         sendGA4Event(
 
           'book_free_call',
 
           {
-
             link_text:
               linkText,
 
             link_url:
               href
-
           }
-
         );
 
 
@@ -1438,41 +1095,29 @@ p:not(.category){
       }
 
 
-      /*
-       * EMAIL
-       */
-
       if (
-
         href
           .toLowerCase()
           .startsWith(
             'mailto:'
           )
-
       ) {
-
 
         sendGA4Event(
 
           'email_click',
 
           {
-
             link_text:
               linkText,
 
             link_url:
               href
-
           }
-
         );
-
       }
 
     }
-
   );
 
 })();
