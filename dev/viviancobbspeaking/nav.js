@@ -2,10 +2,10 @@
   // Paths are relative to this file. Keep nav.js beside the homepage.
   const siteRoot = new URL('.', document.currentScript.src);
   const menuLinks = [
-    { label: 'Speaking', path: 'speaking/' },
+    { label: 'Speaking', path: 'speaking/index.html' },
     { label: 'The Book', path: 'index.html#book' },
-    { label: 'Workshops', path: 'workshops/' },
-    { label: 'Meet Vivian', path: 'meet-vivian/' },
+    { label: 'Workshops', path: 'workshops/index.html' },
+    { label: 'Meet Vivian', path: 'meet-vivian/index.html' },
     { label: 'Read & Listen', path: 'index.html#resources' },
     { label: 'Book Vivian', path: 'https://viviancobbspeaking.com/book-vivian', button: true },
   ];
