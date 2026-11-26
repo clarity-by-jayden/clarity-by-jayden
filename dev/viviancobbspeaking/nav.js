@@ -4,7 +4,7 @@
   const menuLinks = [
     { label: 'Speaking', path: 'speaking/' },
     { label: 'The Book', path: 'index.html#book' },
-    { label: 'Workshops', path: 'index.html#workshops' },
+    { label: 'Workshops', path: 'workshops/' },
     { label: 'Meet Vivian', path: 'meet-vivian/' },
     { label: 'Read & Listen', path: 'index.html#resources' },
     { label: 'Book Vivian', path: 'https://viviancobbspeaking.com/book-vivian', button: true },
